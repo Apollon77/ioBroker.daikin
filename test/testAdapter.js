@@ -82,7 +82,7 @@ function setupHttpServer(callback) {
     //Create a server
     server = http.createServer(handleHttpRequest);
     //Lets start our server
-    server.listen(80, '127.0.0.1', function() {
+    server.listen(80, function() {
         //Callback triggered when server is successfully listening. Hurray!
         console.log("HTTP-Server listening on: http://localhost:%s", 80);
         callback();
