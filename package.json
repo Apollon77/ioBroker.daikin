@@ -1,0 +1,30 @@
+{
+  "name": "iobroker.daikin",
+  "version": "0.1.0",
+  "description": "Daikin Adapter",
+  "author": "Ingo Fischer <ingo@fischer-ka.de>",
+  "contributors": [],
+  "homepage": "",
+  "license": "MIT",
+  "keywords": [
+    "iobroker", "Daikin", "Climate Control"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Apollon77/ioBroker.daikin"
+  },
+  "dependencies": {
+    "daikin-controller": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "chai": "^3.4.1"
+},
+  "bugs": {
+    "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
+  },
+  "main": "daikin.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  }
+}

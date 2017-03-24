@@ -1,0 +1,14 @@
+Gruntfile.js
+tasks
+node_modules
+.idea
+.gitignore
+.git
+.DS_Store
+test
+.travis.yml
+appveyor.yml
+.codeclimate.yml
+.eslinkignore
+.eslintrc
+.vscode
