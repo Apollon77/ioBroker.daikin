@@ -4,6 +4,7 @@
 var expect = require('chai').expect;
 var setup  = require(__dirname + '/lib/setup');
 var fs = require('fs');
+var http = require('http');
 
 var objects = null;
 var states  = null;
@@ -75,6 +76,7 @@ function sendTo(target, command, message, callback) {
     });
 }
 
+var server;
 describe('Test ' + adapterShortName + ' adapter', function() {
     before('Test ' + adapterShortName + ' adapter: Start js-controller', function (_done) {
         this.timeout(600000); // because of first install from npm
@@ -88,6 +90,19 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.native.daikinIp = '127.0.0.1';
 
             setup.setAdapterConfig(config.common, config.native);
+
+            //We need a function which handles requests and send response
+            function handleRequest(request, response){
+                console.log('HTTP-Server: Request: ' + JSON.stringify(request));
+                response.end('ret=OK');
+            }
+            //Create a server
+            server = http.createServer(handleRequest);
+            //Lets start our server
+            server.listen(80, function(){
+                //Callback triggered when server is successfully listening. Hurray!
+                console.log("HTTP-Server listening on: http://localhost:%s", 80);
+            });
 
             setup.startController(true, function(id, obj) {}, function (id, state) {
                     if (onStateChanged) onStateChanged(id, state);
