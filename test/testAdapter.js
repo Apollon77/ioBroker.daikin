@@ -77,7 +77,7 @@ function sendTo(target, command, message, callback) {
 }
 
 var server;
-function setupHttpServer() {
+function setupHttpServer(callback) {
     //We need a function which handles requests and send response
     //Create a server
     server = http.createServer(handleHttpRequest);
@@ -85,6 +85,7 @@ function setupHttpServer() {
     server.listen(80, '127.0.0.1', function() {
         //Callback triggered when server is successfully listening. Hurray!
         console.log("HTTP-Server listening on: http://localhost:%s", 80);
+        callback();
     });
 }
 
@@ -107,8 +108,8 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
             setup.setAdapterConfig(config.common, config.native);
 
-            setupHttpServer
-            setup.startController(true, function(id, obj) {}, function (id, state) {
+            setupHttpServer(function() {
+                setup.startController(true, function(id, obj) {}, function (id, state) {
                     if (onStateChanged) onStateChanged(id, state);
                 },
                 function (_objects, _states) {
@@ -116,6 +117,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     states  = _states;
                     _done();
                 });
+            });
         });
     });
 
