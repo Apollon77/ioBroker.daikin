@@ -90,7 +90,7 @@ function setupHttpServer(callback) {
 }
 
 function handleHttpRequest(request, response){
-    console.log('HTTP-Server: Request: ' + JSON.stringify(request));
+    console.log('HTTP-Server: Request: ' + request.method + ' ' + request.url);
     response.end('ret=OK');
 }
 
