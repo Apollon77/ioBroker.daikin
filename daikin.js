@@ -230,7 +230,7 @@ function handleDaikinUpdate(data, channel) {
             }*/
         }
         adapter.log.debug('Old value "' + updatedStates[channel][fieldName] + '" vs. "' + data[fieldName] + '"');
-        if (valid && (!updatedStates[channel][fieldName] || updatedStates[channel][fieldName] != data[fieldName])) {
+        if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] != data[fieldName])) {
             adapter.log.debug('Set State ' + channel + '.' + fieldName + ': "' + data[fieldName] + '"');
             adapter.setState(channel + '.' + fieldName, {ack: true, val: data[fieldName]});
             updatedStates[channel][fieldName] = data[fieldName];

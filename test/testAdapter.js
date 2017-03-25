@@ -194,10 +194,11 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     });
 
     it('Test ' + adapterShortName + ' adapter: Check values', function (done) {
-        this.timeout(80000);
-        checkValueOfState('sensorInfo.indoorTemperature', 23.5, function() {
+        console.log('START CHECK VALUES');
+        this.timeout(90000);
+        checkValueOfState('daikin.0.sensorInfo.indoorTemperature', 23.5, function() {
             setTimeout(function() {
-                checkValueOfState('sensorInfo.indoorTemperature', 25.5, function() {
+                checkValueOfState('daikin.0.sensorInfo.indoorTemperature', 25.5, function() {
                     done();
                 });
             }, 70000);
