@@ -169,7 +169,7 @@ function main() {
     else adapter.config.pollingInterval = 300;
 
     daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options, function (err, res) {
-        adapter.log.info('Daikin Device inited ' + err?'with Error :' + err:'successfully');
+        adapter.log.info('Daikin Device initialized' + (err?'with Error :' + err:'successfully'));
         if (!err) {
             adapter.log.info('Set pollong Intervall to ' + adapter.config.pollingInterval + 's');
             daikinDevice.setUpdate(adapter.config.pollingInterval, storeDaikinData);

@@ -82,16 +82,22 @@ function setupHttpServer(callback) {
     //Create a server
     server = http.createServer(handleHttpRequest);
     //Lets start our server
-    server.listen(80, function() {
+    server.listen(8080, function() {
         //Callback triggered when server is successfully listening. Hurray!
         console.log("HTTP-Server listening on: http://localhost:%s", 80);
         callback();
     });
 }
 
+var requestCount = 0;
+var requestError = false;
 function handleHttpRequest(request, response){
     console.log('HTTP-Server: Request: ' + request.method + ' ' + request.url);
-    response.end('ret=OK');
+    switch (requestCount) {
+        case 0:   response.end('ret=OK,type=aircon,reg=eu,dst=1,ver=2_6_0,pow=0,err=0,location=0,name=%4b%6c%69%6d%61%20%4a%61%6e%61,icon=0,method=home only,port=30050,id=,pw=,lpw_flag=0,adp_kind=2,pv=0,cpv=0,cpv_minor=00,led=0,en_setzone=1,mac=A408EACC91D4,adp_mode=run,en_hol=0,grp_name=%4b%69%6e%64%65%72,en_grp=1');
+                  break;
+        default:  response.end('ret=PARAM NG');
+    }
 }
 
 describe('Test ' + adapterShortName + ' adapter', function() {
@@ -104,7 +110,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            config.native.daikinIp = '127.0.0.1';
+            config.native.daikinIp = '127.0.0.1:8080';
 
             setup.setAdapterConfig(config.common, config.native);
 
