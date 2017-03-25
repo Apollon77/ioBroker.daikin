@@ -208,7 +208,7 @@ function handleDaikinUpdate(data, channel) {
             if (typeof fieldName !== 'string') {
                 fieldName = fieldName.toString();
             }
-            adapter.log.debug(JSON.stringify(fieldName));
+            //adapter.log.debug(JSON.stringify(fieldName));
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
@@ -225,6 +225,7 @@ function handleDaikinUpdate(data, channel) {
                 adapter.log.warn('Unknown data field ' + channel + '.' + fieldDef + '. Report to Developer!');
             }*/
         }
+        adapter.log.debug('Old value "' + updatedStates[channel][fieldName] + '" vs. "' + data[fieldName] + '"');
         if (!updatedStates[channel][fieldName] || updatedStates[channel][fieldName] !== data[fieldName]) {
             adapter.setState(channel + '.' + fieldDef, {ack: true, val: data[fieldName]});
             updatedStates[channel][fieldName] = data[fieldName];
