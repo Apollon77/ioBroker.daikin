@@ -172,7 +172,7 @@ function main() {
         adapter.log.info('Daikin Device initialized ' + (err?'with Error :' + err:'successfully'));
         if (!err) {
             adapter.log.info('Set polling Intervall to ' + adapter.config.pollingInterval + 's');
-            daikinDevice.setUpdate(adapter.config.pollingInterval, function() {
+            daikinDevice.setUpdate(adapter.config.pollingInterval * 1000, function() {
                 storeDaikinData();
             });
         }
