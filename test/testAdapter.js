@@ -121,10 +121,12 @@ function handleHttpRequest(request, response){
     console.log('HTTP-Server: Request: ' + request.method + ' ' + request.url);
     if (!requestError) {
         var awaited = responses.shift();
+        console.log('CHECK: "' + awaited.request + '" vs. "' + request.method + ' ' + request.url + '"');
         if (awaited.request == request.method + ' ' + request.url) {
             response.end(awaited.response);
         }
         else {
+            console.log('ERROR');
             requestError = true;
         }
     }
