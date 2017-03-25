@@ -158,7 +158,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.loglevel = 'debug';
 
             config.native.daikinIp = '127.0.0.1:8080';
-            config.native.pollingInterval = 20;
+            config.native.pollingInterval = 60;
 
             setup.setAdapterConfig(config.common, config.native);
 
@@ -172,6 +172,24 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     _done();
                 });
             });
+        });
+    });
+
+    it('Test ' + adapterShortName + ' adapter: Check if adapter started', function (done) {
+        this.timeout(60000);
+        checkConnectionOfAdapter(function (res) {
+            if (res) console.log(res);
+            expect(res).not.to.be.equal('Cannot check connection');
+            objects.setObject('system.adapter.test.0', {
+                    common: {
+
+                    },
+                    type: 'instance'
+                },
+                function () {
+                    states.subscribeMessage('system.adapter.test.0');
+                    done();
+                });
         });
     });
 
@@ -192,7 +210,6 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                 });
         });
     });
-
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
