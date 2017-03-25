@@ -169,9 +169,9 @@ function main() {
     else adapter.config.pollingInterval = 300;
 
     daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options, function (err, res) {
-        adapter.log.info('Daikin Device initialized' + (err?'with Error :' + err:'successfully'));
+        adapter.log.info('Daikin Device initialized ' + (err?'with Error :' + err:'successfully'));
         if (!err) {
-            adapter.log.info('Set pollong Intervall to ' + adapter.config.pollingInterval + 's');
+            adapter.log.info('Set polling Intervall to ' + adapter.config.pollingInterval + 's');
             daikinDevice.setUpdate(adapter.config.pollingInterval, function() {
                 storeDaikinData();
             });
@@ -205,6 +205,9 @@ function handleDaikinUpdate(data, channel) {
     }
     for (var fieldName in data) {
         if (!updatedStates[channel][fieldName]) {
+            if (typeof fieldName !== 'string') {
+                fieldName = fieldName.toString();
+            }
             adapter.log.debug(JSON.stringify(fieldName));
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
@@ -218,9 +221,9 @@ function handleDaikinUpdate(data, channel) {
                     }
                 });
             }
-            else {
+            /*else {
                 adapter.log.warn('Unknown data field ' + channel + '.' + fieldDef + '. Report to Developer!');
-            }
+            }*/
         }
         if (!updatedStates[channel][fieldName] || updatedStates[channel][fieldName] !== data[fieldName]) {
             adapter.setState(channel + '.' + fieldDef, {ack: true, val: data[fieldName]});
