@@ -204,6 +204,7 @@ function handleDaikinUpdate(data, channel) {
         updatedStates[channel] = {};
     }
     for (var fieldName in data) {
+        var valid = true;
         if (!updatedStates[channel][fieldName]) {
             if (typeof fieldName !== 'string') {
                 fieldName = fieldName.toString();
@@ -221,12 +222,15 @@ function handleDaikinUpdate(data, channel) {
                     }
                 });
             }
+            else {
+                valid = false;
+            }
             /*else {
                 adapter.log.warn('Unknown data field ' + channel + '.' + fieldDef + '. Report to Developer!');
             }*/
         }
         adapter.log.debug('Old value "' + updatedStates[channel][fieldName] + '" vs. "' + data[fieldName] + '"');
-        if (!updatedStates[channel][fieldName] || updatedStates[channel][fieldName] !== data[fieldName]) {
+        if (valid && (!updatedStates[channel][fieldName] || updatedStates[channel][fieldName] !== data[fieldName])) {
             adapter.setState(channel + '.' + fieldDef, {ack: true, val: data[fieldName]});
             updatedStates[channel][fieldName] = data[fieldName];
             updated++;
