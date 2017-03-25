@@ -193,21 +193,14 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
     });
 
-    it('Test ' + adapterShortName + ' adapter: Check if adapter started', function (done) {
+    it('Test ' + adapterShortName + ' adapter: Check values', function (done) {
         this.timeout(80000);
-        checkConnectionOfAdapter(function (res) {
-            if (res) console.log(res);
-            expect(res).not.to.be.equal('Cannot check connection');
-            objects.setObject('system.adapter.test.0', {
-                    common: {
-
-                    },
-                    type: 'instance'
-                },
-                function () {
-                    states.subscribeMessage('system.adapter.test.0');
-                    setTimeout(done, 30000);
+        checkValueOfState('sensorInfo.indoorTemperature', 23.5, function() {
+            setTimeout(function() {
+                checkValueOfState('sensorInfo.indoorTemperature', 25.5, function() {
+                    done();
                 });
+            }, 70000);
         });
     });
 
