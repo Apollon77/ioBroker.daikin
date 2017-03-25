@@ -172,7 +172,9 @@ function main() {
         adapter.log.info('Daikin Device initialized' + (err?'with Error :' + err:'successfully'));
         if (!err) {
             adapter.log.info('Set pollong Intervall to ' + adapter.config.pollingInterval + 's');
-            daikinDevice.setUpdate(adapter.config.pollingInterval, storeDaikinData);
+            daikinDevice.setUpdate(adapter.config.pollingInterval, function() {
+                storeDaikinData();
+            });
         }
     });
 }
@@ -203,6 +205,7 @@ function handleDaikinUpdate(data, channel) {
     }
     for (var fieldName in data) {
         if (!updatedStates[channel][fieldName]) {
+            adapter.log.debug(JSON.stringify(fieldName));
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
