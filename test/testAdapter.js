@@ -119,10 +119,17 @@ var requestCount = 0;
 var requestError = false;
 function handleHttpRequest(request, response){
     console.log('HTTP-Server: Request: ' + request.method + ' ' + request.url);
-    switch (requestCount) {
-        case 0:   response.end('');
-                  break;
-        default:  response.end('ret=PARAM NG');
+    if (!requestError) {
+        var awaited = responses.shift();
+        if (awaited.request == request.method + ' ' + request.url) {
+            response.end(awaited.response);
+        }
+        else {
+            requestError = true;
+        }
+    }
+    if (requestError) {
+        response.end('ret=PARAM NG');
     }
 }
 
