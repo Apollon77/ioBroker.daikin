@@ -236,7 +236,7 @@ function handleDaikinUpdate(data, channel) {
             }
             else {
                 valid = false;
-                adapter.log.warn('Unknown data field ' + channel + '.' + fieldDef + '. Report to Developer!');
+                adapter.log.warn('Unknown data field ' + channel + '.' + fieldName + '. Report to Developer!');
             }
         }
         if (isNaN(data[fieldName])) data[fieldName] = null;
