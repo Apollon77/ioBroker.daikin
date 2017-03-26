@@ -141,7 +141,6 @@ adapter.on('stateChange', function (id, state) {
 
 adapter.on('unload', function (callback) {
     if (daikinDevice) daikinDevice.stopUpdate();
-
 });
 
 process.on('SIGINT', function () {
