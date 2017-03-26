@@ -209,7 +209,7 @@ function handleDaikinUpdate(data, channel) {
             type: 'channel',
             common: {
                 'name': channel,
-                'role': channelDef[channel]
+                'role': channelDef[channel].role
             },
             native: {}
         });
@@ -241,7 +241,7 @@ function handleDaikinUpdate(data, channel) {
                 }
             }
         }
-        if (isNaN(data[fieldName])) data[fieldName] = null;
+        if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) data[fieldName] = null;
         adapter.log.debug('Old value "' + updatedStates[channel][fieldName] + '" vs. "' + data[fieldName] + '"');
         if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] != data[fieldName])) {
             adapter.log.debug('Set State ' + channel + '.' + fieldName + ': "' + data[fieldName] + '"');
