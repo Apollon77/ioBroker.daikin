@@ -181,10 +181,22 @@ function main() {
 
 function storeDaikinData() {
     var updated = 0;
-    updated += handleDaikinUpdate(daikinDevice.currentCommonBasicInfo, 'deviceInfo');
+
+    var controlInfo = daikinDevice.currentACControlInfo;
+    var control = {};
+    for (var fieldName in fieldDef.control) {
+        control[fieldName] = controlInfo[fieldName];
+        delete controlInfo[fieldName];
+    }
+    var basicInfo = daikinDevice.currentCommonBasicInfo;
+    if (basicInfo.power) {
+        delete basicInfo.power;
+    }
+
+    updated += handleDaikinUpdate(basicInfo, 'deviceInfo');
     updated += handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
-    updated += handleDaikinUpdate(daikinDevice.currentACControlInfo, 'control');
-    updated += handleDaikinUpdate(daikinDevice.currentACControlInfo, 'controlInfo');
+    updated += handleDaikinUpdate(control, 'control');
+    updated += handleDaikinUpdate(controlInfo, 'controlInfo');
     updated += handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
     adapter.log.info(updated + ' Values updated');
 }
@@ -224,11 +236,10 @@ function handleDaikinUpdate(data, channel) {
             }
             else {
                 valid = false;
-            }
-            /*else {
                 adapter.log.warn('Unknown data field ' + channel + '.' + fieldDef + '. Report to Developer!');
-            }*/
+            }
         }
+        if (isNaN(data[fieldName])) data[fieldName] = null;
         adapter.log.debug('Old value "' + updatedStates[channel][fieldName] + '" vs. "' + data[fieldName] + '"');
         if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] != data[fieldName])) {
             adapter.log.debug('Set State ' + channel + '.' + fieldName + ': "' + data[fieldName] + '"');
