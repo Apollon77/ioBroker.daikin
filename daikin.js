@@ -9,6 +9,7 @@ var path = require('path');
 var utils = require(path.join(__dirname,'lib','utils')); // Get common adapter utils
 var DaikinController = require('daikin-controller');
 var daikinDevice;
+var deviceName = '';
 var updatedStates = {};
 var updateTimeout = null;
 
@@ -182,6 +183,10 @@ function main() {
 function storeDaikinData() {
     var updated = 0;
 
+    if (!deviceName && daikinDevice.currentCommonBasicInfo.name) {
+        deviceName = daikinDevice.currentCommonBasicInfo.name + ' ';
+    }
+
     var controlInfo = daikinDevice.currentACControlInfo;
     var control = {};
     for (var fieldName in fieldDef.control) {
@@ -208,7 +213,7 @@ function handleDaikinUpdate(data, channel) {
         adapter.setObjectNotExists(channel, {
             type: 'channel',
             common: {
-                'name': channel,
+                'name': deviceName + channel,
                 'role': channelDef[channel].role
             },
             native: {}
@@ -225,7 +230,7 @@ function handleDaikinUpdate(data, channel) {
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
-                commonDef.name = channel + '.' + fieldName;
+                commonDef.name = deviceName + channel + '.' + fieldName;
                 adapter.setObjectNotExists(channel + '.' + fieldName, {
                     type: 'state',
                     common: commonDef,
