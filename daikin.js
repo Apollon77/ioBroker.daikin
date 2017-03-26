@@ -48,7 +48,7 @@ var fieldDef = {
         'adapterMode':    {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
         'error':          {'role': 'value', 'read': true, 'write': false, 'name': 'error', 'type': 'number'},		// 255
         'enHol':          {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'enGrp':          {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
+        'enGroup':        {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
         'groupName':      {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
         'adapterKind':    {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
     },
@@ -95,7 +95,7 @@ var fieldDef = {
     	'fanDirectionMode5':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
         'fanDirectionMode6':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
         'fanDirectionMode7':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-    	'fanDirectionModeh':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
+    	'fanDirectionModeH':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
 
     	'modeB':                  {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': Mode},
     	'targetTemperatureB':     {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
@@ -236,7 +236,9 @@ function handleDaikinUpdate(data, channel) {
             }
             else {
                 valid = false;
-                adapter.log.warn('Unknown data field ' + channel + '.' + fieldName + '. Report to Developer!');
+                if (channel !== 'deviceInfo' && fieldName !== 'power') {
+                    adapter.log.warn('Unknown data field ' + channel + '.' + fieldName + '. Report to Developer!');
+                }
             }
         }
         if (isNaN(data[fieldName])) data[fieldName] = null;
