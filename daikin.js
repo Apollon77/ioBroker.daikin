@@ -12,6 +12,7 @@ var daikinDevice;
 var deviceName = '';
 var updateTimeout = null;
 var changedStates = {};
+var updatedStates = {};
 var changeTimeout = null;
 
 var Power = 'true:ON:false:OFF';
@@ -139,7 +140,7 @@ adapter.on('message', function (msg) {
 adapter.on('stateChange', function (id, state) {
     adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
     if (state.ack !== false) return;
-    
+
 
 });
 
