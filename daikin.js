@@ -140,16 +140,26 @@ adapter.on('stateChange', function (id, state) {
 });
 
 adapter.on('unload', function (callback) {
-    if (daikinDevice) daikinDevice.stopUpdate();
+    if (daikinDevice) {
+        adapter.log.debug('Stopping update timeout');
+        daikinDevice.stopUpdate();
+    }
+    if (callback) callback();
 });
 
 process.on('SIGINT', function () {
-    if (daikinDevice) daikinDevice.stopUpdate();
+    if (daikinDevice) {
+        adapter.log.debug('Stopping update timeout');
+        daikinDevice.stopUpdate();
+    }
 });
 
 process.on('uncaughtException', function (err) {
     adapter.log.warn('Exception: ' + err);
-    if (daikinDevice) daikinDevice.stopUpdate();
+    if (daikinDevice) {
+        adapter.log.debug('Stopping update timeout');
+        daikinDevice.stopUpdate();
+    }
 });
 
 function main() {
