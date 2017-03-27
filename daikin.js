@@ -15,7 +15,7 @@ var changedStates = {};
 var updatedStates = {};
 var changeTimeout = null;
 
-var Power = 'true:ON:false:OFF';
+var Power = '1:ON;0:OFF';
 var Mode = '0:AUTO;1:AUTO1;2:DEHUMDID;3:COLD;4:HOT;6:FAN;7:AUTO2';
 var FanRate = 'A:AUTO;B:SILENCE;3:LEVEL_1;4:LEVEL_2;5:LEVEL_3;6:LEVEL_4;7:LEVEL_5';
 var FanDirection = '0:STOP;1:VERTICAL;2:HORIZONTAL;3:VERTICAL_AND_HORIZONTAL';
@@ -56,7 +56,7 @@ var fieldDef = {
         'adapterKind':    {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
     },
     'control': {
-        'power':             {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean', 'states': Power},
+        'power':             {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
     	'mode':              {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': Mode, 'min': 0, 'max': 7},
     	'targetTemperature': {'role': 'level.temperature', 'read': true, 'write': true, 'type': 'number', 'altValues': {'M': 'M'}, 'min': 10, 'max': 41, 'unit': '°C'},
     	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
