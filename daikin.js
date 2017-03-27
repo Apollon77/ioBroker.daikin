@@ -10,8 +10,9 @@ var utils = require(path.join(__dirname,'lib','utils')); // Get common adapter u
 var DaikinController = require('daikin-controller');
 var daikinDevice;
 var deviceName = '';
-var updatedStates = {};
 var updateTimeout = null;
+var changedStates = {};
+var changeTimeout = null;
 
 var Power = 'true:ON:false:OFF';
 var Mode = '0:AUTO;1:AUTO1;2:DEHUMDID;3:COLD;4:HOT;6:FAN;7:AUTO2';
@@ -137,6 +138,9 @@ adapter.on('message', function (msg) {
 
 adapter.on('stateChange', function (id, state) {
     adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
+    if (state.ack !== false) return;
+    
+
 });
 
 adapter.on('unload', function (callback) {
@@ -178,6 +182,7 @@ function main() {
     }
     else adapter.config.pollingInterval = 300;
 
+    adapter.subscribeStates('control.*');
     daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options, function (err, res) {
         adapter.log.info('Daikin Device initialized ' + (err?'with Error :' + err:'successfully'));
         if (!err) {
