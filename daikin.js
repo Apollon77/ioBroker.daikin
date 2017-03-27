@@ -140,7 +140,7 @@ adapter.on('message', function (msg) {
 adapter.on('stateChange', function (id, state) {
     if (state.ack !== false) return;
     adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
-    var realNamespace = adapter.namespace.length + '.control.';
+    var realNamespace = adapter.namespace + '.control.';
     var stateId = id.substring(realNamespace.length);
     changedStates[stateId] = state.val;
     if (changeTimeout) {
