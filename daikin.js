@@ -14,6 +14,7 @@ var updateTimeout = null;
 var changedStates = {};
 var updatedStates = {};
 var changeTimeout = null;
+var changeRunning = false;
 
 var Power = '1:ON;0:OFF';
 var Mode = '0:AUTO;1:AUTO1;2:DEHUMDID;3:COLD;4:HOT;6:FAN;7:AUTO2';
@@ -152,16 +153,25 @@ adapter.on('stateChange', function (id, state) {
 });
 
 function changeStates() {
+    if (changeRunning) {
+        adapter.log.info('postpone state changes because last change not finished');
+        changeTimeout = setTimeout(changeStates, 1000);
+        return;
+    }
     changeTimeout = null;
-    adapter.log.debug('Send ' + Object.keys(changedStates).length + ' changes: ' + JSON.stringify(changedStates));
-    daikinDevice.setACControlInfo(changedStates, function(err, response) {
+    changeRunning = true;
+    var changed = changedStates;
+    changedStates = {};
+
+    adapter.log.debug('Send ' + Object.keys(changed).length + ' changes: ' + JSON.stringify(changed));
+    daikinDevice.setACControlInfo(changed, function(err, response) {
         adapter.log.debug('change values: ' + JSON.stringify(response));
         if (err) adapter.log.error('change values failed: ' + err);
-        for (var fieldName in changedStates) {
+        for (var fieldName in changed) {
             updatedStates.control[fieldName] = null; // reset stored value
             adapter.log.debug('reset ' + fieldName);
         }
-        changedStates = {};
+        changeRunning = false;
         storeDaikinData();
     });
 }
