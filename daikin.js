@@ -153,11 +153,13 @@ adapter.on('stateChange', function (id, state) {
 
 function changeStates() {
     changeTimeout = null;
-    adapter.log.debug('Send ' + Object.keys(changedStates).length + ' changes');
-    daikinDevice.setACControlInfo(changedStates, function(err) {
+    adapter.log.debug('Send ' + Object.keys(changedStates).length + ' changes: ' + JSON.stringify(changedStates));
+    daikinDevice.setACControlInfo(changedStates, function(err, response) {
+        adapter.log.debug('change values: ' + JSON.stringify(response));
         if (err) adapter.log.error('change values failed: ' + err);
         for (var fieldName in changedStates) {
             updatedStates.control[fieldName] = null; // reset stored value
+            adapter.log.debug('reset ' + fieldName);
         }
         changedStates = {};
         storeDaikinData();
