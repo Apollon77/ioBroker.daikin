@@ -138,16 +138,41 @@ adapter.on('message', function (msg) {
 });
 
 adapter.on('stateChange', function (id, state) {
-    adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
     if (state.ack !== false) return;
-
-
+    adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
+    var realNamespace = adapter.namespace.length + '.control.';
+    var stateId = id.substring(realNamespace.length);
+    changedStates[stateId] = state.val;
+    if (changeTimeout) {
+        adapter.log.debug('Clear change timeout');
+        clearTimeout(changeTimeout);
+        changeTimeout = null;
+    }
+    changeTimeout = setTimeout(changeStates, 1000);
 });
+
+function changeStates() {
+    changeTimeout = null;
+    adapter.log.debug('Send ' + Object.keys(changedStates).length + ' changes');
+    daikinDevice.setACControlInfo(changedStates, function(err) {
+        if (err) adapter.log.error('change values failed: ' + err);
+        for (var fieldName in changedStates) {
+            updatedStates.control[fieldName] = null; // reset stored value
+        }
+        changedStates = {};
+        storeDaikinData();
+    });
+}
 
 adapter.on('unload', function (callback) {
     if (daikinDevice) {
         adapter.log.debug('Stopping update timeout');
         daikinDevice.stopUpdate();
+    }
+    if (changeTimeout) {
+        adapter.log.debug('Clear change timeout');
+        clearTimeout(changeTimeout);
+        changeTimeout = null;
     }
     if (callback) callback();
 });
@@ -157,6 +182,11 @@ process.on('SIGINT', function () {
         adapter.log.debug('Stopping update timeout');
         daikinDevice.stopUpdate();
     }
+    if (changeTimeout) {
+        adapter.log.debug('Clear change timeout');
+        clearTimeout(changeTimeout);
+        changeTimeout = null;
+    }
 });
 
 process.on('uncaughtException', function (err) {
@@ -164,6 +194,11 @@ process.on('uncaughtException', function (err) {
     if (daikinDevice) {
         adapter.log.debug('Stopping update timeout');
         daikinDevice.stopUpdate();
+    }
+    if (changeTimeout) {
+        adapter.log.debug('Clear change timeout');
+        clearTimeout(changeTimeout);
+        changeTimeout = null;
     }
 });
 
