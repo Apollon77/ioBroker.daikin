@@ -163,43 +163,55 @@ function changeStates() {
     var changed = changedStates;
     changedStates = {};
 
-    adapter.log.debug('Send ' + Object.keys(changed).length + ' changes: ' + JSON.stringify(changed));
+    adapter.log.info('Send ' + Object.keys(changed).length + ' changes: ' + JSON.stringify(changed));
     if (changed.mode !== undefined) { // we change mode
         if (changed.length === 1) { // and we change mode only, so init all values from last
+            adapter.log.info('we changed mode only');
             if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
+                adapter.log.info('changed targetTemperature to ' + changed.targetTemperature);
             }
             else {
                 changed.targetTemperature = 23;
+                adapter.log.info('changed targetTemperature to fixed 23');
             }
             if (daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
                 changed.targetHumidity = daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode];
+                adapter.log.info('changed targetHumidity to ' + changed.targetHumidity);
             }
             else {
                 changed.targetHumidity = 0;
+                adapter.log.info('changed targetHumidity to fixed 0');
             }
             if (daikinDevice.currentACControlInfo['fanRateMode' + changed.mode] !== null) {
                 changed.fanRate = daikinDevice.currentACControlInfo['fanRateMode' + changed.mode];
+                adapter.log.info('changed fanRate to ' + changed.fanRate);
             }
             if (daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode] !== null) {
                 changed.fanDirection = daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode];
+                adapter.log.info('changed fanDirection to ' + changed.fanDirection);
             }
         }
         else {
+            adapter.log.info('we changed mode and other field');
             if (!changed.targetTemperature && daikinDevice.currentACControlInfo.targetTemperature === null) {
                 if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                     changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
+                    adapter.log.info('changed targetTemperature to ' + changed.targetTemperature);
                 }
                 else {
                     changed.targetTemperature = 23;
+                    adapter.log.info('changed targetTemperature to fixed 23');
                 }
             }
             if (!changed.targetHumidity && daikinDevice.currentACControlInfo.targetHumidity === null) {
                 if (daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
                     changed.targetHumidity = daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode];
+                    adapter.log.info('changed targetHumidity to ' + changed.targetHumidity);
                 }
                 else {
                     changed.targetHumidity = 0;
+                    adapter.log.info('changed targetHumidity to fixed 0');
                 }
             }
         }
