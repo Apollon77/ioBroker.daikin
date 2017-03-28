@@ -59,8 +59,8 @@ var fieldDef = {
     'control': {
         'power':             {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
     	'mode':              {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': Mode, 'min': 0, 'max': 7},
-    	'targetTemperature': {'role': 'level.temperature', 'read': true, 'write': true, 'type': 'number', 'altValues': {'M': 'M'}, 'min': 10, 'max': 41, 'unit': '°C'},
-    	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
+    	'targetTemperature': {'role': 'level.temperature', 'read': true, 'write': true, 'type': 'number',  'min': 10, 'max': 41, 'unit': '°C'},
+    	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number',  'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
     	'fanRate':           {'role': 'text', 'read': true, 'write': true, 'type': 'string', 'states': FanRate},
     	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection},
     },
@@ -68,20 +68,20 @@ var fieldDef = {
     	// the following are returned, but not set-able
     	'adv':                    {'role': 'text', 'read': true, 'write': false, 'type': 'string'},			// ????
 
-    	'targetTemperatureMode1': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},		// "M" or number 10..41
-    	'targetTemperatureMode2': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
-    	'targetTemperatureMode3': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
-    	'targetTemperatureMode4': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
-    	'targetTemperatureMode5': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
-    	'targetTemperatureMode7': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
+    	'targetTemperatureMode1': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},		// "M" or number 10..41
+    	'targetTemperatureMode2': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+    	'targetTemperatureMode3': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+    	'targetTemperatureMode4': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+    	'targetTemperatureMode5': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+    	'targetTemperatureMode7': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
 
-    	'targetHumidityMode1':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityMode2':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityMode3':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityMode4':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityMode5':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityMode7':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
-    	'targetHumidityModeH':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode1':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode2':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode3':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode4':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode5':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityMode7':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+    	'targetHumidityModeH':    {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
 
         'fanRateMode1':           {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
     	'fanRateMode2':           {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
@@ -102,8 +102,8 @@ var fieldDef = {
     	'fanDirectionModeH':      {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
 
     	'modeB':                  {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': Mode},
-    	'targetTemperatureB':     {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'altValues': {'M': 'M'}, 'unit': '°C'},
-    	'targetHumidityB':        {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'altValues': {'AUTO': 'AUTO'}, 'unit': '%'},
+    	'targetTemperatureB':     {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+    	'targetHumidityB':        {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},
         'fanRateB':               {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
     	'fanDirectionB':          {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
 
@@ -139,7 +139,7 @@ adapter.on('message', function (msg) {
 });
 
 adapter.on('stateChange', function (id, state) {
-    if (state.ack !== false) return;
+    if (state.ack !== false || state.val === null) return;
     adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
     var realNamespace = adapter.namespace + '.control.';
     var stateId = id.substring(realNamespace.length);
@@ -307,6 +307,10 @@ function handleDaikinUpdate(data, channel) {
                     adapter.log.warn('Unknown data field ' + channel + '.' + fieldName + '. Report to Developer!');
                 }
             }
+        }
+        if (typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
+            adapter.log.info('Field type mismatch for ' + fieldName + ': val=' + data[fieldName] + ' vs. ' + fieldDef[channel][fieldName].type);
+            data[fieldName] = null;
         }
         if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) data[fieldName] = null;
         adapter.log.debug('Old value ' + channel + '.' + fieldName + ': old="' + updatedStates[channel][fieldName] + '", new="' + data[fieldName] + '"');
