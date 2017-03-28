@@ -256,7 +256,7 @@ function storeDaikinData() {
         delete controlInfo[fieldName];
     }
     var basicInfo = daikinDevice.currentCommonBasicInfo;
-    if (basicInfo.power) {
+    if (basicInfo.power !== undefined) {
         delete basicInfo.power;
     }
 
