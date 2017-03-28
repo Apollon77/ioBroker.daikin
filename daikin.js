@@ -309,8 +309,13 @@ function handleDaikinUpdate(data, channel) {
             }
         }
         if (typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
-            adapter.log.info('Field type mismatch for ' + fieldName + ': val=' + data[fieldName] + ' vs. ' + fieldDef[channel][fieldName].type);
-            data[fieldName] = null;
+            if (fieldDef[channel][fieldName].type === 'string') {
+                data[fieldName] = data[fieldName].toString();
+            }
+            else {
+                adapter.log.info('Field type mismatch for ' + fieldName + ': val=' + data[fieldName] + ' vs. ' + fieldDef[channel][fieldName].type);
+                data[fieldName] = null;
+            }
         }
         if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) data[fieldName] = null;
         adapter.log.debug('Old value ' + channel + '.' + fieldName + ': old="' + updatedStates[channel][fieldName] + '", new="' + data[fieldName] + '"');
