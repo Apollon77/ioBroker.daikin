@@ -165,7 +165,7 @@ function changeStates() {
 
     adapter.log.info('Send ' + Object.keys(changed).length + ' changes: ' + JSON.stringify(changed));
     if (changed.mode !== undefined) { // we change mode
-        if (changed.length === 1) { // and we change mode only, so init all values from last
+        if (Object.keys(changed).length === 1) { // and we change mode only, so init all values from last
             adapter.log.info('we changed mode only');
             if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
@@ -194,7 +194,7 @@ function changeStates() {
         }
         else {
             adapter.log.info('we changed mode and other field');
-            if (!changed.targetTemperature && daikinDevice.currentACControlInfo.targetTemperature === null) {
+            if (changed.targetTemperature === undefined && daikinDevice.currentACControlInfo.targetTemperature === null) {
                 if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                     changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
                     adapter.log.info('changed targetTemperature to ' + changed.targetTemperature);
@@ -204,7 +204,7 @@ function changeStates() {
                     adapter.log.info('changed targetTemperature to fixed 23');
                 }
             }
-            if (!changed.targetHumidity && daikinDevice.currentACControlInfo.targetHumidity === null) {
+            if (changed.targetHumidity === undefined && daikinDevice.currentACControlInfo.targetHumidity === null) {
                 if (daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
                     changed.targetHumidity = daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode];
                     adapter.log.info('changed targetHumidity to ' + changed.targetHumidity);
