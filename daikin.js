@@ -242,11 +242,11 @@ function changeStates() {
     }
 
     daikinDevice.setACControlInfo(changed, function(err, response) {
-        adapter.log.debug('change values: ' + JSON.stringify(response));
+        adapter.log.info('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
         if (err) adapter.log.error('change values failed: ' + err);
         for (var fieldName in changed) {
-            updatedStates.control[fieldName] = null; // reset stored value
-            adapter.log.debug('reset ' + fieldName);
+            updatedStates.control[fieldName] = ''; // reset stored value
+            adapter.log.info('reset ' + fieldName);
         }
         changeRunning = false;
         storeDaikinData();
@@ -385,12 +385,12 @@ function handleDaikinUpdate(data, channel) {
                 }
             }
         }
-        if (typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
+        if (data[fieldName] !== null && typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
             if (fieldDef[channel][fieldName].type === 'string') {
                 data[fieldName] = data[fieldName].toString();
             }
             else {
-                adapter.log.info('Field type mismatch for ' + fieldName + ': val=' + data[fieldName] + ' vs. ' + fieldDef[channel][fieldName].type);
+                adapter.log.info('Field type mismatch for ' + fieldName + ': val=' + data[fieldName] + ' vs. ' + fieldDef[channel][fieldName].type + ' - set null');
                 data[fieldName] = null;
             }
         }
