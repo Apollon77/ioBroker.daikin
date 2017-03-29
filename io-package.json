@@ -24,7 +24,7 @@
         "type":                     "hardware",
         "keywords":                 ["iobroker", "daikin", "climate control"],
         "loglevel":                 "info",
-        "enabled":                  true,
+        "enabled":                  false,
         "restartAdapters":          ["daikin"]
     },
     "native": {
