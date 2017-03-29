@@ -3,7 +3,7 @@
         "name":                     "daikin",
         "version":                  "0.1.12",
 		"news": {
-            "0.1.0": {
+            "0.1.12": {
                 "en": "Initial public test version",
                 "de": "Initiale öffentliche Testversion",
                 "ru": "Initial public test version"
