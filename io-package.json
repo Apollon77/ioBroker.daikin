@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "daikin",
-        "version":                  "0.1.12",
+        "version":                  "0.2.0",
 		"news": {
             "0.1.12": {
                 "en": "Initial public test version",
