@@ -3,6 +3,11 @@
         "name":                     "daikin",
         "version":                  "0.2.3",
 		"news": {
+            "0.2.3": {
+                "en": "Add control.lastResult to see if a change was successfull",
+                "de": "control.lastResult hinzugefügt um zu sehen ob die letzte Änderung erfolgreich war",
+                "ru": "Add control.lastResult to see if a change was successfull"
+            },
             "0.2.2": {
                 "en": "Removed debug messages",
                 "de": "Debug-Ausgaben entfernt",
