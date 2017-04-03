@@ -312,14 +312,14 @@ function main() {
         adapter.log.info('Daikin Device initialized ' + (err?'with Error :' + err:'successfully'));
         if (!err) {
             adapter.log.info('Set polling Intervall to ' + adapter.config.pollingInterval + 's');
-            daikinDevice.setUpdate(adapter.config.pollingInterval * 1000, function() {
-                storeDaikinData();
+            daikinDevice.setUpdate(adapter.config.pollingInterval * 1000, function(err) {
+                storeDaikinData(err);
             });
         }
     });
 }
 
-function storeDaikinData() {
+function storeDaikinData(err) {
     var updated = 0;
 
     if (!deviceName && daikinDevice.currentCommonBasicInfo.name) {
@@ -345,6 +345,17 @@ function storeDaikinData() {
     if (updated > 0) {
         adapter.log.info(updated + ' Values updated');
     }
+    adapter.setObjectNotExists('control.lastResult', {
+        type: 'state',
+        common: {
+            name: 'control.lastResult',
+            type: 'string',
+            read: true,
+            write: false
+        },
+        native: {id: 'control.lastResult'}
+    });
+    adapter.setState('control.lastResult', {ack: true, val: (err?err:'OK')});
 }
 
 function handleDaikinUpdate(data, channel) {
