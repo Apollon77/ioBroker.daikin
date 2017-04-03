@@ -249,7 +249,7 @@ function changeStates() {
             adapter.log.debug('reset ' + fieldName);
         }
         changeRunning = false;
-        storeDaikinData();
+        storeDaikinData(err);
     });
 }
 
