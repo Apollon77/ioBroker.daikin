@@ -13,7 +13,7 @@ Control Daikin Air Conditioner devices
 
 # changelog
 
-## 0.2.1
+## 0.2.2
 * reduce debug logging
 
 ## 0.2.0

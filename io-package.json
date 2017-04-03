@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "daikin",
-        "version":                  "0.2.1",
+        "version":                  "0.2.2",
 		"news": {
+            "0.2.2": {
+                "en": "Removed debug messages",
+                "de": "Debug-Ausgaben entfernt",
+                "ru": "Removed debug messages"
+            },
             "0.1.12": {
                 "en": "Initial public test version",
                 "de": "Initiale öffentliche Testversion",
@@ -24,8 +29,7 @@
         "type":                     "hardware",
         "keywords":                 ["iobroker", "daikin", "climate control"],
         "loglevel":                 "info",
-        "enabled":                  false,
-        "restartAdapters":          ["daikin"]
+        "enabled":                  false
     },
     "native": {
         "daikinIp":                     "",
