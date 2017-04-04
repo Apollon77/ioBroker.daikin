@@ -57,6 +57,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 ## Todo
 * enhance testing: state checks and setState's
 * check model info/supported features
+* docs for webpage
 
 # changelog
 
