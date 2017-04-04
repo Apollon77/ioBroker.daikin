@@ -62,7 +62,7 @@ var fieldDef = {
     	'targetTemperature': {'role': 'level.temperature', 'read': true, 'write': true, 'type': 'number',  'min': 10, 'max': 41, 'unit': '°C'},
     	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number',  'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
     	'fanRate':           {'role': 'text', 'read': true, 'write': true, 'type': 'string', 'states': FanRate},
-    	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection},
+    	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection}
     },
     'controlInfo': {
     	// the following are returned, but not set-able
@@ -124,7 +124,7 @@ var fieldDef = {
         'outdoorTemperature': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
         'error':              {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
         'cmpfreq':            {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
-    },
+    }
 };
 
 
@@ -264,6 +264,7 @@ adapter.on('unload', function (callback) {
         changeTimeout = null;
     }
     if (callback) callback();
+    return;
 });
 
 process.on('SIGINT', function () {
@@ -296,7 +297,7 @@ function main() {
     if (adapter.common.loglevel === 'debug') {
         options.logger = adapter.log.debug;
     }
-/*    else if (adapter.common.loglevel === 'info') { //TODO: rausnehmen!
+/*    else if (adapter.common.loglevel === 'info') {
         options.logger = adapter.log.info;
     }*/
     if (!adapter.config.daikinIp) {
