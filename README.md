@@ -58,8 +58,12 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * enhance testing: state checks and setState's
 * check model info/supported features
 * docs for webpage
+* VIS widget
 
 # changelog
+
+## 0.2.3 (2017-04-01)
+* Add control.lastResult to see if a change was successfull
 
 ## 0.2.2
 * reduce debug logging
