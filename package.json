@@ -7,7 +7,9 @@
   "homepage": "",
   "license": "MIT",
   "keywords": [
-    "iobroker", "Daikin", "Climate Control"
+    "iobroker",
+    "Daikin",
+    "Climate Control"
   ],
   "repository": {
     "type": "git",
@@ -17,9 +19,9 @@
     "daikin-controller": "^0.2.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
-    "chai": "^3.4.1"
-},
+    "mocha": "^3.5.3",
+    "chai": "^4.1.2"
+  },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
   },
