@@ -19,6 +19,9 @@
                 "ru": "Initial public test version"
             }
         },
+        "authors": [
+            "Apollon77 <ingo@fischer-ka.de>"
+        ],
         "title":                    "Daikin Adapter",
         "desc":                     "Control Daikin Air Conditioner devices",
         "platform":                 "Javascript/Node.js",
