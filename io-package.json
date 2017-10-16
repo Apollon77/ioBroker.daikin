@@ -1,8 +1,8 @@
 {
     "common": {
-        "name":                     "daikin",
-        "version":                  "0.2.3",
-		"news": {
+        "name": "daikin",
+        "version": "0.2.3",
+        "news": {
             "0.2.3": {
                 "en": "Add control.lastResult to see if a change was successfull",
                 "de": "control.lastResult hinzugefügt um zu sehen ob die letzte Änderung erfolgreich war",
@@ -22,26 +22,30 @@
         "authors": [
             "Apollon77 <ingo@fischer-ka.de>"
         ],
-        "title":                    "Daikin Adapter",
-        "desc":                     "Control Daikin Air Conditioner devices",
-        "platform":                 "Javascript/Node.js",
-        "mode":                     "daemon",
-        "messagebox":               true,
-        "subscribe":                "messagebox",
-        "stopBeforeUpdate":         true,
-        "icon":                     "daikin.jpg",
-        "extIcon":                  "https://raw.githubusercontent.com/Apollon77/ioBroker.daikin/master/admin/daikin.jpg",
-        "readme":                   "https://github.com/Apollon77/ioBroker.daikin",
-        "license":                  "MIT",
+        "title": "Daikin Adapter",
+        "desc": "Control Daikin Air Conditioner devices",
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "messagebox": true,
+        "subscribe": "messagebox",
+        "stopBeforeUpdate": true,
+        "icon": "daikin.jpg",
+        "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.daikin/master/admin/daikin.jpg",
+        "readme": "https://github.com/Apollon77/ioBroker.daikin",
+        "license": "MIT",
         "npmLibs": [],
-        "type":                     "hardware",
-        "keywords":                 ["iobroker", "daikin", "climate control"],
-        "loglevel":                 "info",
-        "enabled":                  false
+        "type": "climate-control",
+        "keywords": [
+            "iobroker",
+            "daikin",
+            "climate control"
+        ],
+        "loglevel": "info",
+        "enabled": false
     },
     "native": {
-        "daikinIp":                     "",
-        "pollingInterval":              300
+        "daikinIp": "",
+        "pollingInterval": 300
     },
     "objects": [],
     "instanceObjects": []
