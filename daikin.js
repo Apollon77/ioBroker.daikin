@@ -128,7 +128,7 @@ var fieldDef = {
 };
 
 
-var adapter = utils.adapter('daikin');
+var adapter = utils.Adapter('daikin');
 
 adapter.on('ready', function (obj) {
     main();
