@@ -280,13 +280,19 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (err) {
-    adapter.log.warn('Exception: ' + err);
+    if (adapter && adapter.log) {
+        adapter.log.warn('Exception: ' + err);
+    }
     if (daikinDevice) {
-        adapter.log.debug('Stopping update timeout');
+        if (adapter && adapter.log) {
+            adapter.log.debug('Stopping update timeout');
+        }
         daikinDevice.stopUpdate();
     }
     if (changeTimeout) {
-        adapter.log.debug('Clear change timeout');
+        if (adapter && adapter.log) {
+            adapter.log.debug('Clear change timeout');
+        }
         clearTimeout(changeTimeout);
         changeTimeout = null;
     }
