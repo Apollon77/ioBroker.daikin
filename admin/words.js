@@ -7,5 +7,8 @@ systemDictionary = {
     "info_daikinIp":   {"en": " ", "de": " "},
 
     "field_pollingInterval":   {"en": "Data update interval", "de": "Daten Aktualisierungsintervall"},
-    "info_pollingInterval":   {"en": " ", "de": " "}
+    "info_pollingInterval":   {"en": " ", "de": " "},
+
+    "field_useGetToPost":   {"en": "Send changes with GET", "de": "Änderungen mit GET senden"},
+    "info_useGetToPost":   {"en": "(only needed for older WLAN-Firmwares on problems)", "de": "(nur für ältere WLAN-Firmware nötig bei Problemen)"}
 };

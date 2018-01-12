@@ -313,6 +313,9 @@ function main() {
         adapter.config.pollingInterval = parseInt(adapter.config.pollingInterval, 10);
     }
     else adapter.config.pollingInterval = 300;
+    if (adapter.config.useGetToPost) {
+        options.useGetToPost = true;
+    }
 
     adapter.subscribeStates('control.*');
     daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options, function (err, res) {

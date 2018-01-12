@@ -1,8 +1,13 @@
 {
     "common": {
         "name": "daikin",
-        "version": "0.2.3",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag",
+                "de": "Admin3 Unterstützung. Ältere Daikin-WLAN-Firmwares unterstützt über spezielle Konfiguration",
+                "ru": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag"
+            },
             "0.2.3": {
                 "en": "Add control.lastResult to see if a change was successfull",
                 "de": "control.lastResult hinzugefügt um zu sehen ob die letzte Änderung erfolgreich war",
@@ -49,7 +54,8 @@
     },
     "native": {
         "daikinIp": "",
-        "pollingInterval": 300
+        "pollingInterval": 300,
+        "useGetToPost": false
     },
     "objects": [],
     "instanceObjects": []
