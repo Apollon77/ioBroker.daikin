@@ -62,6 +62,10 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 # changelog
 
+## 1.0.0 (2018-01-1x)
+* Admin3 readieness
+* Support older Daikin-WLAN-Firmwares with special config flag
+
 ## 0.2.3 (2017-04-01)
 * Add control.lastResult to see if a change was successfull
 
