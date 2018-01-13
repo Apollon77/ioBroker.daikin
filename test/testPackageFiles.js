@@ -35,7 +35,7 @@ describe('Test package.json and io-package.json', function() {
             console.log();
         }
 
-        if (!expect(npmPackage.common.author).to.exist) {
+        if (!expect(npmPackage.author).to.exist) {
             console.log('ERROR: Author in package.json missing');
             console.log();
         }
