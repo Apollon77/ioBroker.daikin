@@ -16,62 +16,36 @@ describe('Test package.json and io-package.json', function() {
         expect(ioPackage).to.be.an('object');
         expect(npmPackage).to.be.an('object');
 
-        if (!expect(ioPackage.common.version).to.exist) {
-            console.log('ERROR: Version number in io-package.json missing');
-            console.log();
-        }
-        if (!expect(npmPackage.version).to.exist) {
-            console.log('ERROR: Version number in package.json missing');
-            console.log();
-        }
+        expect(ioPackage.common.version, 'Version number in io-package.json needs to exist').to.exist;
+        expect(npmPackage.version, 'Version number in package.json needs to exist').to.exist;
 
-        if (!expect(ioPackage.common.version).to.be.equal(npmPackage.version)) {
-            console.log('ERROR: Version numbers in package.json and io-package.json differ!!');
-            console.log();
-        }
+        expect(ioPackage.common.version, 'Version numbers in package.json and io-package.json needs to match').to.be.equal(npmPackage.version);
 
         if (!ioPackage.common.news || !ioPackage.common.news[ioPackage.common.version]) {
             console.log('WARNING: No news entry for current version exists in io-package.json, no rollback in Admin possible!');
             console.log();
         }
 
-        if (!expect(npmPackage.author).to.exist) {
-            console.log('ERROR: Author in package.json missing');
-            console.log();
-        }
-        if (!expect(ioPackage.common.authors).to.exist) {
-            console.log('ERROR: Authors in io-package.json missing');
-            console.log();
-        }
+        expect(npmPackage.author, 'Author in package.json needs to exist').to.exist;
+        expect(ioPackage.common.authors, 'Authors in io-package.json needs to exist').to.exist;
+
         if (ioPackage.common.name.indexOf('template') !== 0) {
             if (Array.isArray(ioPackage.common.authors)) {
-                expect(ioPackage.common.authors.length).to.not.be.equal(0);
+                expect(ioPackage.common.authors.length, 'Author in io-package.json needs to be set').to.not.be.equal(0);
                 if (ioPackage.common.authors.length === 1) {
-                    if (!expect(ioPackage.common.authors[0]).to.not.be.equal('my Name <my@email.com>')) {
-                        console.log('ERROR: Author in io-package.json needs to be a real name');
-                        console.log();
-                    }
+                    expect(ioPackage.common.authors[0], 'Author in io-package.json needs to be a real name').to.not.be.equal('my Name <my@email.com>');
                 }
             }
             else {
-                if (expect(ioPackage.common.authors).to.not.be.equal('my Name <my@email.com>')) {
-                    console.log('ERROR: Author in io-package.json needs to be a real name');
-                    console.log();
-                }
+                expect(ioPackage.common.authors, 'Author in io-package.json needs to be a real name').to.not.be.equal('my Name <my@email.com>');
             }
         }
         else {
             console.log('Testing for set authors field in io-package skipped because template adapter');
             console.log();
         }
-        if (!expect(fs.existsSync(__dirname + '/../README.md')).to.be.true) {
-            console.log('No README.md exists! Please create one with description, detail information and changelog. English is mandatory.');
-            console.log();
-        }
-        if (!expect(fs.existsSync(__dirname + '/../LICENSE')).to.be.true) {
-            console.log('No LICENSE exists! Please create one.');
-            console.log();
-        }
+        expect(fs.existsSync(__dirname + '/../README.md'), 'README.md needs to exist! Please create one with description, detail information and changelog. English is mandatory.').to.be.true;
+        expect(fs.existsSync(__dirname + '/../LICENSE'), 'LICENSE needs to exist! Please create one.').to.be.true;
         if (!ioPackage.common.titleLang || typeof ioPackage.common.titleLang !== 'object') {
             console.log('titleLang is not existing in io-package.json');
             console.log();
