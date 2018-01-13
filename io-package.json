@@ -27,7 +27,7 @@
         "authors": [
             "Apollon77 <ingo@fischer-ka.de>"
         ],
-        "title": "Daikin Adapter",
+        "title": "Control Daikin Air Conditioner",
         "desc":                     {
             "en": "Control Daikin Air Conditioner devices",
             "de": "Steuert Klimaanlagen von Daikin",
