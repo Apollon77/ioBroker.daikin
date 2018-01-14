@@ -62,9 +62,11 @@ describe('Test package.json and io-package.json', function() {
             console.log();
         }
 
-        if (!ioPackage.common.materialize || !fs.existsSync(__dirname + '/../admin/index_m.html') || !fs.existsSync(__dirname + '/../gulpfile.js')) {
-            console.log('WARNING: Admin3 support is missing!');
-            console.log();
+        if (ioPackage.common.name.indexOf('vis-') !== 0) {
+            if (!ioPackage.common.materialize || !fs.existsSync(__dirname + '/../admin/index_m.html') || !fs.existsSync(__dirname + '/../gulpfile.js')) {
+                console.log('WARNING: Admin3 support is missing!');
+                console.log();
+            }
         }
         done();
     });

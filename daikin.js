@@ -1,4 +1,5 @@
-/* jshint -W097 */// jshint strict:false
+/* jshint -W097 */
+// jshint strict:true
 /*jslint node: true */
 'use strict';
 /**
