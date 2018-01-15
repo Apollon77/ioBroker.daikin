@@ -35,6 +35,7 @@
     "exclude": ["!**/node_modules/"],
     "include": [
         "**/tmp/node_modules/iobroker.daikin/*.js"
-    ]
+    ],
+    "produce-source-map": true
   }
 }
