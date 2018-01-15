@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b4e795bdd0975d9cab03db49fd11ed53f0106460981659989726b443dcf285d0
 os:
   - linux
   - osx
@@ -7,11 +10,13 @@ node_js:
   - '6'
   - '8'
 before_script:
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter; fi'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x ./cc-test-reporter; fi'
   - npm install winston@2.3.1
   - 'npm install https://github.com/ioBroker/ioBroker.js-controller/tarball/master --production'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter before-build; fi'
 after_success:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/lcov.info
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi'
 env:
   - CXX=g++-4.8
 addons:
