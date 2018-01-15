@@ -21,13 +21,14 @@
   "devDependencies": {
     "mocha": "^4.1.0",
     "chai": "^4.1.2",
-    "istanbul": "*"
+    "istanbul": "*",
+    "nyc": "*"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
   },
   "main": "daikin.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit"
+    "test": "nyc node_modules/mocha/bin/mocha --exit"
   }
 }
