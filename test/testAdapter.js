@@ -13,6 +13,7 @@ var onObjectChanged = null;
 var sendToID = 1;
 
 var adapterShortName = setup.adapterName.substring(setup.adapterName.indexOf('.')+1);
+setup.useIstanbul = true;
 
 function checkConnectionOfAdapter(cb, counter) {
     counter = counter || 0;
@@ -139,7 +140,6 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     before('Test ' + adapterShortName + ' adapter: Start js-controller', function (_done) {
         this.timeout(600000); // because of first install from npm
 
-        setup.useIstanbul = true;
         setup.setupController(function () {
             var config = setup.getAdapterConfig();
             // enable adapter
