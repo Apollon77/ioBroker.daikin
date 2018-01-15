@@ -29,7 +29,7 @@
   },
   "main": "daikin.js",
   "scripts": {
-    "test": "nyc node_modules/mocha/bin/mocha --exit"
+    "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit"
   },
   "nyc": {
     "exclude": ["!**/node_modules/"],
