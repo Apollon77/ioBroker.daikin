@@ -7,8 +7,13 @@ node_js:
   - '6'
   - '8'
 before_script:
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter; fi'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x ./cc-test-reporter; fi'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter before-build; fi'
   - npm install winston@2.3.1
   - 'npm install https://github.com/ioBroker/ioBroker.js-controller/tarball/master --production'
+after_success:
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r b4e795bdd0975d9cab03db49fd11ed53f0106460981659989726b443dcf285d0; fi'
 env:
   - CXX=g++-4.8
 addons:

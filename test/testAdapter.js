@@ -13,6 +13,7 @@ var onObjectChanged = null;
 var sendToID = 1;
 
 var adapterShortName = setup.adapterName.substring(setup.adapterName.indexOf('.')+1);
+setup.useIstanbul = true;
 
 function checkConnectionOfAdapter(cb, counter) {
     counter = counter || 0;

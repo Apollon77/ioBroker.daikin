@@ -20,7 +20,8 @@
   },
   "devDependencies": {
     "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "istanbul": "*"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"

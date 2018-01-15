@@ -12,6 +12,7 @@ pkg.main = pkg.main || 'main.js';
 var adapterName = path.normalize(rootDir).replace(/\\/g, '/').split('/');
 adapterName = adapterName[adapterName.length - 2];
 var adapterStarted = false;
+var useIstanbul = false;
 
 function getAppName() {
     var parts = __dirname.replace(/\\/g, '/').split('/');
@@ -462,16 +463,32 @@ function startAdapter(objects, states, callback) {
         try {
             if (debug) {
                 // start controller
-                pid = child_process.exec('node node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
-                    cwd: rootDir + 'tmp',
-                    stdio: [0, 1, 2]
-                });
+                if (useIstanbul) {
+                    pid = child_process.exec('node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
+                        cwd: rootDir + 'tmp',
+                        stdio: [0, 1, 2]
+                    });
+                }
+                else {
+                    pid = child_process.exec('node node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
+                        cwd: rootDir + 'tmp',
+                        stdio: [0, 1, 2]
+                    });
+                }
             } else {
                 // start controller
-                pid = child_process.fork('node_modules/' + pkg.name + '/' + pkg.main, ['--console', 'silly'], {
-                    cwd:   rootDir + 'tmp',
-                    stdio: [0, 1, 2, 'ipc']
-                });
+                if (useIstanbul) {
+                    pid = child_process.fork('node_modules/istanbul/lib/cli.js', ['cover','node_modules/mocha/bin/_mocha','--','-R','spec','node_modules/' + pkg.name + '/' + pkg.main, '--console', 'silly'], {
+                        cwd:   rootDir + 'tmp',
+                        stdio: [0, 1, 2, 'ipc']
+                    });
+                }
+                else {
+                    pid = child_process.fork('node_modules/' + pkg.name + '/' + pkg.main, ['--console', 'silly'], {
+                        cwd:   rootDir + 'tmp',
+                        stdio: [0, 1, 2, 'ipc']
+                    });
+                }
             }
         } catch (error) {
             console.error(JSON.stringify(error));
@@ -693,4 +710,5 @@ if (typeof module !== undefined && module.parent) {
     module.exports.appName          = appName;
     module.exports.adapterName      = adapterName;
     module.exports.adapterStarted   = adapterStarted;
+    module.exports.useIstanbul      = useIstanbul;
 }
