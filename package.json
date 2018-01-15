@@ -28,6 +28,6 @@
   },
   "main": "daikin.js",
   "scripts": {
-    "test": "node node_modules/istanbul/lib/cli.js cover 'node_modules/mocha/bin/_mocha --exit' -- -R spec"
+    "test": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec --exit"
   }
 }
