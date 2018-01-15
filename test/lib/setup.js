@@ -458,7 +458,7 @@ function startAdapter(objects, states, callback) {
         return;
     }
     adapterStarted = true;
-    console.log('startAdapter...');
+    console.log('startAdapter (Istanbul=' + useIstanbul + ')...');
     if (fs.existsSync(rootDir + 'tmp/node_modules/' + pkg.name + '/' + pkg.main)) {
         try {
             if (debug) {
