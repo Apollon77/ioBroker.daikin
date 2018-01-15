@@ -32,7 +32,9 @@
     "test": "nyc node_modules/mocha/bin/mocha --exit"
   },
   "nyc": {
-    "include": ["**/tmp/node_modules/iobroker.daikin/*.js", "tmp/node_modules/iobroker.daikin/*.js", "tmp/node_modules/iobroker.daikin/lib/*.js"],
-    "all": true
+    "exclude": ["!**/node_modules/"],
+    "include": [
+        "**/tmp/node_modules/iobroker.daikin/*.js"
+    ]
   }
 }
