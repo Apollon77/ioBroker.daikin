@@ -32,6 +32,6 @@
     "test": "nyc node_modules/mocha/bin/mocha --exit"
   },
   "nyc": {
-    "include": ["**/daikin.js"]
+    "include": ["**/tmp/node_modules/iobroker.daikin/daikin.js"]
   }
 }
