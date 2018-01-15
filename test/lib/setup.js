@@ -466,7 +466,7 @@ function startAdapter(objects, states, callback, useIstanbul) {
             if (debug) {
                 // start controller
                 if (useIstanbul) {
-                    pid = child_process.exec('node ../node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
+                    pid = child_process.exec('node ../node_modules/istanbul/lib/cli.js cover ../node_modules/mocha/bin/_mocha -- -R spec node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
                         cwd: rootDir + 'tmp',
                         stdio: [0, 1, 2]
                     });
@@ -480,7 +480,7 @@ function startAdapter(objects, states, callback, useIstanbul) {
             } else {
                 // start controller
                 if (useIstanbul) {
-                    pid = child_process.fork('../node_modules/istanbul/lib/cli.js', ['cover','node_modules/mocha/bin/_mocha','--','-R','spec','node_modules/' + pkg.name + '/' + pkg.main, '--console', 'silly'], {
+                    pid = child_process.fork('../node_modules/istanbul/lib/cli.js', ['cover','../node_modules/mocha/bin/_mocha','--','-R','spec','node_modules/' + pkg.name + '/' + pkg.main, '--console', 'silly'], {
                         cwd:   rootDir + 'tmp',
                         stdio: [0, 1, 2, 'ipc']
                     });
