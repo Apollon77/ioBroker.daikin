@@ -12,6 +12,7 @@ pkg.main = pkg.main || 'main.js';
 var adapterName = path.normalize(rootDir).replace(/\\/g, '/').split('/');
 adapterName = adapterName[adapterName.length - 2];
 var adapterStarted = false;
+var useIstanbul = false;
 
 function getAppName() {
     var parts = __dirname.replace(/\\/g, '/').split('/');
@@ -450,10 +451,7 @@ function setupController(cb) {
     });
 }
 
-function startAdapter(objects, states, callback, useIstanbul) {
-    if (useIstanbul === undefined) {
-        useIstanbul = false;
-    }
+function startAdapter(objects, states, callback) {
     if (adapterStarted) {
         console.log('Adapter already started ...');
         if (callback) callback(objects, states);
@@ -501,7 +499,7 @@ function startAdapter(objects, states, callback, useIstanbul) {
     if (callback) callback(objects, states);
 }
 
-function startController(isStartAdapter, onObjectChange, onStateChange, callback, useIstanbul) {
+function startController(isStartAdapter, onObjectChange, onStateChange, callback) {
     if (typeof isStartAdapter === 'function') {
         callback = onStateChange;
         onStateChange = onObjectChange;
@@ -512,9 +510,6 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
     if (onStateChange === undefined) {
         callback  = onObjectChange;
         onObjectChange = undefined;
-    }
-    if (useIstanbul === undefined) {
-        useIstanbul = false;
     }
 
     if (pid) {
@@ -558,7 +553,7 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
                 if (isStatesConnected) {
                     console.log('startController: started!');
                     if (isStartAdapter) {
-                        startAdapter(objects, states, callback, useIstanbul);
+                        startAdapter(objects, states, callback);
                     } else {
                         if (callback) callback(objects, states);
                     }
@@ -600,7 +595,7 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
                 isStatesConnected = true;
                 if (isObjectConnected) {
                     console.log('startController: started!!');
-                    startAdapter(objects, states, callback, useIstanbul);
+                    startAdapter(objects, states, callback);
                 }
             },
             change: onStateChange
@@ -715,4 +710,5 @@ if (typeof module !== undefined && module.parent) {
     module.exports.appName          = appName;
     module.exports.adapterName      = adapterName;
     module.exports.adapterStarted   = adapterStarted;
+    module.exports.useIstanbul      = useIstanbul;
 }

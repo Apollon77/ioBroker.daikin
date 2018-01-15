@@ -139,6 +139,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     before('Test ' + adapterShortName + ' adapter: Start js-controller', function (_done) {
         this.timeout(600000); // because of first install from npm
 
+        setup.useIstanbul = true;
         setup.setupController(function () {
             var config = setup.getAdapterConfig();
             // enable adapter
@@ -158,7 +159,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     objects = _objects;
                     states  = _states;
                     _done();
-                }, true);
+                });
             });
         });
     });
