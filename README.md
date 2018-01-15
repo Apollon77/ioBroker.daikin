@@ -4,7 +4,8 @@
 [![NPM version](http://img.shields.io/npm/v/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
 [![Dependency Status](https://gemnasium.com/badges/github.com/Apollon77/ioBroker.daikin.svg)](https://gemnasium.com/github.com/Apollon77/ioBroker.daikin)
-[![Code Climate](https://codeclimate.com/github/Apollon77/ioBroker.daikin/badges/gpa.svg)](https://codeclimate.com/github/Apollon77/ioBroker.daikin)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ccc74a3ef8de69265ca1/maintainability)](https://codeclimate.com/github/Apollon77/ioBroker.daikin/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ccc74a3ef8de69265ca1/test_coverage)](https://codeclimate.com/github/Apollon77/ioBroker.daikin/test_coverage)
 
 **Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Apollon77/ioBroker.daikin/master.svg)](https://travis-ci.org/Apollon77/ioBroker.daikin)
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Apollon77/ioBroker.daikin?branch=master&svg=true)](https://ci.appveyor.com/project/Apollon77/ioBroker-daikin/)
