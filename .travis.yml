@@ -14,7 +14,7 @@ before_script:
   - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter before-build; fi'
 after_success:
   - ls -la ./coverage/
-  - less ./coverage/lconv.info
+  - less ./coverage/lcov.info
   - ls -la ./coverage/lcov-report
   - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r b4e795bdd0975d9cab03db49fd11ed53f0106460981659989726b443dcf285d0; fi'
 env:
