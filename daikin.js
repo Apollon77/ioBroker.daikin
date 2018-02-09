@@ -444,8 +444,8 @@ function handleDaikinUpdate(data, channel) {
             fieldName = fieldName.toString();
         }
         var valid = true;
+        adapter.log.debug(JSON.stringify(fieldName));
         if (!updatedStates[channel][fieldName]) {
-            adapter.log.debug(JSON.stringify(fieldName));
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
@@ -465,7 +465,7 @@ function handleDaikinUpdate(data, channel) {
                 }
             }
         }
-        if (data[fieldName] !== null && typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
+        if (data[fieldName] !== null && fieldDef[channel][fieldName] && typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
             if (fieldDef[channel][fieldName].type === 'string') {
                 data[fieldName] = data[fieldName].toString();
             }
