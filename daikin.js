@@ -1,3 +1,7 @@
+/* jshint -W097 */
+// jshint strict:true
+/*jslint node: true */
+/*jslint esversion: 6 */
 'use strict';
 /**
  *
@@ -441,7 +445,7 @@ function handleDaikinUpdate(data, channel) {
         }
         var valid = true;
         if (!updatedStates[channel][fieldName]) {
-            //adapter.log.debug(JSON.stringify(fieldName));
+            adapter.log.debug(JSON.stringify(fieldName));
             if (fieldDef[channel][fieldName]) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
