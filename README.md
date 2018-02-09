@@ -1,6 +1,8 @@
 ![Logo](admin/daikin.jpg)
 # ioBroker.daikin
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Apollon77/ioBroker.daikin.svg)](https://greenkeeper.io/)
+
 [![NPM version](http://img.shields.io/npm/v/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
 [![Dependency Status](https://gemnasium.com/badges/github.com/Apollon77/ioBroker.daikin.svg)](https://gemnasium.com/github.com/Apollon77/ioBroker.daikin)
