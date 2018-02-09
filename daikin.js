@@ -1,6 +1,3 @@
-/* jshint -W097 */
-// jshint strict:true
-/*jslint node: true */
 'use strict';
 /**
  *
@@ -21,6 +18,7 @@ var Power = '1:ON;0:OFF';
 var Mode = '0:AUTO;1:AUTO1;2:DEHUMDID;3:COLD;4:HOT;6:FAN;7:AUTO2';
 var FanRate = 'A:AUTO;B:SILENCE;3:LEVEL_1;4:LEVEL_2;5:LEVEL_3;6:LEVEL_4;7:LEVEL_5';
 var FanDirection = '0:STOP;1:VERTICAL;2:HORIZONTAL;3:VERTICAL_AND_HORIZONTAL';
+var SpecialMode = ':NONE;2:POWERFUL;12:ECONO;13:STREAMER;2/13:POWERFUL/STREAMER;12/13:ECONO/STREAMER';
 
 var channelDef = {
     'deviceInfo': {'role': 'info'},
@@ -63,11 +61,14 @@ var fieldDef = {
     	'targetTemperature': {'role': 'level.temperature', 'read': true, 'write': true, 'type': 'number',  'min': 10, 'max': 41, 'unit': '°C'},
     	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number',  'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
     	'fanRate':           {'role': 'text', 'read': true, 'write': true, 'type': 'string', 'states': FanRate},
-    	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection}
+    	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection},
+        'specialPowerful':   {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
+        'specialEcono':      {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
+        'specialStreamer':   {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'}
     },
     'controlInfo': {
     	// the following are returned, but not set-able
-    	'adv':                    {'role': 'text', 'read': true, 'write': false, 'type': 'string'},			// ????
+    	'specialMode':            {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': SpecialMode},
 
     	'targetTemperatureMode1': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},		// "M" or number 10..41
     	'targetTemperatureMode2': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
@@ -242,16 +243,38 @@ function changeStates() {
         }
     }
 
-    daikinDevice.setACControlInfo(changed, function(err, response) {
-        adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
-        if (err) adapter.log.error('change values failed: ' + err);
-        for (var fieldName in changed) {
-            updatedStates.control[fieldName] = ''; // reset stored value
-            adapter.log.debug('reset ' + fieldName);
-        }
-        changeRunning = false;
-        storeDaikinData(err);
-    });
+}
+
+function setSpecialMode(changed, callback) {
+
+    if (changed.specialPowerful) {
+        delete changed.specialPowerful;
+    }
+    if (changed.specialEcono) {
+        delete changed.specialEcono;
+    }
+    if (changed.specialStreamer) {
+        delete changed.specialStreamer;
+    }
+
+    if (Object.keys(changed).length > 0) { // and we change mode only, so init all values from last
+
+        daikinDevice.setACControlInfo(changed, function(err, response) {
+            adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
+            if (err) adapter.log.error('change values failed: ' + err);
+            for (var fieldName in changed) {
+                updatedStates.control[fieldName] = ''; // reset stored value
+                adapter.log.debug('reset ' + fieldName);
+            }
+            changeRunning = false;
+            storeDaikinData(err);
+        });
+    }
+
+}
+
+function setControlInfo(changed, callback) {
+
 }
 
 adapter.on('unload', function (callback) {
@@ -340,9 +363,38 @@ function storeDaikinData(err) {
     var controlInfo = daikinDevice.currentACControlInfo;
     var control = {};
     for (var fieldName in fieldDef.control) {
-        control[fieldName] = controlInfo[fieldName];
-        delete controlInfo[fieldName];
+        if (controlInfo[fieldName]) {
+            control[fieldName] = controlInfo[fieldName];
+            delete controlInfo[fieldName];
+        }
     }
+    if (controlInfo.specialMode) {
+        control.specialPowerful = false;
+        control.specialEcono = false;
+        control.specialStreamer = false;
+        switch(controlInfo.specialMode) {
+            case '':
+                break;
+            case '2':
+                control.specialPowerful = true;
+                break;
+            case '12':
+                control.specialEcono = true;
+                break;
+            case '13':
+                control.specialStreamer = true;
+                break;
+            case '2/13':
+                control.specialPowerful = true;
+                control.specialStreamer = true;
+                break;
+            case '12/13':
+                control.specialEcono = true;
+                control.specialStreamer = true;
+                break;
+        }
+    }
+
     var basicInfo = daikinDevice.currentCommonBasicInfo;
     if (basicInfo.power !== undefined) {
         delete basicInfo.power;
