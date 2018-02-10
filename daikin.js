@@ -426,6 +426,7 @@ function storeDaikinData(err) {
 }
 
 function handleDaikinUpdate(data, channel) {
+    adapter.log.debug('HandleDaikinUpdate for ' + channel + ' with ' + JSON.stringify(data));
     var updated = 0;
     if (!updatedStates[channel]) {
         adapter.log.debug('Create Channel ' + channel);
