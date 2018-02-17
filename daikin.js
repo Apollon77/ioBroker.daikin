@@ -372,7 +372,7 @@ function storeDaikinData(err) {
             delete controlInfo[fieldName];
         }
     }
-    if (controlInfo.specialMode) {
+    if (controlInfo.specialMode !== undefined) {
         control.specialPowerful = false;
         control.specialEcono = false;
         control.specialStreamer = false;
