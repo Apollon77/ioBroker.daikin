@@ -246,39 +246,48 @@ function changeStates() {
             }
         }
     }
-
+    setSpecialMode(changed);
 }
 
 function setSpecialMode(changed, callback) {
-
     if (changed.specialPowerful) {
-        delete changed.specialPowerful;
+        daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: daikinDevice.SpecialModeKind.POWERFUL}, function() {
+            delete changed.specialPowerful;
+            setSpecialMode(changed, callback);
+        });
+        return;
     }
     if (changed.specialEcono) {
-        delete changed.specialEcono;
+        daikinDevice.setACSpecialMode({state: (changed.specialEcono?'1':'0'), kind: daikinDevice.SpecialModeKind.ECONO}, function() {
+            delete changed.specialEcono;
+            setSpecialMode(changed, callback);
+        });
+        return;
     }
     if (changed.specialStreamer) {
-        delete changed.specialStreamer;
+        daikinDevice.setACSpecialMode({state: (changed.specialStreamer?'1':'0'), kind: daikinDevice.SpecialModeKind.STREAMER}, function() {
+            delete changed.specialStreamer;
+            setSpecialMode(changed, callback);
+        });
+        return;
     }
 
     if (Object.keys(changed).length > 0) { // and we change mode only, so init all values from last
-
-        daikinDevice.setACControlInfo(changed, function(err, response) {
-            adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
-            if (err) adapter.log.error('change values failed: ' + err);
-            for (var fieldName in changed) {
-                updatedStates.control[fieldName] = ''; // reset stored value
-                adapter.log.debug('reset ' + fieldName);
-            }
-            changeRunning = false;
-            storeDaikinData(err);
-        });
+        callback(changed);
     }
-
 }
 
-function setControlInfo(changed, callback) {
-
+function setControlInfo(changed) {
+    daikinDevice.setACControlInfo(changed, function(err, response) {
+        adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
+        if (err) adapter.log.error('change values failed: ' + err);
+        for (var fieldName in changed) {
+            updatedStates.control[fieldName] = ''; // reset stored value
+            adapter.log.debug('reset ' + fieldName);
+        }
+        changeRunning = false;
+        storeDaikinData(err);
+    });
 }
 
 adapter.on('unload', function (callback) {
