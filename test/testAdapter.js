@@ -164,6 +164,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
             config.native.daikinIp = '127.0.0.1:8080';
             config.native.pollingInterval = 60;
+            config.native.useGetToPost = false;
 
             setup.setAdapterConfig(config.common, config.native);
 
