@@ -117,7 +117,7 @@ var responses = [
     },
     {
         'request': 'POST /aircon/set_special_mode',
-        'response': 'ret=OK,adv=12/13'
+        'response': 'ret=OK,adv='
     },
     {
         'request': 'GET /aircon/get_control_info',
@@ -125,7 +125,7 @@ var responses = [
     },
     {
         'request': 'POST /aircon/set_control_info',
-        'response': 'ret=OK,adv=12/13'
+        'response': 'ret=OK,adv='
     },
     {
         'request': 'GET /aircon/get_control_info',
