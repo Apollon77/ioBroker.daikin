@@ -251,21 +251,21 @@ function changeStates() {
 
 function setSpecialMode(changed, callback) {
     if (changed.specialPowerful) {
-        daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: daikinDevice.SpecialModeKind.POWERFUL}, function() {
+        daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.POWERFUL}, function() {
             delete changed.specialPowerful;
             setSpecialMode(changed, callback);
         });
         return;
     }
     if (changed.specialEcono) {
-        daikinDevice.setACSpecialMode({state: (changed.specialEcono?'1':'0'), kind: daikinDevice.SpecialModeKind.ECONO}, function() {
+        daikinDevice.setACSpecialMode({state: (changed.specialEcono?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.ECONO}, function() {
             delete changed.specialEcono;
             setSpecialMode(changed, callback);
         });
         return;
     }
     if (changed.specialStreamer) {
-        daikinDevice.setACSpecialMode({state: (changed.specialStreamer?'1':'0'), kind: daikinDevice.SpecialModeKind.STREAMER}, function() {
+        daikinDevice.setACSpecialMode({state: (changed.specialStreamer?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.STREAMER}, function() {
             delete changed.specialStreamer;
             setSpecialMode(changed, callback);
         });
