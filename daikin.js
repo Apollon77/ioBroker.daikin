@@ -367,7 +367,7 @@ function storeDaikinData(err) {
     var controlInfo = daikinDevice.currentACControlInfo;
     var control = {};
     for (var fieldName in fieldDef.control) {
-        if (controlInfo[fieldName]) {
+        if (controlInfo[fieldName] !== undefined) {
             control[fieldName] = controlInfo[fieldName];
             delete controlInfo[fieldName];
         }
