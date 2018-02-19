@@ -493,7 +493,7 @@ function handleDaikinUpdate(data, channel) {
         }
         if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) data[fieldName] = null;
         adapter.log.debug('Old value ' + channel + '.' + fieldName + ': old="' + updatedStates[channel][fieldName] + '", new="' + data[fieldName] + '"');
-        if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] != data[fieldName])) {
+        if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] !== data[fieldName])) {
             adapter.log.info('Set State ' + channel + '.' + fieldName + ': "' + data[fieldName] + '"');
             adapter.setState(channel + '.' + fieldName, {ack: true, val: data[fieldName]});
             updatedStates[channel][fieldName] = data[fieldName];
