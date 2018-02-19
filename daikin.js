@@ -253,6 +253,7 @@ function setSpecialMode(changed) {
     if (changed.specialPowerful !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.POWERFUL}, function() {
             delete changed.specialPowerful;
+            updatedStates.control.specialPowerful = ''; // reset stored value
             setSpecialMode(changed);
         });
         return;
@@ -260,6 +261,7 @@ function setSpecialMode(changed) {
     if (changed.specialEcono !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialEcono?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.ECONO}, function() {
             delete changed.specialEcono;
+            updatedStates.control.specialEcono = ''; // reset stored value
             setSpecialMode(changed);
         });
         return;
@@ -267,6 +269,7 @@ function setSpecialMode(changed) {
     if (changed.specialStreamer !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialStreamer?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.STREAMER}, function() {
             delete changed.specialStreamer;
+            updatedStates.control.specialStreamer = ''; // reset stored value
             setSpecialMode(changed);
         });
         return;
