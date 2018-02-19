@@ -276,6 +276,7 @@ function setSpecialMode(changed) {
         setControlInfo(changed);
     }
     else {
+        changeRunning = false;
         daikinDevice.updateData();
     }
 }
