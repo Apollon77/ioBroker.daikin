@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "news": {
+            "1.0.1": {
+                "en": "Fix Admin",
+                "de": "Fixe Admin",
+                "ru": "Fix Admin",
+                "pt": "Corrigir Admin",
+                "nl": "Admin oplossen",
+                "fr": "Fix Admin",
+                "it": "Correggi Admin",
+                "es": "Fix Admin",
+                "pl": "Napraw administratora"
+            },
             "1.0.0": {
                 "en": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag",
                 "de": "Admin3 Unterstützung. Ältere Daikin-WLAN-Firmwares unterstützt über spezielle Konfiguration",
@@ -40,7 +51,7 @@
         "stopBeforeUpdate": true,
         "icon": "daikin.jpg",
         "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.daikin/master/admin/daikin.jpg",
-        "readme": "https://github.com/Apollon77/ioBroker.daikin",
+        "readme": "https://github.com/Apollon77/ioBroker.daikin/blob/master/README.md",
         "license": "MIT",
         "npmLibs": [],
         "type": "climate-control",
