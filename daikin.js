@@ -437,6 +437,10 @@ function storeDaikinData(err) {
             write: false
         },
         native: {id: 'control.lastResult'}
+    }, function(err, obj) {
+        if (err) {
+            adapter.log.error('Error creating State: ' + err);
+        }
     });
     adapter.setState('control.lastResult', {ack: true, val: (err?err:'OK')});
 }
@@ -453,6 +457,10 @@ function handleDaikinUpdate(data, channel) {
                 'role': channelDef[channel].role
             },
             native: {}
+        }, function(err, obj) {
+            if (err) {
+                adapter.log.error('Error creating Channel: ' + err);
+            }
         });
         updatedStates[channel] = {};
     }
@@ -472,6 +480,10 @@ function handleDaikinUpdate(data, channel) {
                     common: commonDef,
                     native: {
                         id: channel + '.' + fieldName
+                    }
+                }, function(err, obj) {
+                    if (err) {
+                        adapter.log.error('Error creating State: ' + err);
                     }
                 });
             }
