@@ -49,7 +49,7 @@ describe('Test package.json and io-package.json', function() {
         expect(fs.existsSync(__dirname + '/../README.md'), 'ERROR: README.md needs to exist! Please create one with description, detail information and changelog. English is mandatory.').to.be.true;
         expect(fs.existsSync(__dirname + '/../LICENSE'), 'ERROR: LICENSE needs to exist! Please create one.').to.be.true;
         if (!ioPackage.common.titleLang || typeof ioPackage.common.titleLang !== 'object') {
-            console.log('WARNING: titleLang is not existing in io-package.json');
+            console.log('WARNING: titleLang is not existing in io-package.json. Please add');
             console.log();
         }
         if (
@@ -64,10 +64,19 @@ describe('Test package.json and io-package.json', function() {
 
         if (ioPackage.common.name.indexOf('vis-') !== 0) {
             if (!ioPackage.common.materialize || !fs.existsSync(__dirname + '/../admin/index_m.html') || !fs.existsSync(__dirname + '/../gulpfile.js')) {
-                console.log('WARNING: Admin3 support is missing!');
+                console.log('WARNING: Admin3 support is missing! Please add it');
                 console.log();
             }
+            if (ioPackage.common.materialize) {
+                expect(fs.existsSync(__dirname + '/../admin/index_m.html'), 'Admin3 support is enabled in io-package.json, but index_m.html is missing!').to.be.true;
+            }
         }
+
+        expect(fs.existsSync(__dirname + '/../LICENSE'), 'A LICENSE must exist');
+        var fileContentReadme = fs.readFileSync(__dirname + '/../README.md', 'utf8');
+        expect(fileContentReadme.indexOf('## License'), 'The README.md needs to have a section ## License').not.equal(-1);
+        expect(fileContentReadme.indexOf('## Changelog'), 'The README.md needs to have a section ## Changelog').not.equal(-1);
+        expect(fileContentReadme.indexOf('## Changelog'), 'The README.md needs to have a section ## License').to.be.below(fileContentReadme.indexOf('## License'));
         done();
     });
 });
