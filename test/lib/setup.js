@@ -12,7 +12,6 @@ pkg.main = pkg.main || 'main.js';
 var adapterName = path.normalize(rootDir).replace(/\\/g, '/').split('/');
 adapterName = adapterName[adapterName.length - 2];
 var adapterStarted = false;
-var useIstanbul = false;
 
 function getAppName() {
     var parts = __dirname.replace(/\\/g, '/').split('/');
@@ -37,7 +36,12 @@ function copyFileSync(source, target) {
         }
     }
 
-    fs.writeFileSync(targetFile, fs.readFileSync(source));
+    try {
+        fs.writeFileSync(targetFile, fs.readFileSync(source));
+    }
+    catch (err) {
+        console.log("file copy error: " +source +" -> " + targetFile + " (error ignored)");
+    }
 }
 
 function copyFolderRecursiveSync(source, target, ignore) {
@@ -62,6 +66,7 @@ function copyFolderRecursiveSync(source, target, ignore) {
             }
 
             var curSource = path.join(source, file);
+            var curTarget = path.join(targetFolder, file);
             if (fs.lstatSync(curSource).isDirectory()) {
                 // ignore grunt files
                 if (file.indexOf('grunt') !== -1) return;
@@ -69,7 +74,7 @@ function copyFolderRecursiveSync(source, target, ignore) {
                 if (file === 'mocha') return;
                 copyFolderRecursiveSync(curSource, targetFolder, ignore);
             } else {
-                copyFileSync(curSource, targetFolder);
+                copyFileSync(curSource, curTarget);
             }
         });
     }
@@ -447,7 +452,23 @@ function setupController(cb) {
             restoreOriginalFiles();
             copyAdapterToController();
         }
-        if (cb) cb();
+        // read system.config object
+        var dataDir = rootDir + 'tmp/' + appName + '-data/';
+
+        var objs;
+        try {
+            objs = fs.readFileSync(dataDir + 'objects.json');
+            objs = JSON.parse(objs);
+        }
+        catch (e) {
+            console.log('ERROR reading system configuration. Ignore');
+            objs = {'system': {'config': {}}};
+        }
+        if (!objs && !objs.system && !objs.system.config) {
+            objs = {'system': {'config': {}}};
+        }
+
+        if (cb) cb(objs.system.config);
     });
 }
 
@@ -463,32 +484,16 @@ function startAdapter(objects, states, callback) {
         try {
             if (debug) {
                 // start controller
-                if (useIstanbul) {
-                    pid = child_process.exec('node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
-                        cwd: rootDir + 'tmp',
-                        stdio: [0, 1, 2]
-                    });
-                }
-                else {
-                    pid = child_process.exec('node node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
-                        cwd: rootDir + 'tmp',
-                        stdio: [0, 1, 2]
-                    });
-                }
+                pid = child_process.exec('node node_modules/' + pkg.name + '/' + pkg.main + ' --console silly', {
+                    cwd: rootDir + 'tmp',
+                    stdio: [0, 1, 2]
+                });
             } else {
                 // start controller
-                if (useIstanbul) {
-                    pid = child_process.fork('node_modules/istanbul/lib/cli.js', ['cover','node_modules/mocha/bin/_mocha','--','-R','spec','node_modules/' + pkg.name + '/' + pkg.main, '--console', 'silly'], {
-                        cwd:   rootDir + 'tmp',
-                        stdio: [0, 1, 2, 'ipc']
-                    });
-                }
-                else {
-                    pid = child_process.fork('node_modules/' + pkg.name + '/' + pkg.main, ['--console', 'silly'], {
-                        cwd:   rootDir + 'tmp',
-                        stdio: [0, 1, 2, 'ipc']
-                    });
-                }
+                pid = child_process.fork('node_modules/' + pkg.name + '/' + pkg.main, ['--console', 'silly'], {
+                    cwd:   rootDir + 'tmp',
+                    stdio: [0, 1, 2, 'ipc']
+                });
             }
         } catch (error) {
             console.error(JSON.stringify(error));
@@ -555,7 +560,10 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
                     if (isStartAdapter) {
                         startAdapter(objects, states, callback);
                     } else {
-                        if (callback) callback(objects, states);
+                        if (callback) {
+                            callback(objects, states);
+                            callback = null;
+                        }
                     }
                 }
             },
@@ -595,7 +603,14 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
                 isStatesConnected = true;
                 if (isObjectConnected) {
                     console.log('startController: started!!');
-                    startAdapter(objects, states, callback);
+                    if (isStartAdapter) {
+                        startAdapter(objects, states, callback);
+                    } else {
+                        if (callback) {
+                            callback(objects, states);
+                            callback = null;
+                        }
+                    }
                 }
             },
             change: onStateChange
@@ -710,5 +725,4 @@ if (typeof module !== undefined && module.parent) {
     module.exports.appName          = appName;
     module.exports.adapterName      = adapterName;
     module.exports.adapterStarted   = adapterStarted;
-    module.exports.useIstanbul      = useIstanbul;
 }
