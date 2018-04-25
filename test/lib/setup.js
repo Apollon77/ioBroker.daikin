@@ -461,14 +461,14 @@ function setupController(cb) {
             objs = JSON.parse(objs);
         }
         catch (e) {
-            console.log('ERROR reading system configuration. Ignore');
-            objs = {'system': {'config': {}}};
+            console.log('ERROR reading/parsing system configuration. Ignore');
+            objs = {'system.config': {}};
         }
-        if (!objs && !objs.system && !objs.system.config) {
-            objs = {'system': {'config': {}}};
+        if (!objs || !objs.system || !objs.system.config) {
+            objs = {'system.config': {}};
         }
 
-        if (cb) cb(objs.system.config);
+        if (cb) cb(objs['system.config']);
     });
 }
 
