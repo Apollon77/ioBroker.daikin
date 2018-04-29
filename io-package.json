@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "news": {
+            "1.0.2": {
+                "en": "Daikin library updated",
+                "de": "Daikin-Bibliothek aktualisiert",
+                "ru": "Обновлена ​​библиотека Daikin",
+                "pt": "Biblioteca Daikin atualizada",
+                "nl": "Daikin-bibliotheek bijgewerkt",
+                "fr": "Bibliothèque Daikin mise à jour",
+                "it": "Libreria Daikin aggiornata",
+                "es": "Biblioteca Daikin actualizada",
+                "pl": "Aktualizacja biblioteki Daikin"
+            },
             "1.0.1": {
                 "en": "Fix Admin",
                 "de": "Fixe Admin",

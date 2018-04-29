@@ -65,6 +65,9 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 
+### 1.0.2 (2018-04-29)
+* Daikin library updated
+
 ### 1.0.1 (2018-04-13)
 * Fix Admin
 

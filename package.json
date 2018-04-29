@@ -1,6 +1,6 @@
 {
   "name": "iobroker.daikin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Daikin Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],
@@ -16,7 +16,7 @@
     "url": "https://github.com/Apollon77/ioBroker.daikin"
   },
   "dependencies": {
-    "daikin-controller": "^1.1.1"
+    "daikin-controller": "^1.1.2"
   },
   "devDependencies": {
     "mocha": "^5.0.0",
