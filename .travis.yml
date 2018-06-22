@@ -19,6 +19,8 @@ before_script:
 after_success:
   - sed -i "s|tmp/node_modules/iobroker.daikin/||" ./coverage/lcov.info
   - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r b4e795bdd0975d9cab03db49fd11ed53f0106460981659989726b443dcf285d0; fi'
+  - npm install npm@latest
+  - npm audit
 env:
   - CXX=g++-4.8
 addons:
