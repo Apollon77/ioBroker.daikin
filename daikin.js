@@ -127,7 +127,7 @@ var fieldDef = {
     'sensorInfo': {
         'indoorTemperature':  {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
         'indoorHumidity':     {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},
-        'outdoorTemperature': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
+        'outdoorTemperature': {'role': 'value.temperature', 'read': true, 'write': false, 'type': 'number', 'unit': '°C'},
         'error':              {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
         'cmpfreq':            {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
     }
