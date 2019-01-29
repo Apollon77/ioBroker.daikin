@@ -351,7 +351,7 @@ function main() {
         options.logger = adapter.log.info;
     }*/
     if (!adapter.config.daikinIp) {
-        throw Error('No IP set for Deikin Device, check your configuration!');
+        throw Error('No IP set for Daikin Device, check your configuration!');
     }
     if (adapter.config.pollingInterval !== null && adapter.config.pollingInterval !== undefined && adapter.config.pollingInterval !== "") {
         adapter.config.pollingInterval = parseInt(adapter.config.pollingInterval, 10);
@@ -370,63 +370,72 @@ function main() {
                 storeDaikinData(err);
             });
         }
+        else {
+            adapter.log.info('Retry init in 60 seconds');
+            setTimeout(main, 60000);
+        }
     });
 }
 
 function storeDaikinData(err) {
     var updated = 0;
 
-    if (!deviceName && daikinDevice.currentCommonBasicInfo.name) {
-        deviceName = daikinDevice.currentCommonBasicInfo.name + ' ';
-    }
+    if (!err) {
+        if (!deviceName && daikinDevice.currentCommonBasicInfo.name) {
+            deviceName = daikinDevice.currentCommonBasicInfo.name + ' ';
+        }
 
-    var controlInfo = daikinDevice.currentACControlInfo;
-    var control = {};
-    for (var fieldName in fieldDef.control) {
-        if (controlInfo[fieldName] !== undefined) {
-            control[fieldName] = controlInfo[fieldName];
-            delete controlInfo[fieldName];
+        var controlInfo = daikinDevice.currentACControlInfo;
+        var control = {};
+        for (var fieldName in fieldDef.control) {
+            if (controlInfo[fieldName] !== undefined) {
+                control[fieldName] = controlInfo[fieldName];
+                delete controlInfo[fieldName];
+            }
+        }
+        if (controlInfo.specialMode !== undefined) {
+            control.specialPowerful = false;
+            control.specialEcono = false;
+            control.specialStreamer = false;
+            switch (controlInfo.specialMode) {
+                case '':
+                    break;
+                case '2':
+                    control.specialPowerful = true;
+                    break;
+                case '12':
+                    control.specialEcono = true;
+                    break;
+                case '13':
+                    control.specialStreamer = true;
+                    break;
+                case '2/13':
+                    control.specialPowerful = true;
+                    control.specialStreamer = true;
+                    break;
+                case '12/13':
+                    control.specialEcono = true;
+                    control.specialStreamer = true;
+                    break;
+            }
+        }
+
+        var basicInfo = daikinDevice.currentCommonBasicInfo;
+        if (basicInfo.power !== undefined) {
+            delete basicInfo.power;
+        }
+
+        updated += handleDaikinUpdate(basicInfo, 'deviceInfo');
+        updated += handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
+        updated += handleDaikinUpdate(control, 'control');
+        updated += handleDaikinUpdate(controlInfo, 'controlInfo');
+        updated += handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
+        if (updated > 0) {
+            adapter.log.info(updated + ' Values updated');
         }
     }
-    if (controlInfo.specialMode !== undefined) {
-        control.specialPowerful = false;
-        control.specialEcono = false;
-        control.specialStreamer = false;
-        switch(controlInfo.specialMode) {
-            case '':
-                break;
-            case '2':
-                control.specialPowerful = true;
-                break;
-            case '12':
-                control.specialEcono = true;
-                break;
-            case '13':
-                control.specialStreamer = true;
-                break;
-            case '2/13':
-                control.specialPowerful = true;
-                control.specialStreamer = true;
-                break;
-            case '12/13':
-                control.specialEcono = true;
-                control.specialStreamer = true;
-                break;
-        }
-    }
-
-    var basicInfo = daikinDevice.currentCommonBasicInfo;
-    if (basicInfo.power !== undefined) {
-        delete basicInfo.power;
-    }
-
-    updated += handleDaikinUpdate(basicInfo, 'deviceInfo');
-    updated += handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
-    updated += handleDaikinUpdate(control, 'control');
-    updated += handleDaikinUpdate(controlInfo, 'controlInfo');
-    updated += handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
-    if (updated > 0) {
-        adapter.log.info(updated + ' Values updated');
+    else {
+        adapter.log.error('Error updating data: ' + err);
     }
     adapter.setObjectNotExists('control.lastResult', {
         type: 'state',

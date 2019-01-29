@@ -5,7 +5,6 @@
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.daikin.svg)](https://www.npmjs.com/package/iobroker.daikin)
-[![Dependency Status](https://gemnasium.com/badges/github.com/Apollon77/ioBroker.daikin.svg)](https://gemnasium.com/github.com/Apollon77/ioBroker.daikin)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ccc74a3ef8de69265ca1/maintainability)](https://codeclimate.com/github/Apollon77/ioBroker.daikin/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ccc74a3ef8de69265ca1/test_coverage)](https://codeclimate.com/github/Apollon77/ioBroker.daikin/test_coverage)
 

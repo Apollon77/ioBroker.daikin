@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "news": {
             "1.0.2": {
                 "en": "Daikin library updated",
