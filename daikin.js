@@ -8,7 +8,7 @@
  * Daikin adapter
  */
 var path = require('path');
-var utils = require(path.join(__dirname,'lib','utils')); // Get common adapter utils
+var utils = require('@iobroker/adapter-core');
 var DaikinController = require('daikin-controller');
 var daikinDevice;
 var deviceName = '';

@@ -16,7 +16,8 @@
     "url": "https://github.com/Apollon77/ioBroker.daikin"
   },
   "dependencies": {
-    "daikin-controller": "^1.1.3"
+    "daikin-controller": "^1.1.3",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
     "mocha": "^6.0.1",
