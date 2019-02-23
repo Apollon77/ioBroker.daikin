@@ -3,6 +3,18 @@
         "name": "daikin",
         "version": "1.0.3",
         "news": {
+            "1.0.3": {
+                "en": "Daikin library updated, communication errors optimized",
+                "de": "Daikin-Bibliothek aktualisiert, Kommunikationsfehler optimiert",
+                "ru": "Обновлена ​​библиотека Daikin, оптимизированы ошибки связи",
+                "pt": "Biblioteca Daikin atualizada, erros de comunicação otimizados",
+                "nl": "Daikin-bibliotheek bijgewerkt, communicatiefouten geoptimaliseerd",
+                "fr": "Bibliothèque Daikin mise à jour, erreurs de communication optimisées",
+                "it": "Aggiornamento della libreria Daikin, ottimizzazione degli errori di comunicazione",
+                "es": "Biblioteca Daikin actualizada, errores de comunicación optimizados.",
+                "pl": "Aktualizacja biblioteki Daikin, optymalizacja błędów komunikacji",
+                "zh-cn": "大金库更新，通信错误优化"
+            },
             "1.0.2": {
                 "en": "Daikin library updated",
                 "de": "Daikin-Bibliothek aktualisiert",

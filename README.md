@@ -65,7 +65,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 ## Changelog
 
 ### 1.0.3 (2019-02-xx)
-* Daikin library updated, communication error soptimized
+* Daikin library updated, communication errors optimized
 
 ### 1.0.2 (2018-04-29)
 * Daikin library updated
