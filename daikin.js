@@ -345,7 +345,9 @@ process.on('uncaughtException', function (err) {
 function main() {
     var options = {};
     if (adapter.common.loglevel === 'debug') {
-        options.logger = adapter.log.debug;
+        options.logger = () => {
+            adapter.log.debug.apply(null, arguments);
+        }
     }
 /*    else if (adapter.common.loglevel === 'info') {
         options.logger = adapter.log.info;
