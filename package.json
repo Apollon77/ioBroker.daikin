@@ -20,10 +20,11 @@
     "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
-    "mocha": "^6.0.1",
+    "mocha": "^6.0.2",
     "chai": "^4.1.2",
     "istanbul": "*",
-    "nyc": "*"
+    "nyc": "*",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
@@ -33,9 +34,11 @@
     "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit"
   },
   "nyc": {
-    "exclude": ["!**/node_modules/"],
+    "exclude": [
+      "!**/node_modules/"
+    ],
     "include": [
-        "**/tmp/node_modules/iobroker.daikin/*.js"
+      "**/tmp/node_modules/iobroker.daikin/*.js"
     ],
     "produce-source-map": true
   }
