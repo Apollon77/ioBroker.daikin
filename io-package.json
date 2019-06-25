@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "news": {
-            "1.0.4": {
+            "1.0.5": {
                 "en": "Daikin library updated, communication error handling optimized",
                 "de": "Daikin-Bibliothek aktualisiert, Behandlung von Kommunikationsfehlern optimiert",
                 "ru": "Обновлена ​​библиотека Daikin, оптимизированы ошибки связи",
