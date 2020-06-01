@@ -23,7 +23,7 @@
     "mocha": "^6.1.4",
     "chai": "^4.2.0",
     "istanbul": "*",
-    "nyc": "*"
+    "nyc": "15.0.1"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
