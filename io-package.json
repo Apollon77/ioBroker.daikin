@@ -96,7 +96,12 @@
             "climate control"
         ],
         "loglevel": "info",
-        "enabled": false
+        "enabled": false,
+        "plugins": {
+            "sentry": {
+                "dsn": "https://ef1cc308b0ce488d95cf276b0b70b46c@sentry.iobroker.net/90"
+            }
+        }
     },
     "native": {
         "daikinIp": "",
@@ -104,5 +109,14 @@
         "useGetToPost": false
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "",
+            "type": "device",
+            "common": {
+                "name": "Daikin Device"
+            },
+            "native": {}
+        }
+    ]
 }

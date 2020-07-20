@@ -12,3 +12,4 @@ appveyor.yml
 .eslinkignore
 .eslintrc
 .vscode
+package-lock.json

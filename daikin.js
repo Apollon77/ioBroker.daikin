@@ -7,8 +7,10 @@
  *
  * Daikin adapter
  */
-var path = require('path');
-var utils = require('@iobroker/adapter-core');
+// you have to require the utils module and call adapter function
+const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+let adapter;
+
 var DaikinController = require('daikin-controller');
 var daikinDevice;
 var deviceName = '';
@@ -66,7 +68,7 @@ var fieldDef = {
     	'targetHumidity':    {'role': 'level.humidity', 'read': true, 'write': true, 'type': 'number',  'min': 0, 'max': 50, 'unit': '%'},		// "AUTO" or number from 0..50
     	'fanRate':           {'role': 'text', 'read': true, 'write': true, 'type': 'string', 'states': FanRate},
     	'fanDirection':      {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection},
-        'specialPowerful':   {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
+        'specialPowerful':   {'role': 'switch.boost', 'read': true, 'write': true, 'type': 'boolean'},
         'specialEcono':      {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
         'specialStreamer':   {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'}
     },
@@ -133,29 +135,80 @@ var fieldDef = {
     }
 };
 
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name: 'daikin'
+    });
+    adapter = new utils.Adapter(options);
 
-var adapter = utils.Adapter('daikin');
+    adapter.on('ready', function (obj) {
+        main();
+    });
 
-adapter.on('ready', function (obj) {
-    main();
-});
+    adapter.on('message', function (msg) {
+        processMessage(msg);
+    });
 
-adapter.on('message', function (msg) {
-    processMessage(msg);
-});
+    adapter.on('stateChange', function (id, state) {
+        if (state.ack !== false || state.val === null) return;
+        adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
+        var realNamespace = adapter.namespace + '.control.';
+        var stateId = id.substring(realNamespace.length);
+        changedStates[stateId] = state.val;
+        if (changeTimeout) {
+            adapter.log.debug('Clear change timeout');
+            clearTimeout(changeTimeout);
+            changeTimeout = null;
+        }
+        changeTimeout = setTimeout(changeStates, 1000);
+    });
 
-adapter.on('stateChange', function (id, state) {
-    if (state.ack !== false || state.val === null) return;
-    adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
-    var realNamespace = adapter.namespace + '.control.';
-    var stateId = id.substring(realNamespace.length);
-    changedStates[stateId] = state.val;
+    adapter.on('unload', function (callback) {
+        if (daikinDevice) {
+            adapter.log.debug('Stopping update timeout');
+            daikinDevice.stopUpdate();
+        }
+        if (changeTimeout) {
+            adapter.log.debug('Clear change timeout');
+            clearTimeout(changeTimeout);
+            changeTimeout = null;
+        }
+        if (callback) callback();
+    });
+
+    return adapter;
+}
+
+process.on('SIGINT', function () {
+    if (daikinDevice) {
+        adapter.log.debug('Stopping update timeout');
+        daikinDevice.stopUpdate();
+    }
     if (changeTimeout) {
         adapter.log.debug('Clear change timeout');
         clearTimeout(changeTimeout);
         changeTimeout = null;
     }
-    changeTimeout = setTimeout(changeStates, 1000);
+});
+
+process.on('uncaughtException', function (err) {
+    if (adapter && adapter.log) {
+        adapter.log.warn('Exception: ' + err);
+    }
+    if (daikinDevice) {
+        if (adapter && adapter.log) {
+            adapter.log.debug('Stopping update timeout');
+        }
+        daikinDevice.stopUpdate();
+    }
+    if (changeTimeout) {
+        if (adapter && adapter.log) {
+            adapter.log.debug('Clear change timeout');
+        }
+        clearTimeout(changeTimeout);
+        changeTimeout = null;
+    }
 });
 
 function changeStates() {
@@ -296,51 +349,6 @@ function setControlInfo(changed) {
         storeDaikinData(err);
     });
 }
-
-adapter.on('unload', function (callback) {
-    if (daikinDevice) {
-        adapter.log.debug('Stopping update timeout');
-        daikinDevice.stopUpdate();
-    }
-    if (changeTimeout) {
-        adapter.log.debug('Clear change timeout');
-        clearTimeout(changeTimeout);
-        changeTimeout = null;
-    }
-    if (callback) callback();
-    return;
-});
-
-process.on('SIGINT', function () {
-    if (daikinDevice) {
-        adapter.log.debug('Stopping update timeout');
-        daikinDevice.stopUpdate();
-    }
-    if (changeTimeout) {
-        adapter.log.debug('Clear change timeout');
-        clearTimeout(changeTimeout);
-        changeTimeout = null;
-    }
-});
-
-process.on('uncaughtException', function (err) {
-    if (adapter && adapter.log) {
-        adapter.log.warn('Exception: ' + err);
-    }
-    if (daikinDevice) {
-        if (adapter && adapter.log) {
-            adapter.log.debug('Stopping update timeout');
-        }
-        daikinDevice.stopUpdate();
-    }
-    if (changeTimeout) {
-        if (adapter && adapter.log) {
-            adapter.log.debug('Clear change timeout');
-        }
-        clearTimeout(changeTimeout);
-        changeTimeout = null;
-    }
-});
 
 function main() {
     var options = {};
@@ -535,4 +543,12 @@ function processMessage(message) {
             return adapter.sendTo(message.from, message.command, {devices: result}, message.callback);
         });
     }
+}
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
 }
