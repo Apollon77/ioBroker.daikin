@@ -64,7 +64,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 1.1.0 (2020-07-21)
 * add compact mode
 * Adjust Texts and translate
 * create daikin.X ads device object and add one role

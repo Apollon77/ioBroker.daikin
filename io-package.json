@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.0.5",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "add compact mode\nAdjust Texts and translate\ncreate daikin.X ads device object and add one role\nUpdate dependencies",
+                "de": "Kompaktmodus hinzufügen\nTexte anpassen und übersetzen\nErstellen Sie ein daikin.X-Anzeigengeräteobjekt und fügen Sie eine Rolle hinzu\nAbhängigkeiten aktualisieren",
+                "ru": "добавить компактный режим\nОтрегулируйте тексты и переведите\nсоздайте объект устройства daikin.X ads и добавьте одну роль\nОбновить зависимости",
+                "pt": "adicionar modo compacto\nAjustar textos e traduzir\ncrie o objeto de dispositivo de anúncios daikin.X e adicione uma função\nAtualizar dependências",
+                "nl": "voeg compacte modus toe\nPas teksten aan en vertaal\nmaak een daikin.X-advertenties apparaatobject en voeg een rol toe\nUpdate afhankelijkheden",
+                "fr": "ajouter le mode compact\nAjuster les textes et traduire\ncréer un objet appareil daikin.X ads et ajouter un rôle\nMettre à jour les dépendances",
+                "it": "aggiungi modalità compatta\nModifica i testi e traduci\ncreare l'oggetto dispositivo annunci daikin.X e aggiungere un ruolo\nAggiorna dipendenze",
+                "es": "agregar modo compacto\nAjustar textos y traducir\ncrear objeto de dispositivo de anuncios daikin.X y agregar un rol\nActualizar dependencias",
+                "pl": "dodaj tryb kompaktowy\nDostosuj teksty i przetłumacz\nutwórz obiekt urządzenia reklamowego daikin.X i dodaj jedną rolę\nZaktualizuj zależności",
+                "zh-cn": "添加紧凑模式\n调整文字并翻译\n创建daikin.X广告设备对象并添加一个角色\n更新依赖"
+            },
             "1.0.5": {
                 "en": "Daikin library updated, communication error handling optimized",
                 "de": "Daikin-Bibliothek aktualisiert, Behandlung von Kommunikationsfehlern optimiert",
@@ -74,7 +86,7 @@
             "Apollon77 <ingo@fischer-ka.de>"
         ],
         "title": "Control Daikin Air Conditioner",
-        "desc":                     {
+        "desc": {
             "en": "Control Daikin Air Conditioner devices",
             "de": "Steuert Klimaanlagen von Daikin",
             "ru": "Control Daikin Air Conditioner devices"
