@@ -359,7 +359,9 @@ function main() {
         options.logger = adapter.log.info;
     }*/
     if (!adapter.config.daikinIp) {
-        throw Error('No IP set for Daikin Device, check your configuration!');
+        adapter.log.error('No IP set for Daikin Device, check your configuration!');
+        typeof adapter.terminate === 'function' ? adapter.terminate(11) : process.exit(11);
+        return;
     }
     if (adapter.config.pollingInterval !== null && adapter.config.pollingInterval !== undefined && adapter.config.pollingInterval !== "") {
         adapter.config.pollingInterval = parseInt(adapter.config.pollingInterval, 10);

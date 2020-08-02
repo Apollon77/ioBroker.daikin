@@ -64,6 +64,9 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* better handle case where configuration is missing (Sentry IOBROKER-DAIKIN-1)
+
 ### 1.1.0 (2020-07-21)
 * add compact mode
 * Adjust Texts and translate
