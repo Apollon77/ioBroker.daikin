@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "news": {
+            "1.1.1": {
+                "en": "better handle case where configuration is missing (Sentry IOBROKER-DAIKIN-1)",
+                "de": "Besserer Umgang mit fehlenden Konfigurationen (Sentry IOBROKER-DAIKIN-1)",
+                "ru": "лучше обрабатывать случай, когда конфигурация отсутствует (Sentry IOBROKER-DAIKIN-1)",
+                "pt": "lidar melhor com o caso em que falta a configuração (Sentry IOBROKER-DAIKIN-1)",
+                "nl": "beter omgaan met gevallen waar configuratie ontbreekt (Sentry IOBROKER-DAIKIN-1)",
+                "fr": "meilleure poignée cas où la configuration est manquante (Sentry IOBROKER-DAIKIN-1)",
+                "it": "gestire meglio il caso in cui manca la configurazione (Sentry IOBROKER-DAIKIN-1)",
+                "es": "mejor manejo del caso donde falta la configuración (Sentry IOBROKER-DAIKIN-1)",
+                "pl": "lepszy uchwyt w przypadku braku konfiguracji (Sentry IOBROKER-DAIKIN-1)",
+                "zh-cn": "更好地处理缺少配置的情况（Sentry IOBROKER-DAIKIN-1）"
+            },
             "1.1.0": {
                 "en": "add compact mode\nAdjust Texts and translate\ncreate daikin.X ads device object and add one role\nUpdate dependencies",
                 "de": "Kompaktmodus hinzufügen\nTexte anpassen und übersetzen\nErstellen Sie ein daikin.X-Anzeigengeräteobjekt und fügen Sie eine Rolle hinzu\nAbhängigkeiten aktualisieren",
