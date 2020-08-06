@@ -151,7 +151,7 @@ function startAdapter(options) {
     });
 
     adapter.on('stateChange', function (id, state) {
-        if (state.ack !== false || state.val === null) return;
+        if (!state || state.ack !== false || state.val === null) return;
         adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
         var realNamespace = adapter.namespace + '.control.';
         var stateId = id.substring(realNamespace.length);
@@ -226,11 +226,11 @@ function changeStates() {
     if (changed.mode !== undefined) { // we change mode
         if (Object.keys(changed).length === 1) { // and we change mode only, so init all values from last
             adapter.log.debug('we changed mode only');
-            if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
+            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
                 adapter.log.debug('changed targetTemperature to ' + changed.targetTemperature);
             }
-            else if (daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null) {
+            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo.targetTemperatureMode1;
                 adapter.log.debug('changed targetTemperature to Mode 1:' + changed.targetTemperature);
             }
@@ -238,11 +238,11 @@ function changeStates() {
                 changed.targetTemperature = 23;
                 adapter.log.debug('changed targetTemperature to fixed 23');
             }
-            if (daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
+            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
                 changed.targetHumidity = daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode];
                 adapter.log.debug('changed targetHumidity to ' + changed.targetHumidity);
             }
-            else if (daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined && daikinDevice.currentACControlInfo.targetHumidityMode1 !== null) {
+            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined && daikinDevice.currentACControlInfo.targetHumidityMode1 !== null) {
                 changed.targetHumidity = daikinDevice.currentACControlInfo.targetHumidityMode1;
                 adapter.log.debug('changed targetHumidity to Mode 1: ' + changed.targetHumidity);
             }
@@ -250,19 +250,19 @@ function changeStates() {
                 changed.targetHumidity = 0;
                 adapter.log.debug('changed targetHumidity to fixed 0');
             }
-            if (daikinDevice.currentACControlInfo['fanRateMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['fanRateMode' + changed.mode] !== null) {
+            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo['fanRateMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['fanRateMode' + changed.mode] !== null) {
                 changed.fanRate = daikinDevice.currentACControlInfo['fanRateMode' + changed.mode];
                 adapter.log.debug('changed fanRate to ' + changed.fanRate);
             }
-            else if (daikinDevice.currentACControlInfo.fanRateMode1 !== undefined && daikinDevice.currentACControlInfo.fanRateMode1 !== null) {
+            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.fanRateMode1 !== undefined && daikinDevice.currentACControlInfo.fanRateMode1 !== null) {
                 changed.fanRate = daikinDevice.currentACControlInfo.fanRateMode1;
                 adapter.log.debug('changed fanRate to Mode 1: ' + changed.fanRate);
             }
-            if (daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode] !== null) {
+            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode] !== null) {
                 changed.fanDirection = daikinDevice.currentACControlInfo['fanDirectionMode' + changed.mode];
                 adapter.log.debug('changed fanDirection to ' + changed.fanDirection);
             }
-            else if (daikinDevice.currentACControlInfo.fanDirectionMode1 !== undefined && daikinDevice.currentACControlInfo.fanDirectionMode1 !== null) {
+            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.fanDirectionMode1 !== undefined && daikinDevice.currentACControlInfo.fanDirectionMode1 !== null) {
                 changed.fanDirection = daikinDevice.currentACControlInfo.fanDirectionMode1;
                 adapter.log.debug('changed fanDirection to Mode 1: ' + changed.fanDirection);
             }
@@ -306,7 +306,9 @@ function setSpecialMode(changed) {
     if (changed.specialPowerful !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.POWERFUL}, function() {
             delete changed.specialPowerful;
-            updatedStates.control.specialPowerful = ''; // reset stored value
+            if (updatedStates.control) {
+                updatedStates.control.specialPowerful = '';
+            } // reset stored value
             setSpecialMode(changed);
         });
         return;
@@ -314,7 +316,9 @@ function setSpecialMode(changed) {
     if (changed.specialEcono !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialEcono?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.ECONO}, function() {
             delete changed.specialEcono;
-            updatedStates.control.specialEcono = ''; // reset stored value
+            if (updatedStates.control) {
+                updatedStates.control.specialEcono = '';
+            } // reset stored value
             setSpecialMode(changed);
         });
         return;
@@ -322,7 +326,9 @@ function setSpecialMode(changed) {
     if (changed.specialStreamer !== undefined) {
         daikinDevice.setACSpecialMode({state: (changed.specialStreamer?'1':'0'), kind: DaikinController.DaikinAC.SpecialModeKind.STREAMER}, function() {
             delete changed.specialStreamer;
-            updatedStates.control.specialStreamer = ''; // reset stored value
+            if (updatedStates.control) {
+                updatedStates.control.specialStreamer = '';
+            } // reset stored value
             setSpecialMode(changed);
         });
         return;
