@@ -345,11 +345,13 @@ function setSpecialMode(changed) {
 
 function setControlInfo(changed) {
     daikinDevice.setACControlInfo(changed, function(err, response) {
-        adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
-        if (err) adapter.log.error('change values failed: ' + err);
-        for (var fieldName in changed) {
-            updatedStates.control[fieldName] = ''; // reset stored value
-            adapter.log.debug('reset ' + fieldName);
+        if (updatedStates.control) {
+            adapter.log.debug('change values: ' + JSON.stringify(response) + ' to ' + JSON.stringify(response));
+            if (err) adapter.log.error('change values failed: ' + err);
+            for (var fieldName in changed) {
+                updatedStates.control[fieldName] = ''; // reset stored value
+                adapter.log.debug('reset ' + fieldName);
+            }
         }
         changeRunning = false;
         storeDaikinData(err);
