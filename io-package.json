@@ -145,6 +145,7 @@
         ],
         "loglevel": "info",
         "enabled": false,
+        "compact": true,
         "plugins": {
             "sentry": {
                 "dsn": "https://ef1cc308b0ce488d95cf276b0b70b46c@sentry.iobroker.net/90"
