@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.1.3",
+        "version": "1.2.0",
         "news": {
+            "1.2.0": {
+                "en": "add compact mode",
+                "de": "Kompaktmodus hinzufügen",
+                "ru": "добавить компактный режим",
+                "pt": "adicionar modo compacto",
+                "nl": "voeg compacte modus toe",
+                "fr": "ajouter le mode compact",
+                "it": "aggiungi la modalità compatta",
+                "es": "agregar modo compacto",
+                "pl": "dodaj tryb kompaktowy",
+                "zh-cn": "添加紧凑模式"
+            },
             "1.1.3": {
                 "en": "add experimental support for lpw parameter\ncrash cases prevented (Sentry IOBROKER-DAIKIN-7)",
                 "de": "experimentelle Unterstützung für lpw-Parameter hinzufügen\nAbsturzfälle verhindert (Sentry IOBROKER-DAIKIN-7)",
