@@ -395,7 +395,7 @@ function main() {
     });
 }
 
-function storeDaikinData(err) {
+async function storeDaikinData(err) {
     var updated = 0;
 
     if (!err) {
@@ -455,40 +455,40 @@ function storeDaikinData(err) {
     else {
         adapter.log.error('Error updating data: ' + err);
     }
-    adapter.setObjectNotExists('control.lastResult', {
-        type: 'state',
-        common: {
-            name: 'control.lastResult',
-            type: 'string',
-            read: true,
-            write: false
-        },
-        native: {id: 'control.lastResult'}
-    }, function(err, obj) {
-        if (err) {
-            adapter.log.error('Error creating State: ' + err);
-        }
-    });
-    adapter.setState('control.lastResult', {ack: true, val: (err?err:'OK')});
+    try {
+        await adapter.setObjectNotExistsAsync('control.lastResult', {
+            type: 'state',
+            common: {
+                name: 'control.lastResult',
+                type: 'string',
+                read: true,
+                write: false
+            },
+            native: {id: 'control.lastResult'}
+        });
+    } catch (err) {
+        adapter.log.error('Error creating State: ' + err);
+    }
+    await adapter.setStateAsync('control.lastResult', {ack: true, val: (err?err:'OK')});
 }
 
-function handleDaikinUpdate(data, channel) {
+async function handleDaikinUpdate(data, channel) {
     adapter.log.debug('HandleDaikinUpdate for ' + channel + ' with ' + JSON.stringify(data));
     var updated = 0;
     if (!updatedStates[channel]) {
         adapter.log.debug('Create Channel ' + channel);
-        adapter.setObjectNotExists(channel, {
-            type: 'channel',
-            common: {
-                'name': deviceName + channel,
-                'role': channelDef[channel].role
-            },
-            native: {}
-        }, function(err, obj) {
-            if (err) {
-                adapter.log.error('Error creating Channel: ' + err);
-            }
-        });
+        try {
+            await adapter.setObjectNotExistsAsync(channel, {
+                type: 'channel',
+                common: {
+                    'name': deviceName + channel,
+                    'role': channelDef[channel].role
+                },
+                native: {}
+            });
+        } catch(err) {
+            adapter.log.error('Error creating Channel: ' + err);
+        }
         updatedStates[channel] = {};
     }
     for (var fieldName in data) {
@@ -502,17 +502,17 @@ function handleDaikinUpdate(data, channel) {
                 adapter.log.debug('Create State ' + channel + '.' + fieldName);
                 var commonDef = fieldDef[channel][fieldName];
                 commonDef.name = deviceName + channel + '.' + fieldName;
-                adapter.setObjectNotExists(channel + '.' + fieldName, {
-                    type: 'state',
-                    common: commonDef,
-                    native: {
-                        id: channel + '.' + fieldName
-                    }
-                }, function(err, obj) {
-                    if (err) {
-                        adapter.log.error('Error creating State: ' + err);
-                    }
-                });
+                try {
+                    await adapter.setObjectNotExistsAsync(channel + '.' + fieldName, {
+                        type: 'state',
+                        common: commonDef,
+                        native: {
+                            id: channel + '.' + fieldName
+                        }
+                    });
+                } catch (err) {
+                    adapter.log.error('Error creating State: ' + err);
+                }
             }
             else {
                 valid = false;
@@ -534,7 +534,7 @@ function handleDaikinUpdate(data, channel) {
         adapter.log.debug('Old value ' + channel + '.' + fieldName + ': old="' + updatedStates[channel][fieldName] + '", new="' + data[fieldName] + '"');
         if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] !== data[fieldName])) {
             adapter.log.info('Set State ' + channel + '.' + fieldName + ': "' + data[fieldName] + '"');
-            adapter.setState(channel + '.' + fieldName, {ack: true, val: data[fieldName]});
+            await adapter.setStateAsync(channel + '.' + fieldName, {ack: true, val: data[fieldName]});
             updatedStates[channel][fieldName] = data[fieldName];
             updated++;
         }
