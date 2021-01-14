@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.2.0",
+        "version": "1.3.0",
         "news": {
+            "1.3.0": {
+                "en": "Prevent warnings in js-controller 3.2\nAllow overwriting the name in Daikin channel object\nRequire at least js-controller 2.0",
+                "de": "Verhindern Sie Warnungen in js-controller 3.2\nErlaube das Überschreiben des Namens im Daikin-Kanalobjekt\nBenötigen Sie mindestens js-controller 2.0",
+                "ru": "Предотвращение предупреждений в js-controller 3.2\nРазрешить перезапись имени в объекте канала Daikin\nТребуется как минимум js-controller 2.0",
+                "pt": "Evite avisos no js-controller 3.2\nPermitir a substituição do nome no objeto do canal Daikin\nRequer pelo menos js-controller 2.0",
+                "nl": "Voorkom waarschuwingen in js-controller 3.2\nSta het overschrijven van de naam toe in het Daikin-kanaalobject\nVereist ten minste js-controller 2.0",
+                "fr": "Empêcher les avertissements dans js-controller 3.2\nAutoriser l'écrasement du nom dans l'objet de canal Daikin\nNécessite au moins js-controller 2.0",
+                "it": "Prevenire gli avvisi in js-controller 3.2\nConsenti la sovrascrittura del nome nell'oggetto canale Daikin\nRichiede almeno js-controller 2.0",
+                "es": "Prevenir advertencias en js-controller 3.2\nPermitir sobrescribir el nombre en el objeto de canal de Daikin\nRequiere al menos js-controller 2.0",
+                "pl": "Zapobiegaj ostrzeżeniom w js-controller 3.2\nZezwalaj na nadpisywanie nazwy w obiekcie kanału Daikin\nWymagaj co najmniej js-controller 2.0",
+                "zh-cn": "在js-controller 3.2中防止警告\n允许覆盖大金通道对象中的名称\n至少需要js-controller 2.0"
+            },
             "1.2.0": {
                 "en": "add compact mode",
                 "de": "Kompaktmodus hinzufügen",
