@@ -108,7 +108,8 @@
                 "fr": "Bibliothèque Daikin mise à jour",
                 "it": "Libreria Daikin aggiornata",
                 "es": "Biblioteca Daikin actualizada",
-                "pl": "Aktualizacja biblioteki Daikin"
+                "pl": "Aktualizacja biblioteki Daikin",
+                "zh-cn": "大金图书馆已更新"
             },
             "1.0.1": {
                 "en": "Fix Admin",
@@ -119,27 +120,56 @@
                 "fr": "Fix Admin",
                 "it": "Correggi Admin",
                 "es": "Fix Admin",
-                "pl": "Napraw administratora"
+                "pl": "Napraw administratora",
+                "zh-cn": "修复管理员"
             },
             "1.0.0": {
                 "en": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag",
                 "de": "Admin3 Unterstützung. Ältere Daikin-WLAN-Firmwares unterstützt über spezielle Konfiguration",
-                "ru": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag"
+                "ru": "Admin3 readieness, Support older Daikin-WLAN-Firmwares with special config flag",
+                "pt": "Readieness Admin3, suporte Daikin-WLAN-Firmwares mais antigos com sinalizador de configuração especial",
+                "nl": "Admin3 gereedheid, ondersteunt oudere Daikin-WLAN-firmware met speciale configuratievlag",
+                "fr": "Readieness Admin3, prend en charge les anciens micrologiciels Daikin-WLAN avec un indicateur de configuration spécial",
+                "it": "Predisposizione per Admin3, supporto di firmware Daikin WLAN meno recenti con flag di configurazione speciale",
+                "es": "Preparación de Admin3, compatible con Daikin-WLAN-Firmwares más antiguos con un indicador de configuración especial",
+                "pl": "Nieczytelność Admin3, obsługuje starsze oprogramowanie sprzętowe Daikin-WLAN ze specjalną flagą konfiguracji",
+                "zh-cn": "Admin3准备就绪，通过特殊的配置标志支持较早的Daikin-WLAN-固件"
             },
             "0.2.3": {
                 "en": "Add control.lastResult to see if a change was successfull",
                 "de": "control.lastResult hinzugefügt um zu sehen ob die letzte Änderung erfolgreich war",
-                "ru": "Add control.lastResult to see if a change was successfull"
+                "ru": "Add control.lastResult to see if a change was successfull",
+                "pt": "Adicione control.lastResult para ver se uma alteração foi bem-sucedida.",
+                "nl": "Voeg control.lastResult toe om te zien of een wijziging succesvol was",
+                "fr": "Ajoutez control.lastResult pour voir si une modification a réussi",
+                "it": "Aggiungi control.lastResult per vedere se una modifica è andata a buon fine",
+                "es": "Agregue control.lastResult para ver si un cambio fue exitoso.",
+                "pl": "Dodaj control.lastResult, aby sprawdzić, czy zmiana się powiodła",
+                "zh-cn": "添加control.lastResult以查看更改是否成功"
             },
             "0.2.2": {
                 "en": "Removed debug messages",
                 "de": "Debug-Ausgaben entfernt",
-                "ru": "Removed debug messages"
+                "ru": "Removed debug messages",
+                "pt": "Mensagens de depuração removidas",
+                "nl": "Foutopsporingsberichten verwijderd",
+                "fr": "Messages de débogage supprimés",
+                "it": "Messaggi di debug rimossi",
+                "es": "Mensajes de depuración eliminados",
+                "pl": "Usunięto komunikaty debugowania",
+                "zh-cn": "删除了调试消息"
             },
             "0.1.12": {
                 "en": "Initial public test version",
                 "de": "Initiale öffentliche Testversion",
-                "ru": "Initial public test version"
+                "ru": "Initial public test version",
+                "pt": "Versão de teste público inicial",
+                "nl": "Eerste openbare testversie",
+                "fr": "Version d'essai publique initiale",
+                "it": "Versione di prova pubblica iniziale",
+                "es": "Versión de prueba pública inicial",
+                "pl": "Pierwsza publiczna wersja testowa",
+                "zh-cn": "初始公开测试版本"
             }
         },
         "authors": [
@@ -149,7 +179,14 @@
         "desc": {
             "en": "Control Daikin Air Conditioner devices",
             "de": "Steuert Klimaanlagen von Daikin",
-            "ru": "Control Daikin Air Conditioner devices"
+            "ru": "Control Daikin Air Conditioner devices",
+            "pt": "Controle de dispositivos de ar condicionado Daikin",
+            "nl": "Bedien de Daikin-airconditioners",
+            "fr": "Contrôler les appareils Daikin Air Conditioner",
+            "it": "Controlla i dispositivi Daikin Air Conditioner",
+            "es": "Controle los dispositivos de aire acondicionado Daikin",
+            "pl": "Sterowanie urządzeniami klimatyzacyjnymi Daikin",
+            "zh-cn": "控制大金空调设备"
         },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
