@@ -1,0 +1,10 @@
+{
+    "field_daikinIp": "Adres IP urządzenia Daikin",
+    "field_pollingInterval": "Częstotliwość aktualizacji danych",
+    "field_useGetToPost": "Wysyłaj polecenia za pomocą protokołu HTTP GET",
+    "heading_GeneralSettings": "Ustawienia główne",
+    "info_daikinIp": " ",
+    "info_pollingInterval": " ",
+    "info_useGetToPost": "(potrzebne tylko dla oprogramowania układowego 1.x WLAN, jeśli w innym przypadku nie działa)",
+    "page_title": "Ustawienia adaptera Daikin"
+}

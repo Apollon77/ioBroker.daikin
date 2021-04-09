@@ -1,0 +1,10 @@
+{
+    "field_daikinIp": "IP van Daikin Device",
+    "field_pollingInterval": "Gegevensupdate-interval",
+    "field_useGetToPost": "Verzend opdrachten met HTTP GET",
+    "heading_GeneralSettings": "Algemene instellingen",
+    "info_daikinIp": " ",
+    "info_pollingInterval": " ",
+    "info_useGetToPost": "(alleen nodig voor 1.x WLAN-Firmwares als het anders niet werkt)",
+    "page_title": "Daikin Adapterinstellingen"
+}

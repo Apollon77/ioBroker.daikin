@@ -1,0 +1,10 @@
+{
+    "field_daikinIp": "IP do dispositivo Daikin",
+    "field_pollingInterval": "Intervalo de atualização de dados",
+    "field_useGetToPost": "Enviar comandos usando HTTP GET",
+    "heading_GeneralSettings": "Configurações Gerais",
+    "info_daikinIp": " ",
+    "info_pollingInterval": " ",
+    "info_useGetToPost": "(necessário apenas para os firmware WLAN 1.x, caso contrário não funcione)",
+    "page_title": "Definições do adaptador Daikin"
+}
