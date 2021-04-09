@@ -13,3 +13,4 @@ appveyor.yml
 .eslintrc
 .vscode
 package-lock.json
+admin/i18n
