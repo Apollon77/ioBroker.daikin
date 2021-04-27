@@ -1,10 +1,10 @@
 {
     "field_daikinIp": "IP of Daikin Device",
     "field_pollingInterval": "Data update interval",
-    "field_useGetToPost": "Send commands using HTTP GET",
+    "field_useGetToPost": "Send commands using HTTP-GET",
     "heading_GeneralSettings": "General settings",
     "info_daikinIp": " ",
     "info_pollingInterval": " ",
     "info_useGetToPost": "(only needed for 1.x WLAN-Firmwares if it else doesn't work)",
-    "page_title": "Daikin Adapter Settings"
+    "page_title": "Daikin Instance Settings"
 }
