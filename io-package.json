@@ -175,7 +175,19 @@
         "authors": [
             "Apollon77 <ingo@fischer-ka.de>"
         ],
-        "title": "Control Daikin Air Conditioner",
+        "title": "Daikin Air Conditioner",
+        "titleLang": {
+            "en": "Daikin Air Conditioner",
+            "de": "Daikin Klimaanlage",
+            "ru": "Кондиционер Daikin",
+            "pt": "Ar condicionado Daikin",
+            "nl": "Daikin airconditioner",
+            "fr": "Climatiseur Daikin",
+            "it": "Condizionatore d'aria Daikin",
+            "es": "Aire acondicionado Daikin",
+            "pl": "Klimatyzator Daikin",
+            "zh-cn": "大金空调"
+        },
         "desc": {
             "en": "Control Daikin Air Conditioner devices",
             "de": "Steuert Klimaanlagen von Daikin",
@@ -197,7 +209,6 @@
         "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.daikin/master/admin/daikin.jpg",
         "readme": "https://github.com/Apollon77/ioBroker.daikin/blob/master/README.md",
         "license": "MIT",
-        "npmLibs": [],
         "type": "climate-control",
         "keywords": [
             "iobroker",
@@ -216,7 +227,10 @@
             {
                 "js-controller": ">=2.0.0"
             }
-        ]
+        ],
+        "connectionType": "local",
+        "dataSource": "poll",
+        "tier": 2
     },
     "native": {
         "daikinIp": "",

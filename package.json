@@ -16,14 +16,14 @@
     "url": "https://github.com/Apollon77/ioBroker.daikin"
   },
   "dependencies": {
-    "daikin-controller": "^1.2.0",
+    "daikin-controller": "^1.2.1",
     "@iobroker/adapter-core": "^2.4.0"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^1.10.0",
     "axios": "^0.21.1",
     "gulp": "^4.0.2",
-    "mocha": "^8.3.2",
+    "mocha": "^8.4.0",
     "chai": "^4.3.4",
     "istanbul": "^0.4.5",
     "nyc": "^15.1.0"
