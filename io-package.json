@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "news": {
+            "1.3.1": {
+                "en": "Prepare for js-controller 3.3",
+                "de": "Vorbereiten für js-controller 3.3",
+                "ru": "Подготовка к js-контроллеру 3.3",
+                "pt": "Prepare-se para o js-controller 3.3",
+                "nl": "Bereid je voor op js-controller 3.3",
+                "fr": "Préparez-vous pour js-controller 3.3",
+                "it": "Prepararsi per js-controller 3.3",
+                "es": "Prepárese para js-controller 3.3",
+                "pl": "Przygotuj się na js-controller 3.3",
+                "zh-cn": "准备js-controller 3.3"
+            },
             "1.3.0": {
                 "en": "Prevent warnings in js-controller 3.2\nAllow overwriting the name in Daikin channel object\nRequire at least js-controller 2.0",
                 "de": "Verhindern Sie Warnungen in js-controller 3.2\nErlaube das Überschreiben des Namens im Daikin-Kanalobjekt\nBenötigen Sie mindestens js-controller 2.0",

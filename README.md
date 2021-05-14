@@ -60,7 +60,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 1.3.1 (2021-05-14)
 * (Apollon77) Prepare for js-controller 3.3
 
 ### 1.3.0 (2021-01-14)
