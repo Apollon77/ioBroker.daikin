@@ -1,10 +1,10 @@
 {
     "field_daikinIp": "IP устройства Daikin",
     "field_pollingInterval": "Интервал обновления данных",
-    "field_useGetToPost": "Отправить команды с помощью HTTP GET",
-    "heading_GeneralSettings": "общие настройки",
+    "field_useGetToPost": "Отправлять команды с помощью HTTP-GET",
+    "heading_GeneralSettings": "Общие настройки",
     "info_daikinIp": " ",
     "info_pollingInterval": " ",
     "info_useGetToPost": "(требуется только для 1.x WLAN-прошивок, если они не работают)",
-    "page_title": "Настройки адаптера Daikin"
+    "page_title": "Настройки драйвера Daikin"
 }
