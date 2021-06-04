@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "daikin",
-        "version": "1.3.1",
+        "version": "1.3.2",
         "news": {
+            "1.3.2": {
+                "en": "Handle modes correctly where no temperature or humidity parameters are required",
+                "de": "Behandeln Sie Modi richtig, bei denen keine Temperatur- oder Feuchtigkeitsparameter erforderlich sind",
+                "ru": "Правильно управляйте режимами, в которых не требуются параметры температуры или влажности",
+                "pt": "Manuseie os modos corretamente onde nenhum parâmetro de temperatura ou umidade é necessário",
+                "nl": "Ga correct om met modi waar geen temperatuur- of vochtigheidsparameters vereist zijn",
+                "fr": "Gérez correctement les modes lorsqu'aucun paramètre de température ou d'humidité n'est requis",
+                "it": "Gestire correttamente le modalità dove non sono richiesti parametri di temperatura o umidità",
+                "es": "Manejar los modos correctamente donde no se requieren parámetros de temperatura o humedad",
+                "pl": "Prawidłowo obsługuj tryby, w których nie są wymagane żadne parametry temperatury ani wilgotności",
+                "zh-cn": "在不需要温度或湿度参数的情况下正确处理模式"
+            },
             "1.3.1": {
                 "en": "Prepare for js-controller 3.3",
                 "de": "Vorbereiten für js-controller 3.3",

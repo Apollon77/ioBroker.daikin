@@ -1,6 +1,6 @@
 {
   "name": "iobroker.daikin",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Daikin Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],
