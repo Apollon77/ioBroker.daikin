@@ -60,6 +60,9 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* (Apollon77) Prevent crash case when no temperature was read out
+
 ### 1.3.2 (2021-06-05)
 * (Apollon77) Handle modes correctly where no temperature or humidity parameters are required
 

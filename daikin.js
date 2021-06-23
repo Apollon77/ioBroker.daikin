@@ -269,7 +269,7 @@ function changeStates() {
         }
         else {
             adapter.log.debug('we changed mode and other field');
-            if (changed.targetTemperature === undefined && daikinDevice.currentACControlInfo.targetTemperature === null) {
+            if (changed.targetTemperature === undefined && daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetTemperature === null) {
                 if (daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode] !== null) {
                     changed.targetTemperature = daikinDevice.currentACControlInfo['targetTemperatureMode' + changed.mode];
                     adapter.log.debug('changed targetTemperature to ' + changed.targetTemperature);
@@ -283,7 +283,7 @@ function changeStates() {
                     adapter.log.debug('changed targetTemperature to fixed 23');
                 }
             }
-            if (changed.targetHumidity === undefined && daikinDevice.currentACControlInfo.targetHumidity === null) {
+            if (changed.targetHumidity === undefined && daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetHumidity === null) {
                 if (daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== undefined && daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode] !== null) {
                     changed.targetHumidity = daikinDevice.currentACControlInfo['targetHumidityMode' + changed.mode];
                     adapter.log.debug('changed targetHumidity to ' + changed.targetHumidity);
