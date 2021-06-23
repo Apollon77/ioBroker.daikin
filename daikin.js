@@ -399,7 +399,7 @@ async function storeDaikinData(err) {
     var updated = 0;
 
     if (!err) {
-        if (!deviceName && daikinDevice.currentCommonBasicInfo.name) {
+        if (!deviceName && daikinDevice.currentCommonBasicInfo && daikinDevice.currentCommonBasicInfo.name) {
             deviceName = daikinDevice.currentCommonBasicInfo.name + ' ';
         }
 
