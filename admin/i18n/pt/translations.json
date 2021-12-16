@@ -5,6 +5,6 @@
     "heading_GeneralSettings": "Configurações Gerais",
     "info_daikinIp": " ",
     "info_pollingInterval": " ",
-    "info_useGetToPost": "(necessário apenas para os firmware WLAN 1.x, caso contrário não funcione)",
-    "page_title": "Definições do adaptador Daikin"
+    "info_useGetToPost": "(necessário apenas para os WLAN firmware 1.x, caso não funcione)",
+    "page_title": "Configurações do adaptador Daikin"
 }
