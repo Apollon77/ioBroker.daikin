@@ -19,6 +19,7 @@ var changedStates = {};
 var updatedStates = {};
 var changeTimeout = null;
 var changeRunning = false;
+var stopped = false;
 
 var Power = '1:ON;0:OFF';
 var Mode = '0:AUTO;1:AUTO1;2:DEHUMID;3:COLD;4:HOT;6:FAN;7:AUTO2';
@@ -165,6 +166,7 @@ function startAdapter(options) {
     });
 
     adapter.on('unload', function (callback) {
+        stopped = true;
         if (daikinDevice) {
             adapter.log.debug('Stopping update timeout');
             daikinDevice.stopUpdate();
@@ -398,6 +400,7 @@ function main() {
 async function storeDaikinData(err) {
     var updated = 0;
 
+    if (stopped) return;
     if (!err) {
         if (!deviceName && daikinDevice.currentCommonBasicInfo && daikinDevice.currentCommonBasicInfo.name) {
             deviceName = daikinDevice.currentCommonBasicInfo.name + ' ';
@@ -473,6 +476,7 @@ async function storeDaikinData(err) {
 }
 
 async function handleDaikinUpdate(data, channel) {
+    if (stopped) return;
     adapter.log.debug('HandleDaikinUpdate for ' + channel + ' with ' + JSON.stringify(data));
     var updated = 0;
     if (!updatedStates[channel]) {
@@ -492,6 +496,7 @@ async function handleDaikinUpdate(data, channel) {
         updatedStates[channel] = {};
     }
     for (var fieldName in data) {
+        if (stopped) return;
         if (typeof fieldName !== 'string') {
             fieldName = fieldName.toString();
         }
