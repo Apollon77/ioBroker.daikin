@@ -65,6 +65,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Apollon77) Add Connection identifier for Admin and Device
 * (Apollon77) Optimize unload handling
 
 ### 1.3.3 (2021-06-24)
@@ -134,7 +135,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 The MIT License (MIT)
 
-Copyright (c) 2017-2021 Apollon77 <ingo@fischer-ka.de>
+Copyright (c) 2017-2022 Apollon77 <ingo@fischer-ka.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
