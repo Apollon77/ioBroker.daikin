@@ -40,6 +40,10 @@ FTX50KV1B, FTX60KV1B
 
 Note: For devices with-newer WLAN Adapter like **BRP069C4x** which can only be used by the Onecta App please use the [Daikin-CLoud](https://github.com/Apollon77/ioBroker.daikin-cloud) adapter instead.
 
+## Disclaimer
+**All product and company names or logos are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them or any associated subsidiaries! This personal project is maintained in spare time and has no business goal.**
+**Daikin is a trademark of DAIKIN INDUSTRIES, LTD.**
+
 ## Description of parameters
 ### daikinIp
 The IP of the Wifi controler from the Device
@@ -126,9 +130,6 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ### 0.1.x
 * development and first tests
-
-## Disclaimer
-**Daikin is a trademark of DAIKIN INDUSTRIES, LTD. I am in no way endorsed by or affiliated with DAIKIN INDUSTRIES, LTD., or any associated subsidiaries, logos or trademarks. This personal project is maintained in spare time.**
 
 ## License
 
