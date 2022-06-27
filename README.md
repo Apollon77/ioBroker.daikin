@@ -67,8 +67,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * VIS widget
 
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 1.4.1 (2022-06-27)
 * (Apollon77) Prevent crash case reported by Sentry
 
 ### 1.4.0 (2022-06-09)
