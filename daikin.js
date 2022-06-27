@@ -617,7 +617,11 @@ async function handleDaikinUpdate(data, channel) {
         }
         if (data[fieldName] !== null && fieldDef[channel][fieldName] && typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
             if (fieldDef[channel][fieldName].type === 'string') {
-                data[fieldName] = data[fieldName].toString();
+                if (data[fieldName] !== null && data[fieldName] !== undefined) {
+                    data[fieldName] = data[fieldName].toString();
+                } else {
+                    data[fieldName] = null;
+                }
             }
             else {
                 adapter.log.debug(`Field type mismatch for ${fieldName}: val=${data[fieldName]} vs. ${fieldDef[channel][fieldName].type} - set null`);
