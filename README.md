@@ -67,6 +67,10 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * VIS widget
 
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Make sure polling still works after setting special mode states
+
 ### 1.4.1 (2022-06-27)
 * (Apollon77) Prevent crash case reported by Sentry
 
