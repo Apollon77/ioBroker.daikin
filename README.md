@@ -67,8 +67,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * VIS widget
 
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 1.4.2 (2022-07-25)
 * (Apollon77) Make sure polling still works after setting special mode states
 
 ### 1.4.1 (2022-06-27)

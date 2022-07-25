@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "daikin",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "news": {
+      "1.4.2": {
+        "en": "Make sure polling still works after setting special mode states",
+        "de": "Stellen Sie sicher, dass die Abstimmung nach der Einstellung spezieller Modezustände noch funktioniert",
+        "ru": "Убедитесь, что опрос по-прежнему работает после установки специальных режимов",
+        "pt": "Certifique-se de que a votação ainda funciona após a definição de estados de modo especial",
+        "nl": "Zorg ervoor dat de peiling nog werkt na het installeren van speciale bescheiden staten",
+        "fr": "Assurez-vous que le vote fonctionne encore après le réglage des états de mode spéciaux",
+        "it": "Assicurarsi che il polling funzioni ancora dopo aver impostato stati di modalità speciali",
+        "es": "Asegúrese de que la votación todavía funciona después de establecer estados de modo especial",
+        "pl": "Po założeniu odpowiedniego głosowania nadal działa po ustawieniu stanów specjalnych",
+        "zh-cn": "确保在建立特殊模式国家之后仍然进行投票"
+      },
       "1.4.1": {
         "en": "Prevent crash case reported by Sentry",
         "de": "Verhindern Crashfall berichtet von Sentry",
@@ -74,18 +86,6 @@
         "es": "Prevenir advertencias en js-controller 3.2\nPermitir sobrescribir el nombre en el objeto de canal de Daikin\nRequiere al menos js-controller 2.0",
         "pl": "Zapobiegaj ostrzeżeniom w js-controller 3.2\nZezwalaj na nadpisywanie nazwy w obiekcie kanału Daikin\nWymagaj co najmniej js-controller 2.0",
         "zh-cn": "在js-controller 3.2中防止警告\n允许覆盖大金通道对象中的名称\n至少需要js-controller 2.0"
-      },
-      "1.2.0": {
-        "en": "add compact mode",
-        "de": "Kompaktmodus hinzufügen",
-        "ru": "добавить компактный режим",
-        "pt": "adicionar modo compacto",
-        "nl": "voeg compacte modus toe",
-        "fr": "ajouter le mode compact",
-        "it": "aggiungi la modalità compatta",
-        "es": "agregar modo compacto",
-        "pl": "dodaj tryb kompaktowy",
-        "zh-cn": "添加紧凑模式"
       }
     },
     "authors": [
