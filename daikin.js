@@ -487,7 +487,9 @@ async function storeDaikinData(err) {
             deviceName = `${daikinDevice.currentCommonBasicInfo.name} `;
         }
 
-        const controlInfo = daikinDevice.currentACControlInfo;
+        const controlInfo = {
+            ...daikinDevice.currentACControlInfo
+        };
         const control = {};
         for (const fieldName in fieldDef.control) {
             if (controlInfo[fieldName] !== undefined) {
@@ -522,16 +524,18 @@ async function storeDaikinData(err) {
             }
         }
 
-        const basicInfo = daikinDevice.currentCommonBasicInfo;
+        const basicInfo = {
+            ...daikinDevice.currentCommonBasicInfo
+        };
         if (basicInfo && basicInfo.power !== undefined) {
             delete basicInfo.power;
         }
 
-        updated += handleDaikinUpdate(basicInfo, 'deviceInfo');
-        updated += handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
-        updated += handleDaikinUpdate(control, 'control');
-        updated += handleDaikinUpdate(controlInfo, 'controlInfo');
-        updated += handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
+        updated += await handleDaikinUpdate(basicInfo, 'deviceInfo');
+        updated += await handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
+        updated += await handleDaikinUpdate(control, 'control');
+        updated += await handleDaikinUpdate(controlInfo, 'controlInfo');
+        updated += await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
         if (updated > 0) {
             adapter.log.info(`${updated} Values updated`);
         }
