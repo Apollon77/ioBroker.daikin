@@ -492,7 +492,7 @@ async function storeDaikinData(err) {
         };
         const control = {};
         for (const fieldName in fieldDef.control) {
-            if (controlInfo[fieldName] !== undefined) {
+            if (fieldName in controlInfo) {
                 control[fieldName] = controlInfo[fieldName];
                 delete controlInfo[fieldName];
             }
@@ -611,6 +611,9 @@ async function handleDaikinUpdate(data, channel) {
                 } catch (err) {
                     adapter.log.error(`Error creating State: ${err.message}`);
                 }
+            }
+            else if (data[fieldName] === undefined) {
+                continue;
             }
             else {
                 valid = false;
