@@ -486,6 +486,7 @@ function main() {
                 storeDaikinData(err);
             });
             adapter.subscribeStates('control.*');
+            adapter.subscribeStates('demandControl.*');
         }
         else {
             setConnected(false);
