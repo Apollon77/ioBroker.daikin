@@ -265,7 +265,11 @@ function startAdapter(options) {
         if (!state || state.ack !== false || state.val === null) return;
         adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
         const realNamespace = `${adapter.namespace}.control.`;
-        const stateId = id.substring(realNamespace.length);
+        const realNamespace2 = `${adapter.namespace}.demandControl.`;
+
+        // Hacky: two namespaces and assume uniqueness of the variable independent of the namespace
+        // To be checked with Apollon77
+        const stateId = id.startsWith(realNamespace) ? id.substring(realNamespace.length) : id.substring(realNamespace2.length);
         changedStates[stateId] = state.val;
         if (changeTimeout) {
             adapter.log.debug('Clear change timeout');
@@ -380,6 +384,15 @@ function changeStates() {
                 }
             }
         }
+    }
+    if (changed.maxPower !== undefined) {
+        daikinDevice.setACDemandControl({maxPower: changed.maxPower}, (err, response) => {
+            adapter.log.debug(`changed maxPower to ${changed.maxPower}, response ${JSON.stringify(response)}`);
+            if (err) adapter.log.error(`change values failed: ${err.message}`);
+            delete changed.maxPower;
+            setSpecialMode(changed);
+        });
+        return;
     }
     setSpecialMode(changed);
 }
