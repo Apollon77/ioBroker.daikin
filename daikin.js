@@ -202,7 +202,7 @@ const fieldDef = {
         'maxPower': {
             'role': 'level.power',
             'read': true,
-            'write': false, // will be writable
+            'write': true,
             'type': 'number',
             'min': 40,
             'max': 100,
