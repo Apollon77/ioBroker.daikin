@@ -41,10 +41,13 @@ const SpecialMode = {
     '12/13': 'ECONO/STREAMER'
 };
 
+const DemandControlMode = {'0': 'MANUAL', '1': 'TIMER', '2': 'AUTO'};
+
 const channelDef = {
     'deviceInfo': {'role': 'info'},
     'control': {'role': 'thermo'},
     'controlInfo': {'role': 'info'},
+    'demandControl': {'role': 'info'},
     'modelInfo': {'role': 'info'},
     'sensorInfo': {'role': 'info'}
 };
@@ -190,6 +193,19 @@ const fieldDef = {
         'fanDirectionB': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
 
         'error': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}		// 255
+    },
+    'demandControl': {
+        'enabled': {'role': 'switch', 'read': true, 'write': false, 'type': 'boolean'}, // can be writable later
+        'mode': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlMode}, // can be writable later
+        'maxPower': {
+            'role': 'level.power',
+            'read': true,
+            'write': false, // will be writable
+            'type': 'number',
+            'min': 40,
+            'max': 100,
+            'unit': '%'
+        },		// number from 40..100 and must be a multiply of 5
     },
     'modelInfo': {
         'model': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
@@ -536,6 +552,7 @@ async function storeDaikinData(err) {
         updated += await handleDaikinUpdate(control, 'control');
         updated += await handleDaikinUpdate(controlInfo, 'controlInfo');
         updated += await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
+        updated += await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
         if (updated > 0) {
             adapter.log.info(`${updated} Values updated`);
         }
