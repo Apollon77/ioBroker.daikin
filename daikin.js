@@ -41,6 +41,7 @@ const SpecialMode = {
     '12/13': 'ECONO/STREAMER'
 };
 
+const DemandControlType = {'0': 'UNSUPPORTED', '1': 'SUPPORTED'};
 const DemandControlMode = {'0': 'MANUAL', '1': 'TIMER', '2': 'AUTO'};
 
 const channelDef = {
@@ -196,6 +197,7 @@ const fieldDef = {
     },
     'demandControl': {
         'enabled': {'role': 'switch', 'read': true, 'write': false, 'type': 'boolean'}, // can be writable later
+        'type': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlType},
         'mode': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlMode}, // can be writable later
         'maxPower': {
             'role': 'level.power',
