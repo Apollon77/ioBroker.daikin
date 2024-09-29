@@ -554,7 +554,9 @@ async function storeDaikinData(err) {
         updated += await handleDaikinUpdate(control, 'control');
         updated += await handleDaikinUpdate(controlInfo, 'controlInfo');
         updated += await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
-        updated += await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
+        if (daikinDevice.currentACDemandControl) {
+            updated += await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
+        }
         if (updated > 0) {
             adapter.log.info(`${updated} Values updated`);
         }
