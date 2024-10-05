@@ -510,8 +510,6 @@ function main() {
 }
 
 async function storeDaikinData(err) {
-    let updated = 0;
-
     if (stopped) return;
     if (!err) {
         setConnected(true);
@@ -563,16 +561,18 @@ async function storeDaikinData(err) {
             delete basicInfo.power;
         }
 
-        updated += await handleDaikinUpdate(basicInfo, 'deviceInfo');
-        updated += await handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
-        updated += await handleDaikinUpdate(control, 'control');
-        updated += await handleDaikinUpdate(controlInfo, 'controlInfo');
-        updated += await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
+        let updated = {};
+        updated.deviceInfo = await handleDaikinUpdate(basicInfo, 'deviceInfo');
+        updated.modelInfo = await handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
+        updated.control = await handleDaikinUpdate(control, 'control');
+        updated.controlInfo = await handleDaikinUpdate(controlInfo, 'controlInfo');
+        updated.sensorInfo = await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
         if (daikinDevice.currentACDemandControl) {
-            updated += await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
+            updated.demandControl = await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
         }
-        if (updated > 0) {
-            adapter.log.info(`${updated} Values updated`);
+        let updatedTotal = Object.values(updated).reduce((sum, num) => { return sum + num }, 0);
+        if (updatedTotal > 0) {
+            adapter.log.info(`${updatedTotal} Values updated: ${JSON.stringify(updated)}`);
         }
     }
     else {
