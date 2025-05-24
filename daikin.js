@@ -41,10 +41,14 @@ const SpecialMode = {
     '12/13': 'ECONO/STREAMER'
 };
 
+const DemandControlType = {'0': 'UNSUPPORTED', '1': 'SUPPORTED'};
+const DemandControlMode = {'0': 'MANUAL', '1': 'TIMER', '2': 'AUTO'};
+
 const channelDef = {
     'deviceInfo': {'role': 'info'},
     'control': {'role': 'thermo'},
     'controlInfo': {'role': 'info'},
+    'demandControl': {'role': 'info'},
     'modelInfo': {'role': 'info'},
     'sensorInfo': {'role': 'info'}
 };
@@ -191,6 +195,20 @@ const fieldDef = {
 
         'error': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}		// 255
     },
+    'demandControl': {
+        'enabled': {'role': 'switch', 'read': true, 'write': false, 'type': 'boolean'}, // can be writable later
+        'type': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlType},
+        'mode': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlMode}, // can be writable later
+        'maxPower': {
+            'role': 'level.power',
+            'read': true,
+            'write': true,
+            'type': 'number',
+            'min': 40,
+            'max': 100,
+            'unit': '%'
+        },		// number from 40..100 and must be a multiply of 5
+    },
     'modelInfo': {
         'model': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
         'type': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
@@ -247,7 +265,11 @@ function startAdapter(options) {
         if (!state || state.ack !== false || state.val === null) return;
         adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
         const realNamespace = `${adapter.namespace}.control.`;
-        const stateId = id.substring(realNamespace.length);
+        const realNamespace2 = `${adapter.namespace}.demandControl.`;
+
+        // Hacky: two namespaces and assume uniqueness of the variable independent of the namespace
+        // To be checked with Apollon77
+        const stateId = id.startsWith(realNamespace) ? id.substring(realNamespace.length) : id.substring(realNamespace2.length);
         changedStates[stateId] = state.val;
         if (changeTimeout) {
             adapter.log.debug('Clear change timeout');
@@ -363,6 +385,15 @@ function changeStates() {
             }
         }
     }
+    if (changed.maxPower !== undefined) {
+        daikinDevice.setACDemandControl({maxPower: changed.maxPower}, (err, response) => {
+            adapter.log.debug(`changed maxPower to ${changed.maxPower}, response ${JSON.stringify(response)}`);
+            if (err) adapter.log.error(`change values failed: ${err.message}`);
+            delete changed.maxPower;
+            setSpecialMode(changed);
+        });
+        return;
+    }
     setSpecialMode(changed);
 }
 
@@ -468,6 +499,7 @@ function main() {
                 storeDaikinData(err);
             });
             adapter.subscribeStates('control.*');
+            adapter.subscribeStates('demandControl.*');
         }
         else {
             setConnected(false);
@@ -478,8 +510,6 @@ function main() {
 }
 
 async function storeDaikinData(err) {
-    let updated = 0;
-
     if (stopped) return;
     if (!err) {
         setConnected(true);
@@ -531,13 +561,18 @@ async function storeDaikinData(err) {
             delete basicInfo.power;
         }
 
-        updated += await handleDaikinUpdate(basicInfo, 'deviceInfo');
-        updated += await handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
-        updated += await handleDaikinUpdate(control, 'control');
-        updated += await handleDaikinUpdate(controlInfo, 'controlInfo');
-        updated += await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
-        if (updated > 0) {
-            adapter.log.info(`${updated} Values updated`);
+        let updated = {};
+        updated.deviceInfo = await handleDaikinUpdate(basicInfo, 'deviceInfo');
+        updated.modelInfo = await handleDaikinUpdate(daikinDevice.currentACModelInfo, 'modelInfo');
+        updated.control = await handleDaikinUpdate(control, 'control');
+        updated.controlInfo = await handleDaikinUpdate(controlInfo, 'controlInfo');
+        updated.sensorInfo = await handleDaikinUpdate(daikinDevice.currentACSensorInfo, 'sensorInfo');
+        if (daikinDevice.currentACDemandControl) {
+            updated.demandControl = await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
+        }
+        let updatedTotal = Object.values(updated).reduce((sum, num) => { return sum + num }, 0);
+        if (updatedTotal > 0) {
+            adapter.log.info(`${updatedTotal} Values updated: ${JSON.stringify(updated)}`);
         }
     }
     else {
