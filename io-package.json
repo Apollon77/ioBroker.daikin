@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "daikin",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "news": {
+      "1.5.0": {
+        "en": "Added states to set demand control percentage\nPrevented some error logs and fix internal flow issues",
+        "de": "Zugefügte Staaten, die die Nachfragesteuerung in Prozent setzen\nVerhindert einige Fehlerprotokolle und beheben interne Flow Probleme",
+        "ru": "США устанавливают процент контроля над спросом\nПредотвращение некоторых журналов ошибок и исправление проблем с внутренним потоком",
+        "pt": "Estados adicionados para definir a porcentagem de controle de demanda\nPrevinei alguns registros de erros e corrigir problemas de fluxo interno",
+        "nl": "Toegevoegde staten om het percentage vraagbeheersing in te stellen\nVoorkomen sommige fout logs en interne stroom problemen op te lossen",
+        "fr": "États ajoutés pour fixer le pourcentage de contrôle de la demande\nPrévenir certains journaux d'erreurs et résoudre les problèmes de flux interne",
+        "it": "Stati aggiunti per impostare la percentuale di controllo della domanda\nPrevenire alcuni log di errore e risolvere i problemi di flusso interno",
+        "es": "Estados adicionales para establecer porcentaje de control de la demanda\nPrevented some error logs and fix internal flow issues",
+        "pl": "Dodano państwa, aby ustalić procent kontroli popytu\nZapobiegał pewnym logom błędów i naprawiał problemy z przepływem wewnętrznym",
+        "uk": "Додано стани для встановлення відсотка контролю попиту\nЗапобігли деяких журналів помилок і виправлень внутрішніх проблем",
+        "zh-cn": "添加状态以设定需求控制百分比\n防止了一些错误日志并解决内部流程问题"
+      },
       "1.4.2": {
         "en": "Make sure polling still works after setting special mode states",
         "de": "Stellen Sie sicher, dass die Abstimmung nach der Einstellung spezieller Modezustände noch funktioniert",
@@ -74,18 +87,6 @@
         "es": "Prepárese para js-controller 3.3",
         "pl": "Przygotuj się na js-controller 3.3",
         "zh-cn": "准备js-controller 3.3"
-      },
-      "1.3.0": {
-        "en": "Prevent warnings in js-controller 3.2\nAllow overwriting the name in Daikin channel object\nRequire at least js-controller 2.0",
-        "de": "Verhindern Sie Warnungen in js-controller 3.2\nErlaube das Überschreiben des Namens im Daikin-Kanalobjekt\nBenötigen Sie mindestens js-controller 2.0",
-        "ru": "Предотвращение предупреждений в js-controller 3.2\nРазрешить перезапись имени в объекте канала Daikin\nТребуется как минимум js-controller 2.0",
-        "pt": "Evite avisos no js-controller 3.2\nPermitir a substituição do nome no objeto do canal Daikin\nRequer pelo menos js-controller 2.0",
-        "nl": "Voorkom waarschuwingen in js-controller 3.2\nSta het overschrijven van de naam toe in het Daikin-kanaalobject\nVereist ten minste js-controller 2.0",
-        "fr": "Empêcher les avertissements dans js-controller 3.2\nAutoriser l'écrasement du nom dans l'objet de canal Daikin\nNécessite au moins js-controller 2.0",
-        "it": "Prevenire gli avvisi in js-controller 3.2\nConsenti la sovrascrittura del nome nell'oggetto canale Daikin\nRichiede almeno js-controller 2.0",
-        "es": "Prevenir advertencias en js-controller 3.2\nPermitir sobrescribir el nombre en el objeto de canal de Daikin\nRequiere al menos js-controller 2.0",
-        "pl": "Zapobiegaj ostrzeżeniom w js-controller 3.2\nZezwalaj na nadpisywanie nazwy w obiekcie kanału Daikin\nWymagaj co najmniej js-controller 2.0",
-        "zh-cn": "在js-controller 3.2中防止警告\n允许覆盖大金通道对象中的名称\n至少需要js-controller 2.0"
       }
     },
     "authors": [

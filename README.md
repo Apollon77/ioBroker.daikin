@@ -69,7 +69,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * VIS widget
 
 ## Changelog
-### __WORK IN PROGRESS__
+### 1.5.0 (2025-05-24)
 * (@Matze2) Added states to set demand control percentage
 * (@Apollon77) Prevented some error logs and fix internal flow issues
 
