@@ -70,7 +70,8 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 ### __WORK IN PROGRESS__
-* (Apollon77) Prevented some error logs and fix internal flow issues
+* (@Matze2) Added states to set demand control percentage
+* (@Apollon77) Prevented some error logs and fix internal flow issues
 
 ### 1.4.2 (2022-07-25)
 * (Apollon77) Make sure polling still works after setting special mode states
@@ -146,7 +147,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 The MIT License (MIT)
 
-Copyright (c) 2017-2022 Apollon77 <ingo@fischer-ka.de>
+Copyright (c) 2017-2025 Apollon77 <ingo@fischer-ka.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
