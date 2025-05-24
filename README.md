@@ -12,7 +12,7 @@
 **This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
 
 This adapter connects to a Daikin Air Conditioner device and allows to control the device and to read values from it.
-The Daikin Device needs to be equipped with a Daikin Wifi controller. Normally all wifi controllers should be supportedthat are supported by the Daikin App.
+The Daikin Device needs to be equipped with a Daikin Wifi controller. Normally all wifi controllers should be supported that are supported by the Daikin App.
 
 According to Daikin Support Documents the following devices should be compatible (at least):
 
