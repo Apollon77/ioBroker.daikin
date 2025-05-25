@@ -19,7 +19,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "daikin-controller": "^2.2.1",
+    "daikin-controller": "^2.2.2",
     "@iobroker/adapter-core": "^3.2.3"
   },
   "devDependencies": {
