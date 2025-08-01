@@ -29,7 +29,7 @@
     "@iobroker/dev-server": "^0.7.8",
     "@iobroker/adapter-dev": "^1.4.0",
     "mocha": "^11.5.0",
-    "chai": "^4.5.0",
+    "chai": "^5.2.1",
     "istanbul": "^0.4.5",
     "nyc": "^15.1.0"
   },
