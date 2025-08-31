@@ -1,5 +1,0 @@
-{"k":"**META**","v":{"states.protocolVersion":"4"}}
-{"k":"system.host.pkrvmccyg1gnepe.plugins.sentry.enabled","v":{"val":false,"ack":true,"ts":1756656401725,"q":0,"from":"system.host.pkrvmccyg1gnepe.plugins.sentry","lc":1756656401725}}
-{"k":"system.host.pkrvmccyg1gnepe.plugins.sentry.enabled","v":{"val":false,"ack":true,"ts":1756656416150,"q":0,"from":"system.host.pkrvmccyg1gnepe.plugins.sentry","lc":1756656401725}}
-{"k":"system.adapter.daikin.upload","v":{"val":0,"ack":true,"ts":1756656416165,"q":0,"lc":1756656416165}}
-{"k":"daikin.0.info.connection","v":{"val":false,"ack":true,"ts":1756656416228,"q":0,"from":"system.host.pkrvmccyg1gnepe.cli","lc":1756656416228}}

@@ -12,14 +12,17 @@
                     "src": "daikin_logo.jpg",
                     "style": {
                         "width": "150px",
-                        "height": "auto"
+                        "height": "auto",
+                        "marginBottom": "20px"
                     }
                 },
                 "daikinIp": {
                     "type": "text",
                     "label": "field_daikinIp",
                     "help": "info_daikinIp",
-                    "placeholder": "192.168.1.100"
+                    "placeholder": "192.168.1.100",
+                    "required": true,
+                    "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
                 },
                 "pollingInterval": {
                     "type": "number",
@@ -33,7 +36,8 @@
                 "useGetToPost": {
                     "type": "checkbox",
                     "label": "field_useGetToPost",
-                    "help": "info_useGetToPost"
+                    "help": "info_useGetToPost",
+                    "default": false
                 }
             }
         }
