@@ -7,20 +7,6 @@
             "label": "heading_GeneralSettings",
             "icon": "settings",
             "items": {
-                "_logo": {
-                    "type": "staticImage",
-                    "src": "daikin_logo.jpg",
-                    "style": {
-                        "width": "150px",
-                        "height": "auto",
-                        "marginBottom": "20px"
-                    },
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 12,
-                    "lg": 12,
-                    "xl": 12
-                },
                 "daikinIp": {
                     "type": "text",
                     "label": "field_daikinIp",
