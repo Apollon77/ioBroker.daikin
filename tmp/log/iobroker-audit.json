@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "/home/runner/work/ioBroker.daikin/ioBroker.daikin/tmp/log/iobroker-audit.json",
+    "files": [
+        {
+            "date": 1756656418457,
+            "name": "/home/runner/work/ioBroker.daikin/ioBroker.daikin/tmp/log/iobroker.2025-08-31.log",
+            "hash": "a8e2c9fbc6b2f194c0b1f70360798735751919bb758370d7da35339026e3a828"
+        }
+    ],
+    "hashType": "sha256"
+}

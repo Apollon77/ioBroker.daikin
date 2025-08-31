@@ -1,0 +1,299 @@
+2025-08-31 16:06:58.702  - [32minfo[39m: daikin.0 (3642) starting. Version 1.5.1 in /home/runner/work/ioBroker.daikin/ioBroker.daikin/tmp/node_modules/iobroker.daikin, node: v20.19.4, js-controller: 7.0.8-alpha.3-20250825-77e3ad19b
+2025-08-31 16:06:58.738  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/common/basic_info with {}
+2025-08-31 16:06:58.748  - [34mdebug[39m: daikin.0 (3642) {"type":"aircon","region":"eu","dst":true,"adapterVersion":"2_6_0","power":false,"location":0,"name":"Klima Jana","icon":0,"method":"home only","port":30050,"id":"","password":"","lpwFlag":0,"pv":0,"cpv":0,"cpvMinor":0,"led":false,"enSetzone":1,"macAddress":"A408EACC91D4","adapterMode":"run","error":0,"enHol":0,"enGroup":1,"groupName":"Kinder","adapterKind":2}
+2025-08-31 16:06:58.748  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_model_info with {}
+2025-08-31 16:06:58.751  - [34mdebug[39m: daikin.0 (3642) {"model":"NOTSUPPORT","type":"N","pv":0,"cpv":0,"mid":"NA","sFanDirection":1,"enScdltmr":1}
+2025-08-31 16:06:58.752  - [32minfo[39m: daikin.0 (3642) Daikin Device initialized successfully
+2025-08-31 16:06:58.752  - [32minfo[39m: daikin.0 (3642) Set polling Intervall to 60s
+2025-08-31 16:06:58.752  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_control_info with {}
+2025-08-31 16:06:58.755  - [34mdebug[39m: daikin.0 (3642) {"power":false,"mode":2,"targetTemperature":23,"targetHumidity":0,"fanRate":"A","fanDirection":0,"specialMode":"2/13","targetTemperatureMode1":25,"targetTemperatureMode2":"M","targetTemperatureMode3":23,"targetTemperatureMode4":27,"targetTemperatureMode5":27,"targetTemperatureMode7":25,"targetHumidityMode1":"AUTO","targetHumidityMode2":50,"targetHumidityMode3":0,"targetHumidityMode4":0,"targetHumidityMode5":0,"targetHumidityMode7":"AUTO","targetHumidityModeH":50,"fanRateMode1":5,"fanRateMode2":5,"fanRateMode3":"A","fanRateMode4":5,"fanRateMode5":5,"fanRateMode6":5,"fanRateMode7":5,"fanRateModeH":5,"fanDirectionMode1":0,"fanDirectionMode2":0,"fanDirectionMode3":0,"fanDirectionMode4":0,"fanDirectionMode5":0,"fanDirectionMode6":0,"fanDirectionMode7":0,"fanDirectionModeH":0,"modeB":3,"targetTemperatureB":23,"targetHumidityB":0,"fanRateB":"A","fanDirectionB":0,"error":255}
+2025-08-31 16:06:58.756  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_sensor_info with {}
+2025-08-31 16:06:58.757  - [34mdebug[39m: daikin.0 (3642) {"indoorTemperature":23.5,"indoorHumidity":null,"outdoorTemperature":null,"error":0,"cmpfreq":0}
+2025-08-31 16:06:58.757  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_demand_control with {}
+2025-08-31 16:06:58.759  - [34mdebug[39m: daikin.0 (3642) null
+2025-08-31 16:06:58.759  - [34mdebug[39m: daikin.0 (3642) Demand control support is not working
+2025-08-31 16:06:58.759  - [34mdebug[39m: daikin.0 (3642) start update timeout
+2025-08-31 16:06:58.759  - [34mdebug[39m: daikin.0 (3642) Ignore getACDemandControl error: {}
+2025-08-31 16:06:58.760  - [34mdebug[39m: daikin.0 (3642) HandleDaikinUpdate for deviceInfo with {"type":"aircon","region":"eu","dst":true,"adapterVersion":"2_6_0","location":0,"name":"Klima Jana","icon":0,"method":"home only","port":30050,"id":"","password":"","lpwFlag":0,"pv":0,"cpv":0,"cpvMinor":0,"led":false,"enSetzone":1,"macAddress":"A408EACC91D4","adapterMode":"run","error":0,"enHol":0,"enGroup":1,"groupName":"Kinder","adapterKind":2}
+2025-08-31 16:06:58.760  - [34mdebug[39m: daikin.0 (3642) Create Channel deviceInfo
+2025-08-31 16:06:58.763  - [34mdebug[39m: daikin.0 (3642) connected set to true
+2025-08-31 16:06:58.763  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.type
+2025-08-31 16:06:58.765  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.type: old=undefined, new=aircon
+2025-08-31 16:06:58.765  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.type: aircon
+2025-08-31 16:06:58.766  - [34mdebug[39m: daikin.0 (3642) connected set to true
+2025-08-31 16:06:58.807  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.region
+2025-08-31 16:06:58.809  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.region: old=undefined, new=eu
+2025-08-31 16:06:58.809  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.region: eu
+2025-08-31 16:06:58.811  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.dst
+2025-08-31 16:06:58.812  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.dst: old=undefined, new=true
+2025-08-31 16:06:58.813  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.dst: true
+2025-08-31 16:06:58.814  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.adapterVersion
+2025-08-31 16:06:58.816  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.adapterVersion: old=undefined, new=2_6_0
+2025-08-31 16:06:58.816  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.adapterVersion: 2_6_0
+2025-08-31 16:06:58.818  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.location
+2025-08-31 16:06:58.819  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.location: old=undefined, new=0
+2025-08-31 16:06:58.820  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.location: 0
+2025-08-31 16:06:58.821  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.name
+2025-08-31 16:06:58.823  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.name: old=undefined, new=Klima Jana
+2025-08-31 16:06:58.823  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.name: Klima Jana
+2025-08-31 16:06:58.825  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.icon
+2025-08-31 16:06:58.826  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.icon: old=undefined, new=0
+2025-08-31 16:06:58.827  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.icon: 0
+2025-08-31 16:06:58.829  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.method
+2025-08-31 16:06:58.830  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.method: old=undefined, new=home only
+2025-08-31 16:06:58.830  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.method: home only
+2025-08-31 16:06:58.832  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.port
+2025-08-31 16:06:58.833  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.port: old=undefined, new=30050
+2025-08-31 16:06:58.834  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.port: 30050
+2025-08-31 16:06:58.835  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.id
+2025-08-31 16:06:58.837  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.id: old=undefined, new=
+2025-08-31 16:06:58.837  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.id: 
+2025-08-31 16:06:58.839  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.password
+2025-08-31 16:06:58.840  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.password: old=undefined, new=
+2025-08-31 16:06:58.840  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.password: 
+2025-08-31 16:06:58.842  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.lpwFlag
+2025-08-31 16:06:58.844  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.lpwFlag: old=undefined, new=0
+2025-08-31 16:06:58.844  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.lpwFlag: 0
+2025-08-31 16:06:58.845  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.pv
+2025-08-31 16:06:58.847  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.pv: old=undefined, new=0
+2025-08-31 16:06:58.847  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.pv: 0
+2025-08-31 16:06:58.849  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.cpv
+2025-08-31 16:06:58.850  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.cpv: old=undefined, new=0
+2025-08-31 16:06:58.850  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.cpv: 0
+2025-08-31 16:06:58.852  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.cpvMinor
+2025-08-31 16:06:58.854  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.cpvMinor: old=undefined, new=0
+2025-08-31 16:06:58.854  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.cpvMinor: 0
+2025-08-31 16:06:58.855  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.led
+2025-08-31 16:06:58.857  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.led: old=undefined, new=false
+2025-08-31 16:06:58.857  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.led: false
+2025-08-31 16:06:58.860  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.enSetzone
+2025-08-31 16:06:58.861  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.enSetzone: old=undefined, new=1
+2025-08-31 16:06:58.861  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.enSetzone: 1
+2025-08-31 16:06:58.863  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.macAddress
+2025-08-31 16:06:58.865  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.macAddress: old=undefined, new=A408EACC91D4
+2025-08-31 16:06:58.865  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.macAddress: A408EACC91D4
+2025-08-31 16:06:58.867  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.adapterMode
+2025-08-31 16:06:58.868  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.adapterMode: old=undefined, new=run
+2025-08-31 16:06:58.868  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.adapterMode: run
+2025-08-31 16:06:58.870  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.error
+2025-08-31 16:06:58.872  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.error: old=undefined, new=0
+2025-08-31 16:06:58.872  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.error: 0
+2025-08-31 16:06:58.873  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.enHol
+2025-08-31 16:06:58.875  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.enHol: old=undefined, new=0
+2025-08-31 16:06:58.875  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.enHol: 0
+2025-08-31 16:06:58.877  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.enGroup
+2025-08-31 16:06:58.878  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.enGroup: old=undefined, new=1
+2025-08-31 16:06:58.878  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.enGroup: 1
+2025-08-31 16:06:58.880  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.groupName
+2025-08-31 16:06:58.881  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.groupName: old=undefined, new=Kinder
+2025-08-31 16:06:58.881  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.groupName: Kinder
+2025-08-31 16:06:58.883  - [34mdebug[39m: daikin.0 (3642) Create State deviceInfo.adapterKind
+2025-08-31 16:06:58.884  - [34mdebug[39m: daikin.0 (3642) Old value deviceInfo.adapterKind: old=undefined, new=2
+2025-08-31 16:06:58.884  - [34mdebug[39m: daikin.0 (3642) Set State deviceInfo.adapterKind: 2
+2025-08-31 16:06:58.886  - [34mdebug[39m: daikin.0 (3642) HandleDaikinUpdate for modelInfo with {"model":"NOTSUPPORT","type":"N","pv":0,"cpv":0,"mid":"NA","sFanDirection":1,"enScdltmr":1}
+2025-08-31 16:06:58.886  - [34mdebug[39m: daikin.0 (3642) Create Channel modelInfo
+2025-08-31 16:06:58.887  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.model
+2025-08-31 16:06:58.889  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.model: old=undefined, new=NOTSUPPORT
+2025-08-31 16:06:58.889  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.model: NOTSUPPORT
+2025-08-31 16:06:58.891  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.type
+2025-08-31 16:06:58.892  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.type: old=undefined, new=N
+2025-08-31 16:06:58.892  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.type: N
+2025-08-31 16:06:58.894  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.pv
+2025-08-31 16:06:58.896  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.pv: old=undefined, new=0
+2025-08-31 16:06:58.896  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.pv: 0
+2025-08-31 16:06:58.898  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.cpv
+2025-08-31 16:06:58.906  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.cpv: old=undefined, new=0
+2025-08-31 16:06:58.906  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.cpv: 0
+2025-08-31 16:06:58.908  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.mid
+2025-08-31 16:06:58.911  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.mid: old=undefined, new=NA
+2025-08-31 16:06:58.911  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.mid: NA
+2025-08-31 16:06:58.918  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.sFanDirection
+2025-08-31 16:06:58.919  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.sFanDirection: old=undefined, new=1
+2025-08-31 16:06:58.920  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.sFanDirection: 1
+2025-08-31 16:06:58.921  - [34mdebug[39m: daikin.0 (3642) Create State modelInfo.enScdltmr
+2025-08-31 16:06:58.923  - [34mdebug[39m: daikin.0 (3642) Old value modelInfo.enScdltmr: old=undefined, new=1
+2025-08-31 16:06:58.923  - [34mdebug[39m: daikin.0 (3642) Set State modelInfo.enScdltmr: 1
+2025-08-31 16:06:58.925  - [34mdebug[39m: daikin.0 (3642) HandleDaikinUpdate for control with {"power":false,"mode":2,"targetTemperature":23,"targetHumidity":0,"fanRate":"A","fanDirection":0,"specialPowerful":true,"specialEcono":false,"specialStreamer":true}
+2025-08-31 16:06:58.925  - [34mdebug[39m: daikin.0 (3642) Create Channel control
+2025-08-31 16:06:58.926  - [34mdebug[39m: daikin.0 (3642) Create State control.power
+2025-08-31 16:06:58.928  - [34mdebug[39m: daikin.0 (3642) Old value control.power: old=undefined, new=false
+2025-08-31 16:06:58.928  - [34mdebug[39m: daikin.0 (3642) Set State control.power: false
+2025-08-31 16:06:58.930  - [34mdebug[39m: daikin.0 (3642) Create State control.mode
+2025-08-31 16:06:58.932  - [34mdebug[39m: daikin.0 (3642) Old value control.mode: old=undefined, new=2
+2025-08-31 16:06:58.932  - [34mdebug[39m: daikin.0 (3642) Set State control.mode: 2
+2025-08-31 16:06:58.934  - [34mdebug[39m: daikin.0 (3642) Create State control.targetTemperature
+2025-08-31 16:06:58.936  - [34mdebug[39m: daikin.0 (3642) Old value control.targetTemperature: old=undefined, new=23
+2025-08-31 16:06:58.936  - [34mdebug[39m: daikin.0 (3642) Set State control.targetTemperature: 23
+2025-08-31 16:06:58.938  - [34mdebug[39m: daikin.0 (3642) Create State control.targetHumidity
+2025-08-31 16:06:58.939  - [34mdebug[39m: daikin.0 (3642) Old value control.targetHumidity: old=undefined, new=0
+2025-08-31 16:06:58.940  - [34mdebug[39m: daikin.0 (3642) Set State control.targetHumidity: 0
+2025-08-31 16:06:58.941  - [34mdebug[39m: daikin.0 (3642) Create State control.fanRate
+2025-08-31 16:06:58.943  - [34mdebug[39m: daikin.0 (3642) Old value control.fanRate: old=undefined, new=A
+2025-08-31 16:06:58.943  - [34mdebug[39m: daikin.0 (3642) Set State control.fanRate: A
+2025-08-31 16:06:58.945  - [34mdebug[39m: daikin.0 (3642) Create State control.fanDirection
+2025-08-31 16:06:58.946  - [34mdebug[39m: daikin.0 (3642) Old value control.fanDirection: old=undefined, new=0
+2025-08-31 16:06:58.946  - [34mdebug[39m: daikin.0 (3642) Set State control.fanDirection: 0
+2025-08-31 16:06:58.948  - [34mdebug[39m: daikin.0 (3642) Create State control.specialPowerful
+2025-08-31 16:06:58.950  - [34mdebug[39m: daikin.0 (3642) Old value control.specialPowerful: old=undefined, new=true
+2025-08-31 16:06:58.950  - [34mdebug[39m: daikin.0 (3642) Set State control.specialPowerful: true
+2025-08-31 16:06:58.952  - [34mdebug[39m: daikin.0 (3642) Create State control.specialEcono
+2025-08-31 16:06:58.953  - [34mdebug[39m: daikin.0 (3642) Old value control.specialEcono: old=undefined, new=false
+2025-08-31 16:06:58.953  - [34mdebug[39m: daikin.0 (3642) Set State control.specialEcono: false
+2025-08-31 16:06:58.955  - [34mdebug[39m: daikin.0 (3642) Create State control.specialStreamer
+2025-08-31 16:06:58.957  - [34mdebug[39m: daikin.0 (3642) Old value control.specialStreamer: old=undefined, new=true
+2025-08-31 16:06:58.957  - [34mdebug[39m: daikin.0 (3642) Set State control.specialStreamer: true
+2025-08-31 16:06:58.959  - [34mdebug[39m: daikin.0 (3642) HandleDaikinUpdate for controlInfo with {"specialMode":"2/13","targetTemperatureMode1":25,"targetTemperatureMode2":"M","targetTemperatureMode3":23,"targetTemperatureMode4":27,"targetTemperatureMode5":27,"targetTemperatureMode7":25,"targetHumidityMode1":"AUTO","targetHumidityMode2":50,"targetHumidityMode3":0,"targetHumidityMode4":0,"targetHumidityMode5":0,"targetHumidityMode7":"AUTO","targetHumidityModeH":50,"fanRateMode1":5,"fanRateMode2":5,"fanRateMode3":"A","fanRateMode4":5,"fanRateMode5":5,"fanRateMode6":5,"fanRateMode7":5,"fanRateModeH":5,"fanDirectionMode1":0,"fanDirectionMode2":0,"fanDirectionMode3":0,"fanDirectionMode4":0,"fanDirectionMode5":0,"fanDirectionMode6":0,"fanDirectionMode7":0,"fanDirectionModeH":0,"modeB":3,"targetTemperatureB":23,"targetHumidityB":0,"fanRateB":"A","fanDirectionB":0,"error":255}
+2025-08-31 16:06:58.959  - [34mdebug[39m: daikin.0 (3642) Create Channel controlInfo
+2025-08-31 16:06:58.960  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.specialMode
+2025-08-31 16:06:58.962  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.specialMode: old=undefined, new=2/13
+2025-08-31 16:06:58.962  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.specialMode: 2/13
+2025-08-31 16:06:58.963  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode1
+2025-08-31 16:06:58.965  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode1: old=undefined, new=25
+2025-08-31 16:06:58.965  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode1: 25
+2025-08-31 16:06:58.967  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode2
+2025-08-31 16:06:58.968  - [34mdebug[39m: daikin.0 (3642) Field type mismatch for targetTemperatureMode2: val=M vs. number - set null
+2025-08-31 16:06:58.968  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode2: old=undefined, new=null
+2025-08-31 16:06:58.968  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode2: null
+2025-08-31 16:06:58.970  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode3
+2025-08-31 16:06:58.971  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode3: old=undefined, new=23
+2025-08-31 16:06:58.972  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode3: 23
+2025-08-31 16:06:58.973  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode4
+2025-08-31 16:06:58.975  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode4: old=undefined, new=27
+2025-08-31 16:06:58.975  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode4: 27
+2025-08-31 16:06:58.977  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode5
+2025-08-31 16:06:58.978  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode5: old=undefined, new=27
+2025-08-31 16:06:58.978  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode5: 27
+2025-08-31 16:06:58.980  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureMode7
+2025-08-31 16:06:58.981  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureMode7: old=undefined, new=25
+2025-08-31 16:06:58.981  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureMode7: 25
+2025-08-31 16:06:58.982  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode1
+2025-08-31 16:06:58.984  - [34mdebug[39m: daikin.0 (3642) Field type mismatch for targetHumidityMode1: val=AUTO vs. number - set null
+2025-08-31 16:06:58.984  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode1: old=undefined, new=null
+2025-08-31 16:06:58.984  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode1: null
+2025-08-31 16:06:58.985  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode2
+2025-08-31 16:06:58.987  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode2: old=undefined, new=50
+2025-08-31 16:06:58.987  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode2: 50
+2025-08-31 16:06:58.989  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode3
+2025-08-31 16:06:58.990  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode3: old=undefined, new=0
+2025-08-31 16:06:58.990  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode3: 0
+2025-08-31 16:06:58.992  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode4
+2025-08-31 16:06:58.993  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode4: old=undefined, new=0
+2025-08-31 16:06:58.993  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode4: 0
+2025-08-31 16:06:58.995  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode5
+2025-08-31 16:06:58.996  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode5: old=undefined, new=0
+2025-08-31 16:06:58.996  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode5: 0
+2025-08-31 16:06:58.998  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityMode7
+2025-08-31 16:06:58.999  - [34mdebug[39m: daikin.0 (3642) Field type mismatch for targetHumidityMode7: val=AUTO vs. number - set null
+2025-08-31 16:06:58.999  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityMode7: old=undefined, new=null
+2025-08-31 16:06:58.999  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityMode7: null
+2025-08-31 16:06:59.001  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityModeH
+2025-08-31 16:06:59.002  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityModeH: old=undefined, new=50
+2025-08-31 16:06:59.002  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityModeH: 50
+2025-08-31 16:06:59.004  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode1
+2025-08-31 16:06:59.005  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode1: old=undefined, new=5
+2025-08-31 16:06:59.005  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode1: 5
+2025-08-31 16:06:59.007  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode2
+2025-08-31 16:06:59.008  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode2: old=undefined, new=5
+2025-08-31 16:06:59.008  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode2: 5
+2025-08-31 16:06:59.009  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode3
+2025-08-31 16:06:59.011  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode3: old=undefined, new=A
+2025-08-31 16:06:59.011  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode3: A
+2025-08-31 16:06:59.012  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode4
+2025-08-31 16:06:59.013  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode4: old=undefined, new=5
+2025-08-31 16:06:59.013  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode4: 5
+2025-08-31 16:06:59.015  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode5
+2025-08-31 16:06:59.016  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode5: old=undefined, new=5
+2025-08-31 16:06:59.016  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode5: 5
+2025-08-31 16:06:59.018  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode6
+2025-08-31 16:06:59.020  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode6: old=undefined, new=5
+2025-08-31 16:06:59.020  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode6: 5
+2025-08-31 16:06:59.021  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateMode7
+2025-08-31 16:06:59.023  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateMode7: old=undefined, new=5
+2025-08-31 16:06:59.023  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateMode7: 5
+2025-08-31 16:06:59.025  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateModeH
+2025-08-31 16:06:59.026  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateModeH: old=undefined, new=5
+2025-08-31 16:06:59.026  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateModeH: 5
+2025-08-31 16:06:59.028  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode1
+2025-08-31 16:06:59.029  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode1: old=undefined, new=0
+2025-08-31 16:06:59.029  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode1: 0
+2025-08-31 16:06:59.031  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode2
+2025-08-31 16:06:59.032  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode2: old=undefined, new=0
+2025-08-31 16:06:59.032  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode2: 0
+2025-08-31 16:06:59.034  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode3
+2025-08-31 16:06:59.036  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode3: old=undefined, new=0
+2025-08-31 16:06:59.036  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode3: 0
+2025-08-31 16:06:59.037  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode4
+2025-08-31 16:06:59.039  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode4: old=undefined, new=0
+2025-08-31 16:06:59.039  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode4: 0
+2025-08-31 16:06:59.040  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode5
+2025-08-31 16:06:59.041  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode5: old=undefined, new=0
+2025-08-31 16:06:59.042  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode5: 0
+2025-08-31 16:06:59.043  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode6
+2025-08-31 16:06:59.044  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode6: old=undefined, new=0
+2025-08-31 16:06:59.044  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode6: 0
+2025-08-31 16:06:59.046  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionMode7
+2025-08-31 16:06:59.047  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionMode7: old=undefined, new=0
+2025-08-31 16:06:59.047  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionMode7: 0
+2025-08-31 16:06:59.049  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionModeH
+2025-08-31 16:06:59.050  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionModeH: old=undefined, new=0
+2025-08-31 16:06:59.050  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionModeH: 0
+2025-08-31 16:06:59.052  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.modeB
+2025-08-31 16:06:59.053  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.modeB: old=undefined, new=3
+2025-08-31 16:06:59.054  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.modeB: 3
+2025-08-31 16:06:59.055  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetTemperatureB
+2025-08-31 16:06:59.057  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetTemperatureB: old=undefined, new=23
+2025-08-31 16:06:59.057  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetTemperatureB: 23
+2025-08-31 16:06:59.058  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.targetHumidityB
+2025-08-31 16:06:59.060  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.targetHumidityB: old=undefined, new=0
+2025-08-31 16:06:59.060  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.targetHumidityB: 0
+2025-08-31 16:06:59.061  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanRateB
+2025-08-31 16:06:59.062  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanRateB: old=undefined, new=A
+2025-08-31 16:06:59.063  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanRateB: A
+2025-08-31 16:06:59.064  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.fanDirectionB
+2025-08-31 16:06:59.065  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.fanDirectionB: old=undefined, new=0
+2025-08-31 16:06:59.065  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.fanDirectionB: 0
+2025-08-31 16:06:59.067  - [34mdebug[39m: daikin.0 (3642) Create State controlInfo.error
+2025-08-31 16:06:59.068  - [34mdebug[39m: daikin.0 (3642) Old value controlInfo.error: old=undefined, new=255
+2025-08-31 16:06:59.068  - [34mdebug[39m: daikin.0 (3642) Set State controlInfo.error: 255
+2025-08-31 16:06:59.069  - [34mdebug[39m: daikin.0 (3642) HandleDaikinUpdate for sensorInfo with {"indoorTemperature":23.5,"indoorHumidity":null,"outdoorTemperature":null,"error":0,"cmpfreq":0}
+2025-08-31 16:06:59.070  - [34mdebug[39m: daikin.0 (3642) Create Channel sensorInfo
+2025-08-31 16:06:59.071  - [34mdebug[39m: daikin.0 (3642) Create State sensorInfo.indoorTemperature
+2025-08-31 16:06:59.072  - [34mdebug[39m: daikin.0 (3642) Old value sensorInfo.indoorTemperature: old=undefined, new=23.5
+2025-08-31 16:06:59.072  - [34mdebug[39m: daikin.0 (3642) Set State sensorInfo.indoorTemperature: 23.5
+2025-08-31 16:06:59.073  - [34mdebug[39m: daikin.0 (3642) Create State sensorInfo.indoorHumidity
+2025-08-31 16:06:59.075  - [34mdebug[39m: daikin.0 (3642) Old value sensorInfo.indoorHumidity: old=undefined, new=null
+2025-08-31 16:06:59.075  - [34mdebug[39m: daikin.0 (3642) Set State sensorInfo.indoorHumidity: null
+2025-08-31 16:06:59.076  - [34mdebug[39m: daikin.0 (3642) Create State sensorInfo.outdoorTemperature
+2025-08-31 16:06:59.078  - [34mdebug[39m: daikin.0 (3642) Old value sensorInfo.outdoorTemperature: old=undefined, new=null
+2025-08-31 16:06:59.078  - [34mdebug[39m: daikin.0 (3642) Set State sensorInfo.outdoorTemperature: null
+2025-08-31 16:06:59.079  - [34mdebug[39m: daikin.0 (3642) Create State sensorInfo.error
+2025-08-31 16:06:59.080  - [34mdebug[39m: daikin.0 (3642) Old value sensorInfo.error: old=undefined, new=0
+2025-08-31 16:06:59.081  - [34mdebug[39m: daikin.0 (3642) Set State sensorInfo.error: 0
+2025-08-31 16:06:59.082  - [34mdebug[39m: daikin.0 (3642) Create State sensorInfo.cmpfreq
+2025-08-31 16:06:59.083  - [34mdebug[39m: daikin.0 (3642) Old value sensorInfo.cmpfreq: old=undefined, new=0
+2025-08-31 16:06:59.083  - [34mdebug[39m: daikin.0 (3642) Set State sensorInfo.cmpfreq: 0
+2025-08-31 16:06:59.085  - [32minfo[39m: daikin.0 (3642) 81 Values updated: {"deviceInfo":24,"modelInfo":7,"control":9,"controlInfo":36,"sensorInfo":5}
+2025-08-31 16:07:58.759  - [34mdebug[39m: daikin.0 (3642) clear update timeout
+2025-08-31 16:07:58.760  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_control_info with {}
+2025-08-31 16:07:58.762  - [34mdebug[39m: daikin.0 (3642) null
+2025-08-31 16:07:58.762  - [34mdebug[39m: daikin.0 (3642) start update timeout
+2025-08-31 16:07:58.763  - [31merror[39m: daikin.0 (3642) Error updating data: Wrong Parameters in request: ret=PARAM NG
+Request Parameters: {}
+2025-08-31 16:07:58.805  - [34mdebug[39m: daikin.0 (3642) connected set to false
+2025-08-31 16:08:20.193  - [34mdebug[39m: daikin.0 (3642) stateChange daikin.0.control.targetTemperature {"val":20,"ack":false,"ts":1756656500191,"q":0,"from":"test.0","lc":1756656500191}
+2025-08-31 16:08:20.194  - [34mdebug[39m: daikin.0 (3642) stateChange daikin.0.control.specialStreamer {"val":true,"ack":false,"ts":1756656500193,"q":0,"from":"test.0","lc":1756656418958}
+2025-08-31 16:08:20.194  - [34mdebug[39m: daikin.0 (3642) Clear change timeout
+2025-08-31 16:08:21.195  - [34mdebug[39m: daikin.0 (3642) Send 2 changes: {"targetTemperature":20,"specialStreamer":true}
+2025-08-31 16:08:21.195  - [34mdebug[39m: daikin.0 (3642) clear update timeout
+2025-08-31 16:08:21.196  - [34mdebug[39m: daikin.0 (3642) Call POST http://127.0.0.1:8080/aircon/set_special_mode with {"en_streamer":1}
+2025-08-31 16:08:21.198  - [34mdebug[39m: daikin.0 (3642) start update timeout
+2025-08-31 16:08:21.199  - [34mdebug[39m: daikin.0 (3642) null
+2025-08-31 16:08:21.199  - [34mdebug[39m: daikin.0 (3642) clear update timeout
+2025-08-31 16:08:21.199  - [34mdebug[39m: daikin.0 (3642) Call GET http://127.0.0.1:8080/aircon/get_control_info with {}
+2025-08-31 16:08:21.200  - [34mdebug[39m: daikin.0 (3642) start update timeout
+2025-08-31 16:08:21.201  - [34mdebug[39m: daikin.0 (3642) change values: null to null
+2025-08-31 16:08:21.201  - [31merror[39m: daikin.0 (3642) change values failed: Wrong Parameters in request: ret=PARAM NG
+Request Parameters: {}
+2025-08-31 16:08:21.201  - [34mdebug[39m: daikin.0 (3642) reset targetTemperature
+2025-08-31 16:08:21.201  - [31merror[39m: daikin.0 (3642) Error updating data: Wrong Parameters in request: ret=PARAM NG
+Request Parameters: {}
