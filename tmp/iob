@@ -1,2 +1,0 @@
-#!/usr/bin/env node
-require('/home/runner/work/ioBroker.daikin/ioBroker.daikin/tmp/node_modules/@iobroker/js-controller-cli/build/esm/lib/setup').execute();

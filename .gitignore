@@ -6,3 +6,7 @@ node_modules
 
 # ioBroker dev-server
 .dev-server/
+
+# Test artifacts
+tmp/
+.nyc_output/
