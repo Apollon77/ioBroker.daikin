@@ -1,0 +1,54 @@
+{
+    "i18n": true,
+    "type": "tabs",
+    "items": {
+        "_general": {
+            "type": "panel",
+            "label": "heading_GeneralSettings",
+            "icon": "settings",
+            "items": {
+                "daikinIp": {
+                    "type": "text",
+                    "label": "field_daikinIp",
+                    "help": "info_daikinIp",
+                    "placeholder": "192.168.1.100",
+                    "required": true,
+                    "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "pollingInterval": {
+                    "type": "number",
+                    "label": "field_pollingInterval",
+                    "help": "info_pollingInterval",
+                    "min": 10,
+                    "max": 3600,
+                    "default": 300,
+                    "suffix": "s",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "useGetToPost": {
+                    "type": "checkbox",
+                    "label": "field_useGetToPost",
+                    "help": "info_useGetToPost",
+                    "default": false,
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
+        }
+    }
+}

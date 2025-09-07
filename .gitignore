@@ -6,3 +6,8 @@ node_modules
 
 # ioBroker dev-server
 .dev-server/
+
+# Test and coverage files
+.nyc_output/
+tmp/
+coverage/
