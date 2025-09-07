@@ -4,9 +4,15 @@
 node_modules
 .idea
 
+# Test artifacts and temporary files
+tmp/
+.nyc_output/
+coverage/
+
 # ioBroker dev-server
 .dev-server/
 
-# Test artifacts
-tmp/
+# Test and coverage files
 .nyc_output/
+tmp/
+coverage/
