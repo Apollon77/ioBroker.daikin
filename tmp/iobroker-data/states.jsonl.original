@@ -1,0 +1,5 @@
+{"k":"**META**","v":{"states.protocolVersion":"4"}}
+{"k":"system.host.pkrvm7jw40e0xgp.plugins.sentry.enabled","v":{"val":false,"ack":true,"ts":1757272978259,"q":0,"from":"system.host.pkrvm7jw40e0xgp.plugins.sentry","lc":1757272978259}}
+{"k":"system.host.pkrvm7jw40e0xgp.plugins.sentry.enabled","v":{"val":false,"ack":true,"ts":1757272992754,"q":0,"from":"system.host.pkrvm7jw40e0xgp.plugins.sentry","lc":1757272978259}}
+{"k":"system.adapter.daikin.upload","v":{"val":0,"ack":true,"ts":1757272992770,"q":0,"lc":1757272992770}}
+{"k":"daikin.0.info.connection","v":{"val":false,"ack":true,"ts":1757272992831,"q":0,"from":"system.host.pkrvm7jw40e0xgp.cli","lc":1757272992831}}
