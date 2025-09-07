@@ -16,7 +16,7 @@
     "url": "https://github.com/Apollon77/ioBroker.daikin"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "dependencies": {
     "daikin-controller": "^2.2.2",
