@@ -21,228 +21,228 @@ let changeRunning = false;
 let stopped = false;
 let connected = null;
 
-const Mode = {'0': 'AUTO', '1': 'AUTO1', '2': 'DEHUMID', '3': 'COLD', '4': 'HOT', '6': 'FAN', '7': 'AUTO2'};
+const Mode = { 0: 'AUTO', 1: 'AUTO1', 2: 'DEHUMID', 3: 'COLD', 4: 'HOT', 6: 'FAN', 7: 'AUTO2' };
 const FanRate = {
-    'A': 'AUTO',
-    'B': 'SILENCE',
-    '3': 'LEVEL_1',
-    '4': 'LEVEL_2',
-    '5': 'LEVEL_3',
-    '6': 'LEVEL_4',
-    '7': 'LEVEL_5'
+    A: 'AUTO',
+    B: 'SILENCE',
+    3: 'LEVEL_1',
+    4: 'LEVEL_2',
+    5: 'LEVEL_3',
+    6: 'LEVEL_4',
+    7: 'LEVEL_5',
 };
-const FanDirection = {'0': 'STOP', '1': 'VERTICAL', '2': 'HORIZONTAL', '3': 'VERTICAL_AND_HORIZONTAL'};
+const FanDirection = { 0: 'STOP', 1: 'VERTICAL', 2: 'HORIZONTAL', 3: 'VERTICAL_AND_HORIZONTAL' };
 const SpecialMode = {
     '': 'NONE',
-    '2': 'POWERFUL',
-    '12': 'ECONO',
-    '13': 'STREAMER',
+    2: 'POWERFUL',
+    12: 'ECONO',
+    13: 'STREAMER',
     '2/13': 'POWERFUL/STREAMER',
-    '12/13': 'ECONO/STREAMER'
+    '12/13': 'ECONO/STREAMER',
 };
 
-const DemandControlType = {'0': 'UNSUPPORTED', '1': 'SUPPORTED'};
-const DemandControlMode = {'0': 'MANUAL', '1': 'TIMER', '2': 'AUTO'};
+const DemandControlType = { 0: 'UNSUPPORTED', 1: 'SUPPORTED' };
+const DemandControlMode = { 0: 'MANUAL', 1: 'TIMER', 2: 'AUTO' };
 
 const channelDef = {
-    'deviceInfo': {'role': 'info'},
-    'control': {'role': 'thermo'},
-    'controlInfo': {'role': 'info'},
-    'demandControl': {'role': 'info'},
-    'modelInfo': {'role': 'info'},
-    'sensorInfo': {'role': 'info'}
+    deviceInfo: { role: 'info' },
+    control: { role: 'thermo' },
+    controlInfo: { role: 'info' },
+    demandControl: { role: 'info' },
+    modelInfo: { role: 'info' },
+    sensorInfo: { role: 'info' },
 };
 
 const fieldDef = {
-    'deviceInfo': {
-        'type': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'region': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'dst': {'role': 'indicator', 'read': true, 'write': false, 'type': 'boolean'},
-        'adapterVersion': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
+    deviceInfo: {
+        type: { role: 'text', read: true, write: false, type: 'string' },
+        region: { role: 'text', read: true, write: false, type: 'string' },
+        dst: { role: 'indicator', read: true, write: false, type: 'boolean' },
+        adapterVersion: { role: 'text', read: true, write: false, type: 'string' },
         //'power':          {'role': '', 'read': true, 'write': false, 'type': 'boolean', 'altValues': Power},
-        'location': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'name': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'icon': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'method': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'port': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'id': {'role': 'text', 'read': true, 'write': false, 'type': 'string'}, // unit identifier
-        'password': {'role': 'text', 'read': true, 'write': false, 'type': 'string'}, // password
-        'lpwFlag': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'pv': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'cpv': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'cpvMinor': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'led': {'role': 'button', 'read': true, 'write': false, 'type': 'boolean'}, // status LED on or off
-        'enSetzone': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'macAddress': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'adapterMode': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'error': {'role': 'value', 'read': true, 'write': false, 'name': 'error', 'type': 'number'},		// 255
-        'enHol': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'enGroup': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'groupName': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'adapterKind': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
+        location: { role: 'value', read: true, write: false, type: 'number' },
+        name: { role: 'text', read: true, write: false, type: 'string' },
+        icon: { role: 'value', read: true, write: false, type: 'number' },
+        method: { role: 'text', read: true, write: false, type: 'string' },
+        port: { role: 'value', read: true, write: false, type: 'number' },
+        id: { role: 'text', read: true, write: false, type: 'string' }, // unit identifier
+        password: { role: 'text', read: true, write: false, type: 'string' }, // password
+        lpwFlag: { role: 'value', read: true, write: false, type: 'number' },
+        pv: { role: 'value', read: true, write: false, type: 'number' },
+        cpv: { role: 'value', read: true, write: false, type: 'number' },
+        cpvMinor: { role: 'value', read: true, write: false, type: 'number' },
+        led: { role: 'button', read: true, write: false, type: 'boolean' }, // status LED on or off
+        enSetzone: { role: 'value', read: true, write: false, type: 'number' },
+        macAddress: { role: 'text', read: true, write: false, type: 'string' },
+        adapterMode: { role: 'text', read: true, write: false, type: 'string' },
+        error: { role: 'value', read: true, write: false, name: 'error', type: 'number' }, // 255
+        enHol: { role: 'value', read: true, write: false, type: 'number' },
+        enGroup: { role: 'value', read: true, write: false, type: 'number' },
+        groupName: { role: 'text', read: true, write: false, type: 'string' },
+        adapterKind: { role: 'value', read: true, write: false, type: 'number' },
     },
-    'control': {
-        'power': {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
-        'mode': {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': Mode, 'min': 0, 'max': 7},
-        'targetTemperature': {
-            'role': 'level.temperature',
-            'read': true,
-            'write': true,
-            'type': 'number',
-            'min': 10,
-            'max': 41,
-            'unit': '°C'
+    control: {
+        power: { role: 'switch', read: true, write: true, type: 'boolean' },
+        mode: { role: 'level', read: true, write: true, type: 'number', states: Mode, min: 0, max: 7 },
+        targetTemperature: {
+            role: 'level.temperature',
+            read: true,
+            write: true,
+            type: 'number',
+            min: 10,
+            max: 41,
+            unit: '°C',
         },
-        'targetHumidity': {
-            'role': 'level.humidity',
-            'read': true,
-            'write': true,
-            'type': 'number',
-            'min': 0,
-            'max': 50,
-            'unit': '%'
-        },		// "AUTO" or number from 0..50
-        'fanRate': {'role': 'text', 'read': true, 'write': true, 'type': 'string', 'states': FanRate},
-        'fanDirection': {'role': 'level', 'read': true, 'write': true, 'type': 'number', 'states': FanDirection},
-        'specialPowerful': {'role': 'switch.boost', 'read': true, 'write': true, 'type': 'boolean'},
-        'specialEcono': {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'},
-        'specialStreamer': {'role': 'switch', 'read': true, 'write': true, 'type': 'boolean'}
+        targetHumidity: {
+            role: 'level.humidity',
+            read: true,
+            write: true,
+            type: 'number',
+            min: 0,
+            max: 50,
+            unit: '%',
+        }, // "AUTO" or number from 0..50
+        fanRate: { role: 'text', read: true, write: true, type: 'string', states: FanRate },
+        fanDirection: { role: 'level', read: true, write: true, type: 'number', states: FanDirection },
+        specialPowerful: { role: 'switch.boost', read: true, write: true, type: 'boolean' },
+        specialEcono: { role: 'switch', read: true, write: true, type: 'boolean' },
+        specialStreamer: { role: 'switch', read: true, write: true, type: 'boolean' },
     },
-    'controlInfo': {
+    controlInfo: {
         // the following are returned, but not set-able
-        'specialMode': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': SpecialMode},
+        specialMode: { role: 'text', read: true, write: false, type: 'string', states: SpecialMode },
 
-        'targetTemperatureMode1': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
-        },		// "M" or number 10..41
-        'targetTemperatureMode2': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        targetTemperatureMode1: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
+        }, // "M" or number 10..41
+        targetTemperatureMode2: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'targetTemperatureMode3': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        targetTemperatureMode3: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'targetTemperatureMode4': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        targetTemperatureMode4: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'targetTemperatureMode5': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        targetTemperatureMode5: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'targetTemperatureMode7': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        targetTemperatureMode7: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
 
-        'targetHumidityMode1': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityMode2': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityMode3': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityMode4': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityMode5': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityMode7': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
-        'targetHumidityModeH': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},		// AUTO or number
+        targetHumidityMode1: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityMode2: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityMode3: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityMode4: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityMode5: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityMode7: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
+        targetHumidityModeH: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' }, // AUTO or number
 
-        'fanRateMode1': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode2': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode3': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode4': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode5': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode6': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateMode7': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanRateModeH': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
+        fanRateMode1: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode2: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode3: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode4: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode5: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode6: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateMode7: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanRateModeH: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
 
-        'fanDirectionMode1': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode2': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode3': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode4': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode5': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode6': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionMode7': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'fanDirectionModeH': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
+        fanDirectionMode1: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode2: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode3: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode4: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode5: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode6: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionMode7: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        fanDirectionModeH: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
 
-        'modeB': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': Mode},
-        'targetTemperatureB': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        modeB: { role: 'level', read: true, write: false, type: 'number', states: Mode },
+        targetTemperatureB: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'targetHumidityB': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},
-        'fanRateB': {'role': 'text', 'read': true, 'write': false, 'type': 'string', 'states': FanRate},
-        'fanDirectionB': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
+        targetHumidityB: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' },
+        fanRateB: { role: 'text', read: true, write: false, type: 'string', states: FanRate },
+        fanDirectionB: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
 
-        'error': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}		// 255
+        error: { role: 'value', read: true, write: false, type: 'number' }, // 255
     },
-    'demandControl': {
-        'enabled': {'role': 'switch', 'read': true, 'write': false, 'type': 'boolean'}, // can be writable later
-        'type': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlType},
-        'mode': {'role': 'level', 'read': true, 'write': false, 'type': 'number', 'states': DemandControlMode}, // can be writable later
-        'maxPower': {
-            'role': 'level.power',
-            'read': true,
-            'write': true,
-            'type': 'number',
-            'min': 40,
-            'max': 100,
-            'unit': '%'
-        },		// number from 40..100 and must be a multiply of 5
+    demandControl: {
+        enabled: { role: 'switch', read: true, write: false, type: 'boolean' }, // can be writable later
+        type: { role: 'level', read: true, write: false, type: 'number', states: DemandControlType },
+        mode: { role: 'level', read: true, write: false, type: 'number', states: DemandControlMode }, // can be writable later
+        maxPower: {
+            role: 'level.power',
+            read: true,
+            write: true,
+            type: 'number',
+            min: 40,
+            max: 100,
+            unit: '%',
+        }, // number from 40..100 and must be a multiply of 5
     },
-    'modelInfo': {
-        'model': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'type': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'pv': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'cpv': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'mid': {'role': 'text', 'read': true, 'write': false, 'type': 'string'},
-        'sFanDirection': {'role': 'value', 'read': true, 'write': false, 'type': 'number', 'states': FanDirection},
-        'enScdltmr': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
+    modelInfo: {
+        model: { role: 'text', read: true, write: false, type: 'string' },
+        type: { role: 'text', read: true, write: false, type: 'string' },
+        pv: { role: 'value', read: true, write: false, type: 'number' },
+        cpv: { role: 'value', read: true, write: false, type: 'number' },
+        mid: { role: 'text', read: true, write: false, type: 'string' },
+        sFanDirection: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+        enScdltmr: { role: 'value', read: true, write: false, type: 'number' },
     },
-    'sensorInfo': {
-        'indoorTemperature': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+    sensorInfo: {
+        indoorTemperature: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'indoorHumidity': {'role': 'value.humidity', 'read': true, 'write': false, 'type': 'number', 'unit': '%'},
-        'outdoorTemperature': {
-            'role': 'value.temperature',
-            'read': true,
-            'write': false,
-            'type': 'number',
-            'unit': '°C'
+        indoorHumidity: { role: 'value.humidity', read: true, write: false, type: 'number', unit: '%' },
+        outdoorTemperature: {
+            role: 'value.temperature',
+            read: true,
+            write: false,
+            type: 'number',
+            unit: '°C',
         },
-        'error': {'role': 'value', 'read': true, 'write': false, 'type': 'number'},
-        'cmpfreq': {'role': 'value', 'read': true, 'write': false, 'type': 'number'}
-    }
+        error: { role: 'value', read: true, write: false, type: 'number' },
+        cmpfreq: { role: 'value', read: true, write: false, type: 'number' },
+    },
 };
 
 function startAdapter(options) {
     options = options || {};
     Object.assign(options, {
-        name: 'daikin'
+        name: 'daikin',
     });
     adapter = new utils.Adapter(options);
 
@@ -250,9 +250,9 @@ function startAdapter(options) {
         await adapter.extendObjectAsync(adapter.namespace, {
             common: {
                 statusStates: {
-                    onlineId: `${adapter.namespace}.info.connection`
-                }
-            }
+                    onlineId: `${adapter.namespace}.info.connection`,
+                },
+            },
         });
         main();
     });
@@ -262,14 +262,18 @@ function startAdapter(options) {
     });
 
     adapter.on('stateChange', function (id, state) {
-        if (!state || state.ack !== false || state.val === null) return;
+        if (!state || state.ack !== false || state.val === null) {
+            return;
+        }
         adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
         const realNamespace = `${adapter.namespace}.control.`;
         const realNamespace2 = `${adapter.namespace}.demandControl.`;
 
         // Hacky: two namespaces and assume uniqueness of the variable independent of the namespace
         // To be checked with Apollon77
-        const stateId = id.startsWith(realNamespace) ? id.substring(realNamespace.length) : id.substring(realNamespace2.length);
+        const stateId = id.startsWith(realNamespace)
+            ? id.substring(realNamespace.length)
+            : id.substring(realNamespace2.length);
         changedStates[stateId] = state.val;
         if (changeTimeout) {
             adapter.log.debug('Clear change timeout');
@@ -291,7 +295,9 @@ function startAdapter(options) {
             changeTimeout = null;
         }
         setConnected(false);
-        if (callback) callback();
+        if (callback) {
+            callback();
+        }
     });
 
     return adapter;
@@ -309,76 +315,120 @@ function changeStates() {
     changedStates = {};
 
     adapter.log.debug(`Send ${Object.keys(changed).length} changes: ${JSON.stringify(changed)}`);
-    if (changed.mode !== undefined) { // we change mode
-        if (Object.keys(changed).length === 1) { // and we change mode only, so init all values from last
+    if (changed.mode !== undefined) {
+        // we change mode
+        if (Object.keys(changed).length === 1) {
+            // and we change mode only, so init all values from last
             adapter.log.debug('we changed mode only');
-            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== null) {
+            if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== undefined &&
+                daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== null
+            ) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`];
                 adapter.log.debug(`changed targetTemperature to ${changed.targetTemperature}`);
-            }
-            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null) {
+            } else if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined &&
+                daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null
+            ) {
                 changed.targetTemperature = daikinDevice.currentACControlInfo.targetTemperatureMode1;
                 adapter.log.debug(`changed targetTemperature to Mode 1:${changed.targetTemperature}`);
-            }
-            else {
+            } else {
                 changed.targetTemperature = 23;
                 adapter.log.debug('changed targetTemperature to fixed 23');
             }
-            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== null) {
+            if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== undefined &&
+                daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== null
+            ) {
                 changed.targetHumidity = daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`];
                 adapter.log.debug(`changed targetHumidity to ${changed.targetHumidity}`);
-            }
-            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined && daikinDevice.currentACControlInfo.targetHumidityMode1 !== null) {
+            } else if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined &&
+                daikinDevice.currentACControlInfo.targetHumidityMode1 !== null
+            ) {
                 changed.targetHumidity = daikinDevice.currentACControlInfo.targetHumidityMode1;
                 adapter.log.debug(`changed targetHumidity to Mode 1: ${changed.targetHumidity}`);
-            }
-            else {
+            } else {
                 changed.targetHumidity = 0;
                 adapter.log.debug('changed targetHumidity to fixed 0');
             }
-            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo[`fanRateMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`fanRateMode${changed.mode}`] !== null) {
+            if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo[`fanRateMode${changed.mode}`] !== undefined &&
+                daikinDevice.currentACControlInfo[`fanRateMode${changed.mode}`] !== null
+            ) {
                 changed.fanRate = daikinDevice.currentACControlInfo[`fanRateMode${changed.mode}`];
                 adapter.log.debug(`changed fanRate to ${changed.fanRate}`);
-            }
-            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.fanRateMode1 !== undefined && daikinDevice.currentACControlInfo.fanRateMode1 !== null) {
+            } else if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.fanRateMode1 !== undefined &&
+                daikinDevice.currentACControlInfo.fanRateMode1 !== null
+            ) {
                 changed.fanRate = daikinDevice.currentACControlInfo.fanRateMode1;
                 adapter.log.debug(`changed fanRate to Mode 1: ${changed.fanRate}`);
             }
-            if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo[`fanDirectionMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`fanDirectionMode${changed.mode}`] !== null) {
+            if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo[`fanDirectionMode${changed.mode}`] !== undefined &&
+                daikinDevice.currentACControlInfo[`fanDirectionMode${changed.mode}`] !== null
+            ) {
                 changed.fanDirection = daikinDevice.currentACControlInfo[`fanDirectionMode${changed.mode}`];
                 adapter.log.debug(`changed fanDirection to ${changed.fanDirection}`);
-            }
-            else if (daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.fanDirectionMode1 !== undefined && daikinDevice.currentACControlInfo.fanDirectionMode1 !== null) {
+            } else if (
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.fanDirectionMode1 !== undefined &&
+                daikinDevice.currentACControlInfo.fanDirectionMode1 !== null
+            ) {
                 changed.fanDirection = daikinDevice.currentACControlInfo.fanDirectionMode1;
                 adapter.log.debug(`changed fanDirection to Mode 1: ${changed.fanDirection}`);
             }
-        }
-        else {
+        } else {
             adapter.log.debug('we changed mode and other field');
-            if (changed.targetTemperature === undefined && daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetTemperature === null) {
-                if (daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== null) {
-                    changed.targetTemperature = daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`];
+            if (
+                changed.targetTemperature === undefined &&
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.targetTemperature === null
+            ) {
+                if (
+                    daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== undefined &&
+                    daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`] !== null
+                ) {
+                    changed.targetTemperature =
+                        daikinDevice.currentACControlInfo[`targetTemperatureMode${changed.mode}`];
                     adapter.log.debug(`changed targetTemperature to ${changed.targetTemperature}`);
-                }
-                else if (daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined && daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null) {
+                } else if (
+                    daikinDevice.currentACControlInfo.targetTemperatureMode1 !== undefined &&
+                    daikinDevice.currentACControlInfo.targetTemperatureMode1 !== null
+                ) {
                     changed.targetTemperature = daikinDevice.currentACControlInfo.targetTemperatureMode1;
                     adapter.log.debug(`changed targetTemperature to Mode 1: ${changed.targetTemperature}`);
-                }
-                else {
+                } else {
                     changed.targetTemperature = 23;
                     adapter.log.debug('changed targetTemperature to fixed 23');
                 }
             }
-            if (changed.targetHumidity === undefined && daikinDevice.currentACControlInfo && daikinDevice.currentACControlInfo.targetHumidity === null) {
-                if (daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== undefined && daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== null) {
+            if (
+                changed.targetHumidity === undefined &&
+                daikinDevice.currentACControlInfo &&
+                daikinDevice.currentACControlInfo.targetHumidity === null
+            ) {
+                if (
+                    daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== undefined &&
+                    daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`] !== null
+                ) {
                     changed.targetHumidity = daikinDevice.currentACControlInfo[`targetHumidityMode${changed.mode}`];
                     adapter.log.debug(`changed targetHumidity to ${changed.targetHumidity}`);
-                }
-                else if (daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined && daikinDevice.currentACControlInfo.targetHumidityMode1 !== null) {
+                } else if (
+                    daikinDevice.currentACControlInfo.targetHumidityMode1 !== undefined &&
+                    daikinDevice.currentACControlInfo.targetHumidityMode1 !== null
+                ) {
                     changed.targetHumidity = daikinDevice.currentACControlInfo.targetHumidityMode1;
                     adapter.log.debug(`changed targetHumidity to Mode 1: ${changed.targetHumidity}`);
-                }
-                else {
+                } else {
                     changed.targetHumidity = 0;
                     adapter.log.debug('changed targetHumidity to fixed 0');
                 }
@@ -386,9 +436,11 @@ function changeStates() {
         }
     }
     if (changed.maxPower !== undefined) {
-        daikinDevice.setACDemandControl({maxPower: changed.maxPower}, (err, response) => {
+        daikinDevice.setACDemandControl({ maxPower: changed.maxPower }, (err, response) => {
             adapter.log.debug(`changed maxPower to ${changed.maxPower}, response ${JSON.stringify(response)}`);
-            if (err) adapter.log.error(`change values failed: ${err.message}`);
+            if (err) {
+                adapter.log.error(`change values failed: ${err.message}`);
+            }
             delete changed.maxPower;
             setSpecialMode(changed);
         });
@@ -400,54 +452,63 @@ function changeStates() {
 function setConnected(isConnected) {
     if (connected !== isConnected) {
         connected = isConnected;
-        adapter && adapter.setState('info.connection', connected, true, (err) => {
-            // analyse if the state could be set (because of permissions)
-            if (err && adapter && adapter.log) {
-                adapter.log.error('Can not update connected state: ' + err);
-            }
-            else if (adapter && adapter.log) {
-                adapter.log.debug('connected set to ' + connected);
-            }
-        });
+        adapter &&
+            adapter.setState('info.connection', connected, true, err => {
+                // analyse if the state could be set (because of permissions)
+                if (err && adapter && adapter.log) {
+                    adapter.log.error(`Can not update connected state: ${err}`);
+                } else if (adapter && adapter.log) {
+                    adapter.log.debug(`connected set to ${connected}`);
+                }
+            });
     }
 }
 
 function setSpecialMode(changed) {
     if (changed.specialPowerful !== undefined) {
-        daikinDevice.setACSpecialMode({state: (changed.specialPowerful?'1':'0'), kind: DaikinController.SpecialModeKind.POWERFUL}, () => {
-            delete changed.specialPowerful;
-            if (updatedStates.control) {
-                updatedStates.control.specialPowerful = '';
-            } // reset stored value
-            setSpecialMode(changed);
-        });
+        daikinDevice.setACSpecialMode(
+            { state: changed.specialPowerful ? '1' : '0', kind: DaikinController.SpecialModeKind.POWERFUL },
+            () => {
+                delete changed.specialPowerful;
+                if (updatedStates.control) {
+                    updatedStates.control.specialPowerful = '';
+                } // reset stored value
+                setSpecialMode(changed);
+            },
+        );
         return;
     }
     if (changed.specialEcono !== undefined) {
-        daikinDevice.setACSpecialMode({state: (changed.specialEcono? '1' : '0'), kind: DaikinController.SpecialModeKind.ECONO}, () => {
-            delete changed.specialEcono;
-            if (updatedStates.control) {
-                updatedStates.control.specialEcono = '';
-            } // reset stored value
-            setSpecialMode(changed);
-        });
+        daikinDevice.setACSpecialMode(
+            { state: changed.specialEcono ? '1' : '0', kind: DaikinController.SpecialModeKind.ECONO },
+            () => {
+                delete changed.specialEcono;
+                if (updatedStates.control) {
+                    updatedStates.control.specialEcono = '';
+                } // reset stored value
+                setSpecialMode(changed);
+            },
+        );
         return;
     }
     if (changed.specialStreamer !== undefined) {
-        daikinDevice.setACSpecialMode({state: (changed.specialStreamer? '1' : '0'), kind: DaikinController.SpecialModeKind.STREAMER}, () => {
-            delete changed.specialStreamer;
-            if (updatedStates.control) {
-                updatedStates.control.specialStreamer = '';
-            } // reset stored value
-            setSpecialMode(changed);
-        });
+        daikinDevice.setACSpecialMode(
+            { state: changed.specialStreamer ? '1' : '0', kind: DaikinController.SpecialModeKind.STREAMER },
+            () => {
+                delete changed.specialStreamer;
+                if (updatedStates.control) {
+                    updatedStates.control.specialStreamer = '';
+                } // reset stored value
+                setSpecialMode(changed);
+            },
+        );
         return;
     }
 
-    if (Object.keys(changed).length > 0) { // and we change mode only, so init all values from last
+    if (Object.keys(changed).length > 0) {
+        // and we change mode only, so init all values from last
         setControlInfo(changed);
-    }
-    else {
+    } else {
         changeRunning = false;
         daikinDevice.updateData();
     }
@@ -457,7 +518,9 @@ function setControlInfo(changed) {
     daikinDevice.setACControlInfo(changed, (err, response) => {
         if (updatedStates.control) {
             adapter.log.debug(`change values: ${JSON.stringify(response)} to ${JSON.stringify(response)}`);
-            if (err) adapter.log.error(`change values failed: ${err.message}`);
+            if (err) {
+                adapter.log.error(`change values failed: ${err.message}`);
+            }
             for (const fieldName in changed) {
                 updatedStates.control[fieldName] = ''; // reset stored value
                 adapter.log.debug(`reset ${fieldName}`);
@@ -472,9 +535,9 @@ function main() {
     setConnected(false);
     const options = {};
     if (adapter.common.loglevel === 'debug') {
-        options.logger = adapter.log.debug
+        options.logger = adapter.log.debug;
     }
-/*    else if (adapter.common.loglevel === 'info') {
+    /*    else if (adapter.common.loglevel === 'info') {
         options.logger = adapter.log.info;
     }*/
     if (!adapter.config.daikinIp) {
@@ -482,15 +545,20 @@ function main() {
         typeof adapter.terminate === 'function' ? adapter.terminate(11) : process.exit(11);
         return;
     }
-    if (adapter.config.pollingInterval !== null && adapter.config.pollingInterval !== undefined && adapter.config.pollingInterval !== "") {
+    if (
+        adapter.config.pollingInterval !== null &&
+        adapter.config.pollingInterval !== undefined &&
+        adapter.config.pollingInterval !== ''
+    ) {
         adapter.config.pollingInterval = parseInt(adapter.config.pollingInterval, 10);
+    } else {
+        adapter.config.pollingInterval = 300;
     }
-    else adapter.config.pollingInterval = 300;
     if (adapter.config.useGetToPost) {
         options.useGetToPost = true;
     }
 
-    daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options,  (err, res) => {
+    daikinDevice = new DaikinController.DaikinAC(adapter.config.daikinIp, options, (err, _res) => {
         adapter.log.info(`Daikin Device initialized ${err ? `with Error :${err.message}` : 'successfully'}`);
         if (!err) {
             setConnected(true);
@@ -500,8 +568,7 @@ function main() {
             });
             adapter.subscribeStates('control.*');
             adapter.subscribeStates('demandControl.*');
-        }
-        else {
+        } else {
             setConnected(false);
             adapter.log.info('Retry init in 60 seconds');
             setTimeout(main, 60000);
@@ -510,7 +577,9 @@ function main() {
 }
 
 async function storeDaikinData(err) {
-    if (stopped) return;
+    if (stopped) {
+        return;
+    }
     if (!err) {
         setConnected(true);
         if (!deviceName && daikinDevice.currentCommonBasicInfo && daikinDevice.currentCommonBasicInfo.name) {
@@ -518,7 +587,7 @@ async function storeDaikinData(err) {
         }
 
         const controlInfo = {
-            ...daikinDevice.currentACControlInfo
+            ...daikinDevice.currentACControlInfo,
         };
         const control = {};
         for (const fieldName in fieldDef.control) {
@@ -555,7 +624,7 @@ async function storeDaikinData(err) {
         }
 
         const basicInfo = {
-            ...daikinDevice.currentCommonBasicInfo
+            ...daikinDevice.currentCommonBasicInfo,
         };
         if (basicInfo && basicInfo.power !== undefined) {
             delete basicInfo.power;
@@ -570,12 +639,13 @@ async function storeDaikinData(err) {
         if (daikinDevice.currentACDemandControl) {
             updated.demandControl = await handleDaikinUpdate(daikinDevice.currentACDemandControl, 'demandControl');
         }
-        let updatedTotal = Object.values(updated).reduce((sum, num) => { return sum + num }, 0);
+        let updatedTotal = Object.values(updated).reduce((sum, num) => {
+            return sum + num;
+        }, 0);
         if (updatedTotal > 0) {
             adapter.log.info(`${updatedTotal} Values updated: ${JSON.stringify(updated)}`);
         }
-    }
-    else {
+    } else {
         setConnected(false);
         adapter.log.error(`Error updating data: ${err.message}`);
     }
@@ -587,20 +657,22 @@ async function storeDaikinData(err) {
                     name: 'control.lastResult',
                     type: 'string',
                     read: true,
-                    write: false
+                    write: false,
                 },
-                native: {id: 'control.lastResult'}
+                native: { id: 'control.lastResult' },
             });
             updatedStates['control.lastResult'] = true;
         } catch (err) {
             adapter.log.error(`Error creating State: ${err.message}`);
         }
     }
-    await adapter.setStateAsync('control.lastResult', {ack: true, val: (err ? err.message : 'OK')});
+    await adapter.setStateAsync('control.lastResult', { ack: true, val: err ? err.message : 'OK' });
 }
 
 async function handleDaikinUpdate(data, channel) {
-    if (stopped) return;
+    if (stopped) {
+        return;
+    }
     adapter.log.debug(`HandleDaikinUpdate for ${channel} with ${JSON.stringify(data)}`);
     let updated = 0;
     if (!data) {
@@ -613,18 +685,20 @@ async function handleDaikinUpdate(data, channel) {
             await adapter.extendObjectAsync(channel, {
                 type: 'channel',
                 common: {
-                    'name': deviceName + channel,
-                    'role': channelDef[channel].role
+                    name: deviceName + channel,
+                    role: channelDef[channel].role,
                 },
-                native: {}
+                native: {},
             });
-        } catch(err) {
-            adapter.log.error(`Error creating Channel: ${err.message}` );
+        } catch (err) {
+            adapter.log.error(`Error creating Channel: ${err.message}`);
         }
         updatedStates[channel] = {};
     }
     for (let fieldName in data) {
-        if (stopped) return;
+        if (stopped) {
+            return;
+        }
         if (typeof fieldName !== 'string') {
             fieldName = fieldName.toString();
         }
@@ -640,41 +714,51 @@ async function handleDaikinUpdate(data, channel) {
                         type: 'state',
                         common: commonDef,
                         native: {
-                            id: `${channel}.${fieldName}`
-                        }
+                            id: `${channel}.${fieldName}`,
+                        },
                     });
                 } catch (err) {
                     adapter.log.error(`Error creating State: ${err.message}`);
                 }
-            }
-            else if (data[fieldName] === undefined) {
+            } else if (data[fieldName] === undefined) {
                 continue;
-            }
-            else {
+            } else {
                 valid = false;
                 if (channel !== 'deviceInfo' && fieldName !== 'power') {
                     adapter.log.warn(`Unknown data field ${channel}.${fieldName}. Report to Developer!`);
                 }
             }
         }
-        if (data[fieldName] !== null && fieldDef[channel][fieldName] && typeof data[fieldName] !== fieldDef[channel][fieldName].type) {
+        if (
+            data[fieldName] !== null &&
+            fieldDef[channel][fieldName] &&
+            typeof data[fieldName] !== fieldDef[channel][fieldName].type
+        ) {
             if (fieldDef[channel][fieldName].type === 'string') {
                 if (data[fieldName] !== null && data[fieldName] !== undefined) {
                     data[fieldName] = data[fieldName].toString();
                 } else {
                     data[fieldName] = null;
                 }
-            }
-            else {
-                adapter.log.debug(`Field type mismatch for ${fieldName}: val=${data[fieldName]} vs. ${fieldDef[channel][fieldName].type} - set null`);
+            } else {
+                adapter.log.debug(
+                    `Field type mismatch for ${fieldName}: val=${data[fieldName]} vs. ${fieldDef[channel][fieldName].type} - set null`,
+                );
                 data[fieldName] = null;
             }
         }
-        if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) data[fieldName] = null;
-        adapter.log.debug(`Old value ${channel}.${fieldName}: old=${updatedStates[channel][fieldName]}, new=${data[fieldName]}`);
-        if (valid && (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] !== data[fieldName])) {
+        if (typeof data[fieldName] === 'number' && isNaN(data[fieldName])) {
+            data[fieldName] = null;
+        }
+        adapter.log.debug(
+            `Old value ${channel}.${fieldName}: old=${updatedStates[channel][fieldName]}, new=${data[fieldName]}`,
+        );
+        if (
+            valid &&
+            (updatedStates[channel][fieldName] === undefined || updatedStates[channel][fieldName] !== data[fieldName])
+        ) {
             adapter.log.debug(`Set State ${channel}.${fieldName}: ${data[fieldName]}`);
-            await adapter.setStateAsync(`${channel}.${fieldName}`, {ack: true, val: data[fieldName]});
+            await adapter.setStateAsync(`${channel}.${fieldName}`, { ack: true, val: data[fieldName] });
             updatedStates[channel][fieldName] = data[fieldName];
             updated++;
         }
@@ -683,14 +767,16 @@ async function handleDaikinUpdate(data, channel) {
 }
 
 function processMessage(message) {
-    if (!message) return;
+    if (!message) {
+        return;
+    }
 
     adapter.log.info(`Message received = ${JSON.stringify(message)}`);
 
     if (message.command === 'discover') {
         DaikinController.discover(5, result => {
             adapter.log.info(JSON.stringify(result));
-            return adapter.sendTo(message.from, message.command, {devices: result}, message.callback);
+            return adapter.sendTo(message.from, message.command, { devices: result }, message.callback);
         });
     }
 }

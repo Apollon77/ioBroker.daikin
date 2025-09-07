@@ -17,3 +17,5 @@ appveyor.yml
 .vscode
 package-lock.json
 admin/i18n
+eslint.config.mjs
+prettier.config.mjs
