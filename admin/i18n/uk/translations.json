@@ -1,0 +1,10 @@
+{
+    "field_daikinIp": "IP пристрою Daikin",
+    "field_pollingInterval": "Інтервал оновлення даних",
+    "field_useGetToPost": "Надіслати команди за допомогою http-get",
+    "heading_GeneralSettings": "Загальні налаштування",
+    "info_daikinIp": "",
+    "info_pollingInterval": "",
+    "info_useGetToPost": "(Потрібно лише для 1.x WLAN-фірми, якщо це ще не працює)",
+    "page_title": "Налаштування екземпляра Daikin"
+}
