@@ -98,7 +98,6 @@
     "authors": [
       "Apollon77 <ingo@fischer-ka.de>"
     ],
-    "title": "Daikin Air Conditioner",
     "titleLang": {
       "en": "Daikin Air Conditioner",
       "de": "Daikin Klimaanlage",
@@ -128,15 +127,16 @@
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "messagebox": true,
-    "subscribe": "messagebox",
     "stopBeforeUpdate": true,
     "icon": "daikin.jpg",
     "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.daikin/master/admin/daikin.jpg",
     "readme": "https://github.com/Apollon77/ioBroker.daikin/blob/master/README.md",
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "type": "climate-control",
     "keywords": [
-      "iobroker",
       "daikin",
       "climate control"
     ],
@@ -158,7 +158,12 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=2.0.0"
+        "js-controller": ">=5.0.19"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.17.14"
       }
     ],
     "connectionType": "local",
