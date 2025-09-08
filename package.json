@@ -19,7 +19,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.2.3",
+    "@iobroker/adapter-core": "^3.3.2",
     "daikin-controller": "^2.2.2"
   },
   "devDependencies": {
@@ -31,8 +31,8 @@
     "@iobroker/eslint-config": "^2.1.0",
     "chai": "^4.5.0",
     "istanbul": "^0.4.5",
-    "mocha": "^11.5.0",
-    "nyc": "^15.1.0"
+    "mocha": "^11.7.2",
+    "nyc": "^17.1.0"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"

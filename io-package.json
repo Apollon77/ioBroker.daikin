@@ -39,7 +39,8 @@
         "it": "Assicurarsi che il polling funzioni ancora dopo aver impostato stati di modalità speciali",
         "es": "Asegúrese de que la votación todavía funciona después de establecer estados de modo especial",
         "pl": "Po założeniu odpowiedniego głosowania nadal działa po ustawieniu stanów specjalnych",
-        "zh-cn": "确保在建立特殊模式国家之后仍然进行投票"
+        "zh-cn": "确保在建立特殊模式国家之后仍然进行投票",
+        "uk": "Переконайтесь, що опитування все ще працює після встановлення спеціальних станів режиму"
       },
       "1.4.1": {
         "en": "Prevent crash case reported by Sentry",
@@ -51,7 +52,8 @@
         "it": "Prevenire caso crash segnalato da Sentry",
         "es": "Caso de emergencia reportado por Sentry",
         "pl": "Przygotowania do wypadku Sentry",
-        "zh-cn": "Sentry所报告的预防事故"
+        "zh-cn": "Sentry所报告的预防事故",
+        "uk": "Запобігання справі про аварії, повідомленому Sentry"
       },
       "1.4.0": {
         "en": "Add Connection identifier for Admin and Device\nOptimize unload handling",
@@ -63,7 +65,8 @@
         "it": "Aggiungi l'identificatore di connessione per amministrazione e dispositivo\nOttimizzare la gestione del carico",
         "es": "Añadir identificador de conexión para Admin y Dispositivo\nOptimize unload handling",
         "pl": "Add Connection identyfikuje Admin i Device\nOptymizacja",
-        "zh-cn": "增加阿德明和德维斯的识别符号\nA. 通过卸货处理"
+        "zh-cn": "增加阿德明和德维斯的识别符号\nA. 通过卸货处理",
+        "uk": "Додайте ідентифікатор з'єднання для адміністратора та пристрою\nОптимізуйте обробку вивантаження"
       },
       "1.3.3": {
         "en": "Prevent crash case when no temperature was read out (Sentry IOBROKER-DAIKIN-D, IOBROKER-DAIKIN-M)",
@@ -75,7 +78,8 @@
         "it": "Prevenire il crash case quando non è stata letta la temperatura (Sentry IOBROKER-DAIKIN-D, IOBROKER-DAIKIN-M)",
         "es": "Prevenir caso de colisión cuando no se leyó la temperatura (Sentry IOBROKER-DAIKIN-D, IOBROKER-DAIKIN-M)",
         "pl": "Zapobiegaj awariom, gdy nie odczytano temperatury (Sentry IOBROKER-DAIKIN-D, IOBROKER-DAIKIN-M)",
-        "zh-cn": "防止在未读取温度时发生崩溃（Sentry IOBROKER-DAIKIN-D、IOBROKER-DAIKIN-M）"
+        "zh-cn": "防止在未读取温度时发生崩溃（Sentry IOBROKER-DAIKIN-D、IOBROKER-DAIKIN-M）",
+        "uk": "Попередити випадок аварії, коли не було прочитано температуру (Sentry iobroker-daikin-d, iobroker-daikin-m)"
       },
       "1.3.2": {
         "en": "Handle modes correctly where no temperature or humidity parameters are required",
@@ -87,7 +91,8 @@
         "it": "Gestire correttamente le modalità dove non sono richiesti parametri di temperatura o umidità",
         "es": "Manejar los modos correctamente donde no se requieren parámetros de temperatura o humedad",
         "pl": "Prawidłowo obsługuj tryby, w których nie są wymagane żadne parametry temperatury ani wilgotności",
-        "zh-cn": "在不需要温度或湿度参数的情况下正确处理模式"
+        "zh-cn": "在不需要温度或湿度参数的情况下正确处理模式",
+        "uk": "Режими обробки правильно, де не потрібні параметри температури або вологості"
       }
     },
     "authors": [
@@ -104,7 +109,8 @@
       "it": "Condizionatore d'aria Daikin",
       "es": "Aire acondicionado Daikin",
       "pl": "Klimatyzator Daikin",
-      "zh-cn": "大金空调"
+      "zh-cn": "大金空调",
+      "uk": "Кондиціонер Daikin"
     },
     "desc": {
       "en": "Control Daikin Air Conditioner devices",
@@ -116,7 +122,8 @@
       "it": "Controlla i dispositivi Daikin Air Conditioner",
       "es": "Controle los dispositivos de aire acondicionado Daikin",
       "pl": "Sterowanie urządzeniami klimatyzacyjnymi Daikin",
-      "zh-cn": "控制大金空调设备"
+      "zh-cn": "控制大金空调设备",
+      "uk": "Контроль пристроїв кондиціонера Daikin"
     },
     "platform": "Javascript/Node.js",
     "mode": "daemon",
