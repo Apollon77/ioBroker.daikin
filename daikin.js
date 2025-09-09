@@ -514,8 +514,76 @@ function setSpecialMode(changed) {
     }
 }
 
-function setControlInfo(changed) {
+function setControlInfoMinimal(changed, callback) {
+    // Send only essential parameters to avoid PARAM NG errors
+    adapter.log.debug(`setControlInfoMinimal called with: ${JSON.stringify(changed)}`);
+    
+    // Use cached control info instead of making another GET request
+    const response = daikinDevice.currentACControlInfo;
+    if (!response) {
+        adapter.log.error('No cached control info available, falling back to full method');
+        setControlInfoFallback(changed, callback);
+        return;
+    }
+
+    adapter.log.debug(`Using cached control info: ${JSON.stringify(response)}`);
+
+    // Build minimal parameter set with only required fields + changed fields
+    const minimalParams = {};
+    
+    // Required fields according to daikin-controller
+    minimalParams.pow = changed.power !== undefined ? (changed.power ? 1 : 0) : (response.power ? 1 : 0);
+    minimalParams.mode = changed.mode !== undefined ? changed.mode : response.mode;
+    minimalParams.stemp = changed.targetTemperature !== undefined ? 
+        (typeof changed.targetTemperature === 'number' ? 
+            (Math.round(changed.targetTemperature * 2) / 2).toFixed(1) : 
+            changed.targetTemperature) : 
+        (typeof response.targetTemperature === 'number' ? 
+            (Math.round(response.targetTemperature * 2) / 2).toFixed(1) : 
+            response.targetTemperature);
+    minimalParams.shum = changed.targetHumidity !== undefined ? changed.targetHumidity : response.targetHumidity;
+
+    // Add only the changed optional fields
+    if (changed.fanRate !== undefined) minimalParams.f_rate = changed.fanRate;
+    if (changed.fanDirection !== undefined) minimalParams.f_dir = changed.fanDirection;
+    if (changed.specialMode !== undefined) minimalParams.adv = changed.specialMode;
+
+    adapter.log.debug(`Sending minimal parameters: ${JSON.stringify(minimalParams)}`);
+
+    // Send the minimal request using the internal request object
+    daikinDevice._daikinRequest.doPost(`http://${daikinDevice._daikinRequest.ip}/aircon/set_control_info`, minimalParams, (data, _response) => {
+        adapter.log.debug(`Minimal request response: ${data}`);
+        
+        if (data && data.includes('ret=OK')) {
+            adapter.log.debug('Minimal parameter request succeeded');
+            if (callback) callback(null, data);
+        } else if (data && data.includes('ret=PARAM NG')) {
+            adapter.log.warn('Minimal parameter request failed with PARAM NG, falling back to full parameter set');
+            // Fallback to original method
+            setControlInfoFallback(changed, callback);
+        } else {
+            const error = new Error(`Minimal request failed: ${data}`);
+            adapter.log.error(`Minimal parameter request failed: ${error.message}`);
+            if (callback) callback(error, data);
+        }
+    });
+}
+
+function setControlInfoFallback(changed, callback) {
+    // Fallback to the original method with full parameter set
+    adapter.log.debug('Using fallback method with full parameter set');
     daikinDevice.setACControlInfo(changed, (err, response) => {
+        if (err) {
+            adapter.log.error(`Fallback method also failed: ${err.message}`);
+        } else {
+            adapter.log.debug('Fallback method succeeded');
+        }
+        if (callback) callback(err, response);
+    });
+}
+
+function setControlInfo(changed) {
+    setControlInfoMinimal(changed, (err, response) => {
         if (updatedStates.control) {
             adapter.log.debug(`change values: ${JSON.stringify(response)} to ${JSON.stringify(response)}`);
             if (err) {
