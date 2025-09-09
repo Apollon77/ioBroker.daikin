@@ -62,6 +62,26 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * modelInfo.* : Information about the Device itself and the supported features, read-only
 * sensorInfo.* : Sensor data from the Device like the measured indoor and outdoor temperature
 
+## Troubleshooting
+
+### "Wrong Parameters in request: ret=PARAM NG" Error
+
+If you encounter this error when trying to control your Daikin device (e.g., changing temperature or mode), it means your device is rejecting the command due to parameter validation issues. This typically happens with:
+
+- Newer Daikin devices with strict parameter validation
+- Devices that don't support all parameter combinations
+- Firmware versions that are more restrictive
+
+**Solutions:**
+
+1. **Enable useGetToPost option**: In the adapter configuration, enable "Send commands using HTTP-GET". This helps with some older 1.x WLAN firmware versions.
+
+2. **Enable debug logging**: Set the adapter log level to "debug" to see detailed information about which parameters are being sent and help identify the issue.
+
+3. **The adapter automatically tries a minimal parameter approach first**: Since version 1.5.2, the adapter automatically sends only essential parameters (power, mode, temperature, humidity) plus the changed values, which resolves most PARAM NG errors.
+
+If the issue persists, please provide debug logs showing the exact parameters being sent when the error occurs.
+
 ## Todo
 * enhance testing: state checks and setState's
 * check model info/supported features
