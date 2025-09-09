@@ -33,7 +33,7 @@ describe('Test package.json and io-package.json', () => {
         expect(npmPackage.author, 'ERROR: Author in package.json needs to exist').to.exist;
         expect(ioPackage.common.authors, 'ERROR: Authors in io-package.json needs to exist').to.exist;
 
-        expect(ioPackage.common.license, 'ERROR: License missing in io-package in common.license').to.exist;
+        expect(ioPackage.common.license || ioPackage.common.licenseInformation, 'ERROR: License missing in io-package.json (either common.license or common.licenseInformation)').to.exist;
 
         if (ioPackage.common.name.indexOf('template') !== 0) {
             if (Array.isArray(ioPackage.common.authors)) {
@@ -55,12 +55,12 @@ describe('Test package.json and io-package.json', () => {
             console.log('WARNING: titleLang is not existing in io-package.json. Please add');
             console.log();
         }
-        if (
+        if (ioPackage.common.title && (
             ioPackage.common.title.indexOf('iobroker') !== -1 ||
             ioPackage.common.title.indexOf('ioBroker') !== -1 ||
             ioPackage.common.title.indexOf('adapter') !== -1 ||
             ioPackage.common.title.indexOf('Adapter') !== -1
-        ) {
+        )) {
             console.log('WARNING: title contains Adapter or ioBroker. It is clear anyway, that it is adapter for ioBroker.');
             console.log();
         }
