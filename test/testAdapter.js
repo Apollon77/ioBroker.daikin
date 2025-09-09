@@ -234,6 +234,16 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
 
     });
+
+    it('Test ' + adapterShortName + ' adapter: Check fanDirection field', function (done) {
+        console.log('START CHECK FANDIRECTION');
+        this.timeout(60000);
+
+        checkValueOfState('daikin.0.controlInfo.fanDirection', 0, function() {
+            done();
+        });
+    });
+
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
 
