@@ -69,6 +69,9 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 * VIS widget
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (Apollon77) Fixed unknown data field controlInfo.fanDirection warning
+
 ### 1.5.1 (2025-05-25)
 * (@Matze2) Handles potential error case when using demand control data
 
