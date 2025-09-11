@@ -70,7 +70,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 ## Changelog
 ### **WORK IN PROGRESS**
-* (Apollon77) Fixed unknown data field controlInfo.fanDirection warning (#155)
+* (Apollon77) Fixed unknown data field controlInfo.fanDirection warning
 
 ### 1.5.1 (2025-05-25)
 * (@Matze2) Handles potential error case when using demand control data
