@@ -511,7 +511,7 @@ class DaikinAdapter extends utils.Adapter {
     setControlInfo(changed: Record<string, any>): void {
         this.#daikinDevice.setACControlInfo(changed, (err: any, response: any) => {
             if (this.#updatedStates.control) {
-                this.log.debug(`change values: ${JSON.stringify(response)} to ${JSON.stringify(response)}`);
+                this.log.debug(`change values: ${JSON.stringify(changed)} to ${JSON.stringify(response)}`);
                 if (err) {
                     this.log.error(`change values failed: ${err.message}`);
                 }
