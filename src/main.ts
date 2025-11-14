@@ -774,7 +774,7 @@ class DaikinAdapter extends utils.Adapter {
         this.log.info(`Message received = ${JSON.stringify(message)}`);
 
         if (message.command === 'discover') {
-            new DaikinController.DaikinDiscovery(5, (result: any) => {
+            DaikinController.discover(5, (result: any) => {
                 this.log.info(JSON.stringify(result));
                 this.sendTo(message.from, message.command, { devices: result }, message.callback);
             });
