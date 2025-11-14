@@ -4,6 +4,7 @@
 
 import * as utils from '@iobroker/adapter-core';
 import * as DaikinController from 'daikin-controller';
+import { DaikinDiscovery } from 'daikin-controller';
 
 interface DaikinAdapterConfig extends ioBroker.AdapterConfig {
     daikinIp: string;
@@ -774,7 +775,7 @@ class DaikinAdapter extends utils.Adapter {
         this.log.info(`Message received = ${JSON.stringify(message)}`);
 
         if (message.command === 'discover') {
-            DaikinController.discover(5, (result: any) => {
+            new DaikinDiscovery(5, (result: any) => {
                 this.log.info(JSON.stringify(result));
                 this.sendTo(message.from, message.command, { devices: result }, message.callback);
             });
