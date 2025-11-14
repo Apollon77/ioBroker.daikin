@@ -120,7 +120,7 @@ tests.integration(path.join(__dirname, '..'), {
 
             it('Should start adapter and read initial values', async function () {
                 harness = getHarness();
-                this.timeout(60000);
+                this.timeout(90000);
 
                 // Configure adapter to use our mock server
                 await harness.changeAdapterConfig('daikin', {
@@ -147,27 +147,26 @@ tests.integration(path.join(__dirname, '..'), {
                 expect(connectionState.val, 'Connection should be true when device is available').to.be.true;
 
                 // Check initial indoor temperature (23.5)
-                const tempState = await harness.states.getStateAsync('daikin.0.sensorInfo.indoorTemperature');
+                let tempState = await harness.states.getStateAsync('daikin.0.sensorInfo.indoorTemperature');
                 expect(tempState, 'Indoor temperature state should exist').to.not.be.null;
                 expect(tempState.val, 'Indoor temperature should be 23.5').to.equal(23.5);
 
                 // Check that device info was created
                 const deviceName = await harness.states.getStateAsync('daikin.0.deviceInfo.name');
                 expect(deviceName, 'Device name should exist').to.not.be.null;
-            });
-
-            it('Should update values on polling and handle state changes', async function () {
-                this.timeout(40000);
 
                 // Wait for the next polling cycle to get updated temperature (25.5)
                 await new Promise((res) => setTimeout(res, 15000));
 
                 // Check updated temperature value
-                let tempState = await harness.states.getStateAsync('daikin.0.sensorInfo.indoorTemperature');
+                tempState = await harness.states.getStateAsync('daikin.0.sensorInfo.indoorTemperature');
                 expect(tempState, 'Indoor temperature state should exist').to.not.be.null;
                 expect(tempState.val, 'Indoor temperature should be updated to 25.5').to.equal(25.5);
+            });
 
-                // Now test setting values
+            it('Should set values correctly', async function () {
+                this.timeout(40000);
+
                 // Set target temperature to 20
                 await harness.states.setStateAsync('daikin.0.control.targetTemperature', {
                     val: 20.0,
@@ -184,7 +183,7 @@ tests.integration(path.join(__dirname, '..'), {
                 // The mock server will return targetTemperature as 21.0 after processing
                 await waitForState(harness, 'daikin.0.control.targetTemperature', 21.0);
 
-                tempState = await harness.states.getStateAsync('daikin.0.control.targetTemperature');
+                const tempState = await harness.states.getStateAsync('daikin.0.control.targetTemperature');
                 expect(tempState, 'Target temperature should exist').to.not.be.null;
                 expect(tempState.val, 'Target temperature should be updated to 21.0').to.equal(21.0);
             });
