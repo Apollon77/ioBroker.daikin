@@ -553,7 +553,7 @@ class DaikinAdapter extends utils.Adapter {
                 this.log.info(`Daikin Device initialized ${err ? `with Error :${err.message}` : 'successfully'}`);
                 if (!err) {
                     this.setConnected(true);
-                    this.log.info(`Set polling Intervall to ${pollingInterval}s`);
+                    this.log.info(`Set polling Interval to ${pollingInterval}s`);
                     this.#daikinDevice.setUpdate(pollingInterval * 1000, (err: any) => {
                         void this.storeDaikinData(err);
                     });
