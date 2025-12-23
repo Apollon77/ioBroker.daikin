@@ -181,6 +181,8 @@ const fieldDef = {
         fanDirectionMode7: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
         fanDirectionModeH: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
 
+        fanDirection: { role: 'value', read: true, write: false, type: 'number', states: FanDirection },
+
         modeB: { role: 'level', read: true, write: false, type: 'number', states: Mode },
         targetTemperatureB: {
             role: 'value.temperature',
