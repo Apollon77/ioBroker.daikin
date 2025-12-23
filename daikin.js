@@ -643,7 +643,7 @@ async function storeDaikinData(err) {
             return sum + num;
         }, 0);
         if (updatedTotal > 0) {
-            adapter.log.info(`${updatedTotal} Values updated: ${JSON.stringify(updated)}`);
+            adapter.log.debug(`${updatedTotal} Values updated: ${JSON.stringify(updated)}`);
         }
     } else {
         setConnected(false);
