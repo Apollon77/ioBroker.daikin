@@ -150,7 +150,7 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 
 The MIT License (MIT)
 
-Copyright (c) 2017-2025 Apollon77 <ingo@fischer-ka.de>
+Copyright (c) 2017-2026 Apollon77 <ingo@fischer-ka.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
