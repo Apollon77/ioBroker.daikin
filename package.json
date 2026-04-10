@@ -31,7 +31,7 @@
     "@iobroker/eslint-config": "^2.1.0",
     "@iobroker/testing": "^5.1.1",
     "istanbul": "^0.4.5",
-    "nyc": "^17.1.0"
+    "nyc": "^18.0.0"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.daikin/issues"
