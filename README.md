@@ -146,6 +146,8 @@ After the Adapter has connected to the Daikin Device a structure of objects are 
 ### 0.1.x
 * development and first tests
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 The MIT License (MIT)
